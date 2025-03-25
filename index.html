@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ESP/Arduino Pin Encyclopedia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>ESP/Arduino Pin Encyclopedia</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="esp32.html">ESP32 Ports</a></li>
+        <li><a href="arduino.html">Arduino Ports</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Overview</h2>
+      <p>Welcome to the ESP/Arduino Pin Encyclopedia. Here you will find detailed information about various pins and ports used in ESP32 and Arduino boards, including their functions, wiring diagrams, and best practices.</p>
+    </section>
+    
+    <section class="table-section">
+      <h2>Sample Component Connections</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>ESP32 Pin</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Neo-6M GPS VCC</td>
+            <td>3.3V or 5V</td>
+            <td>Most modules work with 3.3V, but check yours</td>
+          </tr>
+          <tr>
+            <td>Neo-6M GPS GND</td>
+            <td>GND</td>
+            <td>Ground connection</td>
+          </tr>
+          <tr>
+            <td>Neo-6M GPS TX</td>
+            <td>GPIO16</td>
+            <td>Software Serial RX</td>
+          </tr>
+          <tr>
+            <td>Neo-6M GPS RX</td>
+            <td>GPIO17</td>
+            <td>Software Serial TX</td>
+          </tr>
+          <tr>
+            <td>OLED Display (128x32) VCC</td>
+            <td>3.3V</td>
+            <td>Power</td>
+          </tr>
+          <tr>
+            <td>OLED Display GND</td>
+            <td>GND</td>
+            <td>Ground</td>
+          </tr>
+          <tr>
+            <td>OLED Display SCL</td>
+            <td>GPIO22</td>
+            <td>I2C Clock</td>
+          </tr>
+          <tr>
+            <td>OLED Display SDA</td>
+            <td>GPIO21</td>
+            <td>I2C Data</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ESP/Arduino Encyclopedia</p>
+  </footer>
+</body>
+</html>
