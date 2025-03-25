@@ -8,7 +8,7 @@
 </head>
 <body>
   <header>
-    <h1>ESP32 Ports</h1>
+    <h1>ESP32 Ports & Pin Functions</h1>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -20,10 +20,123 @@
   </header>
   
   <main>
+    <!-- Introduction Section -->
     <section>
       <h2>About ESP32 Pins</h2>
-      <p>The ESP32 offers a wide range of GPIO pins that support various functions such as digital I/O, PWM, I2C, SPI, UART, ADC, and more. This page provides detailed information on common ESP32 ports and their typical usage in projects.</p>
-      <!-- Additional detailed information and diagrams can be added here -->
+      <p>
+        The ESP32 is a powerful, feature-rich microcontroller that offers a wide range of I/O capabilities. Its versatile GPIO pins support digital I/O, analog input (ADC), pulse width modulation (PWM) through LEDC, communication interfaces (I2C, SPI, UART), and more. This page is dedicated to explaining the various ports available on the ESP32 WROOM-32D module, their functions, and how you can use them in your projects.
+      </p>
+    </section>
+
+    <!-- Overview Section -->
+    <section>
+      <h2>ESP32 WROOM-32D Overview</h2>
+      <p>
+        The ESP32 WROOM-32D is one of the most popular modules in the ESP32 family. It features dual-core processing, built-in WiFi and Bluetooth, and a rich set of I/O pins. Typically, the module offers around 30 usable GPIOs that are multiplexed with various functions. Below, we break down these pins into categories based on their typical usage.
+      </p>
+    </section>
+
+    <!-- Digital I/O Section -->
+    <section>
+      <h2>Digital I/O Pins</h2>
+      <p>
+        The digital I/O pins on the ESP32 are used to read digital sensors, control LEDs, relays, and other binary devices. They support standard digitalRead() and digitalWrite() functions. Many of these pins are also capable of interfacing with more advanced peripherals when configured appropriately.
+      </p>
+      <ul>
+        <li><strong>GPIO 0-39:</strong> Most of these pins can serve as digital I/O. However, some have additional functions or restrictions (for example, some ADC-only pins, or pins that affect boot mode).</li>
+        <li><strong>Special notes:</strong> Avoid using certain pins (like GPIO 6-11) for external I/O as they are used internally for flash memory.</li>
+      </ul>
+    </section>
+
+    <!-- Analog & ADC Section -->
+    <section>
+      <h2>Analog Inputs (ADC)</h2>
+      <p>
+        The ESP32 features two ADC units, ADC1 and ADC2, that convert analog voltages to digital values. This is useful for reading sensor data such as temperature, light intensity, or potentiometer values.
+      </p>
+      <ul>
+        <li><strong>ADC1:</strong> Typically available on GPIO 32-39 (e.g., GPIO 32, 33, 34, 35, 36, 39). These pins are not used by WiFi.</li>
+        <li><strong>ADC2:</strong> Available on several other GPIO pins (e.g., GPIO 0, 2, 4, 12-15, 25-27), but be aware that they may conflict with WiFi usage.</li>
+      </ul>
+    </section>
+
+    <!-- PWM Section -->
+    <section>
+      <h2>PWM & LEDC</h2>
+      <p>
+        Many ESP32 GPIOs can be configured to output PWM signals using the LEDC (LED Controller) module. PWM is used for dimming LEDs, controlling motors, and other applications where variable analog-like control is needed.
+      </p>
+      <ul>
+        <li>You can use the <code>ledcSetup()</code> and <code>ledcAttachPin()</code> functions to configure PWM on any capable GPIO.</li>
+      </ul>
+    </section>
+
+    <!-- Communication Interfaces Section -->
+    <section>
+      <h2>Communication Interfaces</h2>
+      <h3>I2C</h3>
+      <p>
+        The I2C interface uses two pins, SDA (data) and SCL (clock), and is used to communicate with sensors, displays, and other I2C-compatible devices. The default pins on many ESP32 boards are GPIO 21 for SDA and GPIO 22 for SCL.
+      </p>
+      <h3>SPI</h3>
+      <p>
+        The SPI interface is used for high-speed data transfer and can be found on multiple pins, typically including SCK (clock), MOSI (Master Out Slave In), MISO (Master In Slave Out), and CS (Chip Select). Many ESP32 boards allow flexible reassignment of these functions.
+      </p>
+      <h3>UART</h3>
+      <p>
+        ESP32 supports several UART ports for serial communication. They are commonly used for debugging, connecting GPS modules, or interfacing with other serial devices.
+      </p>
+    </section>
+
+    <!-- Power Pins Section -->
+    <section>
+      <h2>Power & Special Function Pins</h2>
+      <p>
+        The ESP32 WROOM-32D includes a few dedicated power pins:
+      </p>
+      <ul>
+        <li><strong>3.3V:</strong> The regulated output that powers many external modules such as OLED displays and sensors.</li>
+        <li><strong>5V:</strong> Some boards include a 5V pin (often from USB) that can be used to power devices that require 5V.</li>
+        <li><strong>GND:</strong> Common ground for all devices.</li>
+      </ul>
+      <p>
+        Additionally, some pins have special functions during boot (like GPIO0, GPIO2, and GPIO15) and should be used with caution to avoid interfering with the startup process.
+      </p>
+    </section>
+
+    <!-- Diagram Section -->
+    <section>
+      <h2>Pinout Diagram</h2>
+      <p>
+        Below is a simplified diagram illustrating the connections for common peripherals on an ESP32 WROOM-32D:
+      </p>
+      <pre>
+          +-----------------------+
+          |   ESP32 WROOM-32D     |
+          |                       |
+          |   3.3V  -------->  Power (OLED, Sensors, etc.)
+          |   GND   -------->  Ground
+          |                       |
+          |   GPIO21 -------->  I2C SDA (OLED)
+          |   GPIO22 -------->  I2C SCL (OLED)
+          |                       |
+          |   GPIO16 -------->  GPS TX (Software RX)
+          |   GPIO17 -------->  GPS RX (Software TX)
+          |                       |
+          |   ... (Other GPIOs available for digital I/O, ADC, PWM, etc.)   |
+          +-----------------------+
+      </pre>
+      <p>
+        Note: For full details, refer to the ESP32 datasheet and board-specific pinout diagrams.
+      </p>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section>
+      <h2>Conclusion</h2>
+      <p>
+        The ESP32 WROOM-32D is a versatile microcontroller with a broad range of pin functionalities. Whether you’re reading analog sensor data, controlling LEDs with PWM, or communicating over I2C/SPI/UART, understanding each pin’s capabilities is crucial for designing effective projects. This encyclopedia is intended to be a starting point for exploring the various features of ESP32 pins and how they can be used in your applications.
+      </p>
     </section>
   </main>
 
