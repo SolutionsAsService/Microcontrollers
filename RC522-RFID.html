@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RC522 RFID Module Pinout and Connection Guide</title>
-   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>RC522 RFID Module Pinout and Connection Guide</h1>
-  <nav>
+  <header>
+    <h1>RC522 RFID Module Pinout and Connection Guide</h1>
+    <nav>
       <ul>
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="esp32.html">ESP32 Ports</a></li>
@@ -19,76 +20,83 @@
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
-  
-  <p>The RC522 RFID module is a compact and versatile device used for reading and writing RFID tags operating at a frequency of 13.56 MHz. It supports communication protocols like SPI, I2C, and UART, making it compatible with various microcontrollers, including Arduino.</p>
-  
-  <h2>RC522 Module Pinout</h2>
-  <table border="1">
-    <tr>
-      <th>Pin Number</th>
-      <th>Pin Name</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>VCC</td>
-      <td>Power supply pin. Connect to 3.3V on the Arduino. Note: The module operates at 3.3V; supplying 5V may damage it.</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>RST</td>
-      <td>Reset pin. Used to reset or initialize the module. Connect to a digital pin on the Arduino (e.g., D9).</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Ground (GND)</td>
-      <td>Ground pin. Connect to GND on the Arduino.</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>IRQ</td>
-      <td>Interrupt pin. Used to signal the microcontroller when an RFID tag is detected. Not always used in basic applications.</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>MISO</td>
-      <td>Master In Slave Out. SPI data output from the module to the microcontroller. Connect to MISO (D12) on the Arduino.</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>MOSI</td>
-      <td>Master Out Slave In. SPI data input to the module from the microcontroller. Connect to MOSI (D11) on the Arduino.</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>SCK</td>
-      <td>Serial Clock. Provides the clock signal for SPI communication. Connect to SCK (D13) on the Arduino.</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>SS</td>
-      <td>Slave Select. Used to select the module for SPI communication. Connect to a digital pin on the Arduino (e.g., D10).</td>
-    </tr>
-  </table>
-  
-  <h2>Connecting RC522 to Arduino Uno</h2>
-  <p>For SPI communication, connect the RC522 module to the Arduino Uno as follows:</p>
-  <ul>
-    <li><strong>VCC</strong> to Arduino 3.3V</li>
-    <li><strong>GND</strong> to Arduino GND</li>
-    <li><strong>RST</strong> to Arduino digital pin 9</li>
-    <li><strong>IRQ</strong> (optional) not connected</li>
-    <li><strong>MISO</strong> to Arduino digital pin 12</li>
-    <li><strong>MOSI</strong> to Arduino digital pin 11</li>
-    <li><strong>SCK</strong> to Arduino digital pin 13</li>
-    <li><strong>SS</strong> to Arduino digital pin 10</li>
-  </ul>
-  
-  <h2>Using the RC522 with Arduino</h2>
-  <p>To interface the RC522 module with Arduino, you'll need to include the SPI library and a suitable RFID library, such as the MFRC522 library. Here's a basic example:</p>
-  
-  <pre>
-    <code>
+  </header>
+
+  <main>
+    <section>
+      <p>The RC522 RFID module is a compact and versatile device used for reading and writing RFID tags operating at a frequency of 13.56 MHz. It supports communication protocols like SPI, I2C, and UART, making it compatible with various microcontrollers, including Arduino.</p>
+      
+      <h2>RC522 Module Pinout</h2>
+      <table>
+        <tr>
+          <th>Pin Number</th>
+          <th>Pin Name</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>VCC</td>
+          <td>Power supply pin. Connect to 3.3V on the Arduino. Note: The module operates at 3.3V; supplying 5V may damage it.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>RST</td>
+          <td>Reset pin. Used to reset or initialize the module. Connect to a digital pin on the Arduino (e.g., D9).</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Ground (GND)</td>
+          <td>Ground pin. Connect to GND on the Arduino.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>IRQ</td>
+          <td>Interrupt pin. Used to signal the microcontroller when an RFID tag is detected. Not always used in basic applications.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>MISO</td>
+          <td>Master In Slave Out. SPI data output from the module to the microcontroller. Connect to MISO (D12) on the Arduino.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>MOSI</td>
+          <td>Master Out Slave In. SPI data input to the module from the microcontroller. Connect to MOSI (D11) on the Arduino.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>SCK</td>
+          <td>Serial Clock. Provides the clock signal for SPI communication. Connect to SCK (D13) on the Arduino.</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>SS</td>
+          <td>Slave Select. Used to select the module for SPI communication. Connect to a digital pin on the Arduino (e.g., D10).</td>
+        </tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Connecting RC522 to Arduino Uno</h2>
+      <p>For SPI communication, connect the RC522 module to the Arduino Uno as follows:</p>
+      <ul>
+        <li><strong>VCC</strong> to Arduino 3.3V</li>
+        <li><strong>GND</strong> to Arduino GND</li>
+        <li><strong>RST</strong> to Arduino digital pin 9</li>
+        <li><strong>IRQ</strong> (optional) not connected</li>
+        <li><strong>MISO</strong> to Arduino digital pin 12</li>
+        <li><strong>MOSI</strong> to Arduino digital pin 11</li>
+        <li><strong>SCK</strong> to Arduino digital pin 13</li>
+        <li><strong>SS</strong> to Arduino digital pin 10</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Using the RC522 with Arduino</h2>
+      <p>To interface the RC522 module with Arduino, you'll need to include the SPI library and a suitable RFID library, such as the MFRC522 library. Here's a basic example:</p>
+      
+      <pre>
+        <code>
 #include <SPI.h>
 #include <MFRC522.h>
 
@@ -114,21 +122,29 @@ void loop() {
     rfid.PICC_HaltA();
   }
 }
-    </code>
-  </pre>
-  
-  <p>Ensure you have the MFRC522 library installed in your Arduino IDE. You can download it from the Arduino Library Manager or GitHub repositories.</p>
-  
-  <h2>Additional Notes</h2>
-  <ul>
-    <li>The RC522 module operates at 3.3V. Applying 5V may damage the module. However, the communication pins (MISO, MOSI, SCK, SS) are 5V tolerant, allowing direct connection to Arduino's 5V logic pins.</li>
-    <li>Always connect the ground (GND) of the Arduino and the RC522 module to establish a common reference point for the signals.</li>
-    <li>For more detailed tutorials and projects using the RC522 module with Arduino, refer to the following resources:</li>
-  </ul>
-  <ul>
-    <li><a href="https://peppe8o.com/rfid-with-arduino-uno-rc522-wiring-and-code/">RFID With Arduino Uno: RC522 Wiring and Code</a></li>
-    <li><a href="https://circuitdigest.com/microcontroller-projects/interfacing-rfid-reader-module-with-arduino">How to use RC522 RFID Reader With Arduino</a></li>
-    <li><a href="https://www.instructables.com/Interfacing-RFID-RC522-With-Arduino-MEGA-a-Simple-/">Interfacing RFID-RC522 With Arduino MEGA</a></li>
-  </ul>
+        </code>
+      </pre>
+      
+      <p>Ensure you have the MFRC522 library installed in your Arduino IDE. You can download it from the Arduino Library Manager or GitHub repositories.</p>
+    </section>
+
+    <section>
+      <h2>Additional Notes</h2>
+      <ul>
+        <li>The RC522 module operates at 3.3V. Applying 5V may damage the module. However, the communication pins (MISO, MOSI, SCK, SS) are 5V tolerant, allowing direct connection to Arduino's 5V logic pins.</li>
+        <li>Always connect the ground (GND) of the Arduino and the RC522 module to establish a common reference point for the signals.</li>
+        <li>For more detailed tutorials and projects using the RC522 module with Arduino, refer to the following resources:</li>
+      </ul>
+      <ul>
+        <li><a href="https://peppe8o.com/rfid-with-arduino-uno-rc522-wiring-and-code/">RFID With Arduino Uno: RC522 Wiring and Code</a></li>
+        <li><a href="https://circuitdigest.com/microcontroller-projects/interfacing-rfid-reader-module-with-arduino">How to use RC522 RFID Reader With Arduino</a></li>
+        <li><a href="https://www.instructables.com/Interfacing-RFID-RC522-With-Arduino-MEGA-a-Simple-/">Interfacing RFID-RC522 With Arduino MEGA</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Information sourced from various technical manuals and datasheets.</p>
+  </footer>
 </body>
 </html>
