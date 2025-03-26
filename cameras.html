@@ -3,139 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
   <title>OV5110 Camera Module Pinout and Connection Guide</title>
-  
 </head>
 <body>
-  <h1>OV5110 Camera Module Pinout and Connection Guide</h1>
-  <nav>
-    <ul>
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="esp32.html">ESP32 Ports</a></li>
-      <li><a href="arduino.html">Arduino Ports</a></li>
-      <li><a href="cameras.html">Cameras</a></li>
-      <li><a href="RC522-RFID.html">RFID</a></li>
-      <li><a href="LCD-OLED.html">LCD & OLED</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
+  <header>
+    <h1>OV5110 Camera Module Pinout and Connection Guide</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="esp32.html">ESP32 Ports</a></li>
+        <li><a href="arduino.html">Arduino Ports</a></li>
+        <li><a href="cameras.html">Cameras</a></li>
+        <li><a href="RC522-RFID.html">RFID</a></li>
+        <li><a href="LCD-OLED.html">LCD & OLED</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <section>
-    <h2>Introduction</h2>
-    <p>The OV5110 is a CMOS image sensor module designed for capturing high-quality images in embedded systems. Understanding its pinout and proper connections is essential for integrating it into your projects effectively.</p>
-  </section>
+  <main>
+    <section>
+      <h2>Introduction</h2>
+      <p>The OV5110 is a CMOS image sensor module designed for capturing high-quality images in embedded systems. Understanding its pinout and proper connections is essential for integrating it into your projects effectively.</p>
+    </section>
 
-  <section>
-    <h2>OV5110 Pinout Overview</h2>
-    <p>While specific datasheets for the OV5110 are limited, we can infer its pinout based on similar modules like the OV7670 and OV5640. Below is a general overview of the typical pins found on these camera modules:</p>
-    <table border="1">
-      <tr>
-        <th>Pin Number</th>
-        <th>Pin Name</th>
-        <th>Description</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>GND</td>
-        <td>Ground</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>VCC</td>
-        <td>Power Supply (typically 3.3V)</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>XCLK</td>
-        <td>External Clock Input</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>PWDN</td>
-        <td>Power Down (active low)</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>RESET</td>
-        <td>Reset (active low)</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>VSYNC</td>
-        <td>Vertical Synchronization</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>HSYNC</td>
-        <td>Horizontal Synchronization</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>DEN</td>
-        <td>Data Enable</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td>OE</td>
-        <td>Output Enable</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td>RESET</td>
-        <td>Reset (active low)</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td>D0-D7</td>
-        <td>Data Pins (8-bit data bus)</td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td>VSYNC</td>
-        <td>Vertical Synchronization</td>
-      </tr>
-      <tr>
-        <td>13</td>
-        <td>HSYNC</td>
-        <td>Horizontal Synchronization</td>
-      </tr>
-      <tr>
-        <td>14</td>
-        <td>DEN</td>
-        <td>Data Enable</td>
-      </tr>
-      <tr>
-        <td>15</td>
-        <td>OE</td>
-        <td>Output Enable</td>
-      </tr>
-    </table>
-    <p>Note: The exact pinout may vary depending on the specific module version. Refer to the manufacturer's documentation for precise information.</p>
-  </section>
+    <section>
+      <h2>OV5110 Pinout Overview</h2>
+      <p>While specific datasheets for the OV5110 are limited, we can infer its pinout based on similar modules like the OV7670 and OV5640. Below is a general overview of the typical pins found on these camera modules:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Pin Number</th>
+            <th>Pin Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>GND</td><td>Ground</td></tr>
+          <tr><td>2</td><td>VCC</td><td>Power Supply (typically 3.3V)</td></tr>
+          <tr><td>3</td><td>XCLK</td><td>External Clock Input</td></tr>
+          <tr><td>4</td><td>PWDN</td><td>Power Down (active low)</td></tr>
+          <tr><td>5</td><td>RESET</td><td>Reset (active low)</td></tr>
+          <tr><td>6</td><td>VSYNC</td><td>Vertical Synchronization</td></tr>
+          <tr><td>7</td><td>HSYNC</td><td>Horizontal Synchronization</td></tr>
+          <tr><td>8</td><td>DEN</td><td>Data Enable</td></tr>
+          <tr><td>9</td><td>OE</td><td>Output Enable</td></tr>
+          <tr><td>10</td><td>RESET</td><td>Reset (active low)</td></tr>
+          <tr><td>11</td><td>D0-D7</td><td>Data Pins (8-bit data bus)</td></tr>
+          <tr><td>12</td><td>VSYNC</td><td>Vertical Synchronization</td></tr>
+          <tr><td>13</td><td>HSYNC</td><td>Horizontal Synchronization</td></tr>
+          <tr><td>14</td><td>DEN</td><td>Data Enable</td></tr>
+          <tr><td>15</td><td>OE</td><td>Output Enable</td></tr>
+        </tbody>
+      </table>
+      <p>Note: The exact pinout may vary depending on the specific module version. Refer to the manufacturer's documentation for precise information.</p>
+    </section>
 
-  <section>
-    <h2>Connecting the OV5110 to a Microcontroller</h2>
-    <p>To interface the OV5110 camera module with a microcontroller, follow these steps:</p>
-    <ol>
-      <li><strong>Power Supply:</strong> Connect the VCC pin to a 3.3V power source and the GND pin to ground.</li>
-      <li><strong>Clock Input:</strong> Provide a clock signal to the XCLK pin. This can be sourced from a microcontroller's PWM output or an external oscillator. Ensure the clock frequency matches the camera's requirements.</li>
-      <li><strong>Synchronization Signals:</strong> Connect the VSYNC, HSYNC, DEN, and OE pins to the corresponding GPIO pins on the microcontroller. These signals are essential for capturing image frames and controlling data flow.</li>
-      <li><strong>Data Bus:</strong> Connect the D0-D7 pins to the microcontroller's data bus pins. Configure the microcontroller to read 8-bit parallel data from these pins.</li>
-      <li><strong>Control Signals:</strong> Use GPIO pins to control the PWDN and RESET functions. Implement software routines to manage power-down and reset operations as needed.</li>
-    </ol>
-    <p>Ensure that the microcontroller's I/O voltage levels are compatible with the camera module's requirements. Level shifters may be necessary if there is a voltage mismatch.</p>
-  </section>
+    <section>
+      <h2>Connecting the OV5110 to a Microcontroller</h2>
+      <p>To interface the OV5110 camera module with a microcontroller, follow these steps:</p>
+      <ol>
+        <li><strong>Power Supply:</strong> Connect the VCC pin to a 3.3V power source and the GND pin to ground.</li>
+        <li><strong>Clock Input:</strong> Provide a clock signal to the XCLK pin. This can be sourced from a microcontroller's PWM output or an external oscillator. Ensure the clock frequency matches the camera's requirements.</li>
+        <li><strong>Synchronization Signals:</strong> Connect the VSYNC, HSYNC, DEN, and OE pins to the corresponding GPIO pins on the microcontroller. These signals are essential for capturing image frames and controlling data flow.</li>
+        <li><strong>Data Bus:</strong> Connect the D0-D7 pins to the microcontroller's data bus pins. Configure the microcontroller to read 8-bit parallel data from these pins.</li>
+        <li><strong>Control Signals:</strong> Use GPIO pins to control the PWDN and RESET functions. Implement software routines to manage power-down and reset operations as needed.</li>
+      </ol>
+      <p>Ensure that the microcontroller's I/O voltage levels are compatible with the camera module's requirements. Level shifters may be necessary if there is a voltage mismatch.</p>
+    </section>
 
-  <section>
-    <h2>Additional Considerations</h2>
-    <p>When integrating the OV5110 camera module:</p>
-    <ul>
-      <li><strong>Clock Source:</strong> If using an external oscillator for the XCLK pin, ensure it provides a stable clock signal at the required frequency. Some modules offer a jumper to select between an onboard oscillator and an external clock source. For example, the Adafruit PiCowbell Camera Breakout provides such a jumper to connect the XCLK pin to an onboard 16 MHz oscillator or an external source. <a href="https://learn.adafruit.com/adafruit-picowbell-camera-breakout/pinouts">Source</a></li>
-      <li><strong>Data Handling:</strong> Implement appropriate timing and data handling routines in your microcontroller firmware to capture and process image data effectively. Utilize interrupts or polling methods to synchronize with the camera's output signals.</li>
-      <li><strong>Power Management:</strong> Utilize the PWDN pin to implement power-saving features in your application. Properly managing power can extend the lifespan of battery-operated systems.</li>
-    </ul>
-  </section>
+    <section>
+      <h2>Additional Considerations</h2>
+      <p>When integrating the OV5110 camera module:</p>
+      <ul>
+        <li><strong>Clock Source:</strong> If using an external oscillator for the XCLK pin, ensure it provides a stable clock signal at the required frequency. Some modules offer a jumper to select between an onboard oscillator and an external clock source. For example, the Adafruit PiCowbell Camera Breakout provides such a jumper to connect the XCLK pin to an onboard 16 MHz oscillator or an external source. <a href="https://learn.adafruit.com/adafruit-picowbell-camera-breakout/pinouts">Source</a></li>
+        <li><strong>Data Handling:</strong> Implement appropriate timing and data handling routines in your microcontroller firmware to capture and process image data effectively. Utilize interrupts or polling methods to synchronize with the camera's output signals.</li>
+        <li><strong>Power Management:</strong> Utilize the PWDN pin to implement power-saving features in your application. Properly managing power can extend the lifespan of battery-operated systems.</li>
+      </ul>
+    </section>
+  </main>
 
   <footer>
     <p>For more detailed information, refer to the datasheets of similar camera modules like the OV7670 and OV5640. While these may not be identical to the OV5110, they share many features and can provide valuable insights. <a href="https://www.instructables.com/OV7670-Arduino-Camera-Sensor-Module-Framecapture-T/">OV7670 Datasheet</a>, <a href="https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/OV5640_datasheet.pdf">OV5640 Datasheet</a></p>
