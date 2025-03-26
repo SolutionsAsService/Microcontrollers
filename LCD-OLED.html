@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LCD/OLED Displays</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -24,22 +24,15 @@
   
   <main>
     <section>
-      <h2>Introduction to OLED and LCD Displays</h2>
-      <p>
-        OLED (Organic Light-Emitting Diode) and LCD (Liquid Crystal Display) are two prevalent display technologies utilized in various electronic devices. Each has unique characteristics, advantages, and applications. This guide delves into their working principles, pin configurations, and interfacing methods.
-      </p>
+      <p>OLED (Organic Light-Emitting Diode) and LCD (Liquid Crystal Display) are two prevalent display technologies utilized in various electronic devices. Each has unique characteristics, advantages, and applications. This guide delves into their working principles, pin configurations, and interfacing methods.</p>
     </section>
 
     <section>
       <h2>LCD (Liquid Crystal Display)</h2>
-      <p>
-        LCDs function by manipulating liquid crystals to modulate light, creating visible images. They require a backlight since the crystals do not emit light by themselves.
-      </p>
+      <p>LCDs function by manipulating liquid crystals to modulate light, creating visible images. They require a backlight since the crystals do not emit light by themselves.</p>
       <h3>16x2 LCD Pin Configuration</h3>
-      <p>
-        A common LCD module is the 16x2 display, capable of displaying 16 characters per line across two lines. It typically features 16 pins with the following functions:
-      </p>
-      <table border="1">
+      <p>A common LCD module is the 16x2 display, capable of displaying 16 characters per line across two lines. It typically features 16 pins with the following functions:</p>
+      <table>
         <tr>
           <th>Pin Number</th>
           <th>Pin Name</th>
@@ -130,14 +123,10 @@
 
     <section>
       <h2>OLED (Organic Light-Emitting Diode)</h2>
-      <p>
-        OLEDs consist of organic compounds that emit light when an electric current passes through them, allowing for thinner displays with better contrast ratios.
-      </p>
+      <p>OLEDs consist of organic compounds that emit light when an electric current passes through them, allowing for thinner displays with better contrast ratios.</p>
       <h3>OLED Pin Configuration</h3>
-      <p>
-        OLED displays often utilize the I2C communication protocol, simplifying wiring. A typical 0.96-inch OLED display with I2C interface has the following pins:
-      </p>
-      <table border="1">
+      <p>OLED displays often utilize the I2C communication protocol, simplifying wiring. A typical 0.96-inch OLED display with I2C interface has the following pins:</p>
+      <table>
         <tr>
           <th>Pin Number</th>
           <th>Pin Name</th>
@@ -164,15 +153,13 @@
           <td>Data line for I2C communication, connects to the SDA pin of the microcontroller.</td>
         </tr>
       </table>
-      <p>
-        For detailed wiring instructions with Arduino, refer to this guide: ([randomnerdtutorials.com](https://randomnerdtutorials.com/guide-for-oled-display-with-arduino/?utm_source=chatgpt.com))
-      </p>
+      <p>For detailed wiring instructions with Arduino, refer to this guide: <a href="https://randomnerdtutorials.com/guide-for-oled-display-with-arduino/?utm_source=chatgpt.com">Random Nerd Tutorials</a></p>
     </section>
 
     <section>
       <h2>Key Differences Between OLED and LCD</h2>
       <ul>
-        <li><strong>Contrast Ratio:</strong> OLED displays offer higher contrast ratios, producing deeper blacks and brighter whites compared to LCDs. ([newhavendisplay.com](https://newhavendisplay.com/blog/oled-vs-lcd/?utm_source=chatgpt.com))</li>
+        <li><strong>Contrast Ratio:</strong> OLED displays offer higher contrast ratios, producing deeper blacks and brighter whites compared to LCDs. (<a href="https://newhavendisplay.com/blog/oled-vs-lcd/?utm_source=chatgpt.com">New Haven Display</a>)</li>
         <li><strong>Viewing Angles:</strong> OLEDs maintain consistent color and brightness even at wide viewing angles, while LCDs tend to degrade in color and brightness at sharp angles.</li>
         <li><strong>Power Consumption:</strong> OLED displays are more power-efficient when displaying dark content, as individual pixels emit light. LCDs, however, use a constant backlight, leading to higher power consumption.</li>
         <li><strong>Durability:</strong> LCDs are generally more durable than OLEDs, which can suffer from burn-in when static images are displayed for long periods.</li>
@@ -199,10 +186,11 @@
         <li>Kitchen Appliances</li>
       </ul>
     </section>
-    
-    <footer>
-      <p>Information sourced from various technical manuals and datasheets.</p>
-    </footer>
+
   </main>
+
+  <footer>
+    <p>Information sourced from various technical manuals and datasheets.</p>
+  </footer>
 </body>
 </html>
