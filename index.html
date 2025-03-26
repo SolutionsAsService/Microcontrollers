@@ -1,91 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ESP/Arduino Pin Encyclopedia</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microcontroller Encyclopedia - ESP32 & Arduino</title>
 </head>
 <body>
-  <header>
-    <h1>ESP/Arduino Pin Encyclopedia</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="esp32.html">ESP32 Ports</a></li>
-        <li><a href="arduino.html">Arduino Ports</a></li>
-        <li><a href="cameras.html">Cameras</a></li>
-        <li><a href="RC522-RFID.html">RFID</a></li>
-        <li><a href="LCD-OLED.html">LCD & OLED</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <section class="intro">
-      <h2>Overview</h2>
-      <p>Welcome to the ESP/Arduino Pin Encyclopedia. Here you will find detailed information about various pins and ports used in ESP32 and Arduino boards, including their functions, wiring diagrams, and best practices.</p>
-    </section>
-    
-    <section class="table-section">
-      <h2>Sample Component Connections</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Component</th>
-            <th>ESP32 Pin</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Neo-6M GPS VCC</td>
-            <td>3.3V or 5V</td>
-            <td>Most modules work with 3.3V, but check yours</td>
-          </tr>
-          <tr>
-            <td>Neo-6M GPS GND</td>
-            <td>GND</td>
-            <td>Ground connection</td>
-          </tr>
-          <tr>
-            <td>Neo-6M GPS TX</td>
-            <td>GPIO16</td>
-            <td>Software Serial RX</td>
-          </tr>
-          <tr>
-            <td>Neo-6M GPS RX</td>
-            <td>GPIO17</td>
-            <td>Software Serial TX</td>
-          </tr>
-          <tr>
-            <td>OLED Display (128x32) VCC</td>
-            <td>3.3V</td>
-            <td>Power</td>
-          </tr>
-          <tr>
-            <td>OLED Display GND</td>
-            <td>GND</td>
-            <td>Ground</td>
-          </tr>
-          <tr>
-            <td>OLED Display SCL</td>
-            <td>GPIO22</td>
-            <td>I2C Clock</td>
-          </tr>
-          <tr>
-            <td>OLED Display SDA</td>
-            <td>GPIO21</td>
-            <td>I2C Data</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+    <header>
+        <h1>Microcontroller Encyclopedia</h1>
+        <p>Your comprehensive guide to ESP32, Arduino, and embedded systems.</p>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="esp32.html">ESP32 Guide</a></li>
+                <li><a href="arduino.html">Arduino Guide</a></li>
+                <li><a href="cameras.html">Camera Modules</a></li>
+                <li><a href="RC522-RFID.html">RFID Modules</a></li>
+                <li><a href="LCD-OLED.html">Display Modules</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <footer>
-    <p>&copy; 2025 ESP/Arduino Encyclopedia</p>
-  </footer>
+    <main>
+
+        <section>
+            <h2>Introduction to Microcontrollers</h2>
+            <p>Microcontrollers are compact integrated circuits designed to perform specific tasks within embedded systems. Unlike general-purpose computers, microcontrollers operate with minimal power and resources, making them ideal for automation, IoT devices, robotics, and industrial applications.</p>
+            <p>Popular microcontrollers include the ESP32 and Arduino series, known for their flexibility, ease of programming, and extensive support for various sensors and modules.</p>
+        </section>
+
+        <section>
+            <h2>ESP32 and Arduino - A Comparison</h2>
+            <p>Both the ESP32 and Arduino platforms are widely used for embedded development, but they have distinct capabilities:</p>
+            <table border="1">
+                <tr>
+                    <th>Feature</th>
+                    <th>ESP32</th>
+                    <th>Arduino</th>
+                </tr>
+                <tr>
+                    <td>Processor</td>
+                    <td>Dual-core Xtensa 32-bit LX6</td>
+                    <td>8-bit AVR (Uno) / 32-bit ARM (Due)</td>
+                </tr>
+                <tr>
+                    <td>Clock Speed</td>
+                    <td>160-240 MHz</td>
+                    <td>16 MHz (Uno) / 84 MHz (Due)</td>
+                </tr>
+                <tr>
+                    <td>WiFi & Bluetooth</td>
+                    <td>Built-in WiFi & Bluetooth</td>
+                    <td>Requires external module</td>
+                </tr>
+                <tr>
+                    <td>GPIO Pins</td>
+                    <td>Up to 34</td>
+                    <td>14 (Uno) / 54 (Mega)</td>
+                </tr>
+                <tr>
+                    <td>Analog Inputs</td>
+                    <td>18</td>
+                    <td>6 (Uno) / 16 (Mega)</td>
+                </tr>
+                <tr>
+                    <td>PWM Outputs</td>
+                    <td>16</td>
+                    <td>6 (Uno) / 15 (Mega)</td>
+                </tr>
+                <tr>
+                    <td>Power Consumption</td>
+                    <td>Moderate</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>Use Cases</td>
+                    <td>IoT, automation, complex projects</td>
+                    <td>Simple automation, learning, prototyping</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Commonly Used Components</h2>
+            <p>Microcontrollers interface with various components to expand their functionality. Below are some commonly used modules and their typical connections:</p>
+
+            <h3>Sensors</h3>
+            <ul>
+                <li><strong>DHT11/DHT22:</strong> Temperature and humidity sensor, connects via GPIO</li>
+                <li><strong>MPU6050:</strong> Gyroscope and accelerometer, communicates over I2C</li>
+                <li><strong>HC-SR04:</strong> Ultrasonic distance sensor, requires trigger and echo pins</li>
+            </ul>
+
+            <h3>Communication Modules</h3>
+            <ul>
+                <li><strong>ESP8266/ESP32:</strong> WiFi-enabled microcontrollers</li>
+                <li><strong>nRF24L01:</strong> Wireless communication module</li>
+                <li><strong>LoRa SX1278:</strong> Long-range low-power communication module</li>
+            </ul>
+
+            <h3>Displays</h3>
+            <ul>
+                <li><strong>LCD 16x2:</strong> Parallel communication display</li>
+                <li><strong>OLED 128x64:</strong> I2C-based graphic display</li>
+                <li><strong>TFT Touch Screen:</strong> SPI-based touch display</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Example Wiring Diagrams</h2>
+            <p>Below are common wiring diagrams for integrating components with ESP32 and Arduino.</p>
+
+            <h3>Connecting an OLED Display</h3>
+            <table border="1">
+                <tr>
+                    <th>Pin</th>
+                    <th>ESP32</th>
+                    <th>Arduino</th>
+                </tr>
+                <tr>
+                    <td>VCC</td>
+                    <td>3.3V</td>
+                    <td>5V</td>
+                </tr>
+                <tr>
+                    <td>GND</td>
+                    <td>GND</td>
+                    <td>GND</td>
+                </tr>
+                <tr>
+                    <td>SCL</td>
+                    <td>GPIO22</td>
+                    <td>A5</td>
+                </tr>
+                <tr>
+                    <td>SDA</td>
+                    <td>GPIO21</td>
+                    <td>A4</td>
+                </tr>
+            </table>
+
+            <h3>Interfacing an RFID Reader (RC522)</h3>
+            <table border="1">
+                <tr>
+                    <th>Pin</th>
+                    <th>ESP32</th>
+                    <th>Arduino</th>
+                </tr>
+                <tr>
+                    <td>VCC</td>
+                    <td>3.3V</td>
+                    <td>3.3V</td>
+                </tr>
+                <tr>
+                    <td>GND</td>
+                    <td>GND</td>
+                    <td>GND</td>
+                </tr>
+                <tr>
+                    <td>SCK</td>
+                    <td>GPIO18</td>
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <td>MOSI</td>
+                    <td>GPIO23</td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>MISO</td>
+                    <td>GPIO19</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>RST</td>
+                    <td>GPIO22</td>
+                    <td>9</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Resources & Further Reading</h2>
+            <p>Explore official documentation and guides:</p>
+            <ul>
+                <li><a href="https://www.arduino.cc/">Arduino Official Website</a></li>
+                <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/">ESP32 Documentation</a></li>
+                <li><a href="https://www.sparkfun.com/">SparkFun Electronics</a></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Microcontroller Encyclopedia | All Rights Reserved</p>
+    </footer>
+
 </body>
 </html>
