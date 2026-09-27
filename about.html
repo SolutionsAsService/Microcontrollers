@@ -2,32 +2,930 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About - ESP/Arduino Pin Encyclopedia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About — ESP / Arduino Pin Encyclopedia</title>
+
+  <meta
+    name="description"
+    content="About the ESP and Arduino Pin Encyclopedia — a practical reference for microcontroller pins, peripherals, interfaces, sensors, displays, RFID, cameras and embedded hardware."
+  >
+
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header>
-    <h1>About This Encyclopedia</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="esp32.html">ESP32 Ports</a></li>
-        <li><a href="arduino.html">Arduino Ports</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-      </ul>
-    </nav>
-  </header>
-  
-  <main>
-    <section>
-      <h2>Our Mission</h2>
-      <p>This website serves as a comprehensive encyclopedia of ESP32 and Arduino pins and ports. It aims to help makers, engineers, and hobbyists understand the functionality, usage, and wiring of various components across these popular platforms.</p>
-    </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 ESP/Arduino Encyclopedia</p>
-  </footer>
+<body>
+
+<header>
+
+  <div class="site-title">
+    <h1>ESP / Arduino Pin Encyclopedia</h1>
+    <p>Embedded hardware reference &amp; interface guide</p>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="esp32.html">ESP32 Ports</a></li>
+      <li><a href="arduino.html">Arduino Ports</a></li>
+      <li><a href="cameras.html">Cameras</a></li>
+      <li><a href="RC522-RFID.html">RFID / NFC</a></li>
+      <li><a href="LCD-OLED.html">LCD &amp; OLED</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+
+<main>
+
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        ENCYCLOPEDIA / REFERENCE
+      </div>
+
+      <h2>About This Encyclopedia</h2>
+
+      <p>
+        A practical, structured reference for understanding
+        microcontroller pins, peripherals, communication interfaces,
+        sensors, displays, readers and embedded hardware.
+      </p>
+
+      <div class="reference-badges">
+        <span class="badge">ESP32</span>
+        <span class="badge">Arduino</span>
+        <span class="badge">GPIO</span>
+        <span class="badge">SPI</span>
+        <span class="badge">I2C</span>
+        <span class="badge">UART</span>
+        <span class="badge">Embedded</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       MISSION
+       ========================================================= -->
+
+  <section>
+
+    <h2>Our Mission</h2>
+
+    <p>
+      The ESP / Arduino Pin Encyclopedia exists to make embedded
+      hardware easier to understand.
+    </p>
+
+    <p>
+      Microcontrollers expose dozens of pins, alternate functions,
+      buses, timers, ADC channels, interrupts and special hardware
+      features. At the same time, the modules connected to those
+      microcontrollers have their own electrical requirements,
+      protocols and pinouts.
+    </p>
+
+    <p>
+      The goal of this encyclopedia is to bring that information
+      together into one practical reference that can be used while
+      designing, wiring, debugging and programming real hardware.
+    </p>
+
+  </section>
+
+
+  <!-- =========================================================
+       WHAT IT COVERS
+       ========================================================= -->
+
+  <section>
+
+    <h2>What This Encyclopedia Covers</h2>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>Microcontrollers</h3>
+
+        <p>
+          Pin assignments, GPIO capabilities, alternate functions,
+          timers, ADCs, DACs, interrupts and peripheral interfaces.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Communication</h3>
+
+        <p>
+          SPI, I2C, UART, I2S, CAN, USB and other communication
+          interfaces used by embedded hardware.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Displays</h3>
+
+        <p>
+          LCD, OLED, TFT and other display technologies including
+          their controllers, interfaces and wiring.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>RFID &amp; NFC</h3>
+
+        <p>
+          Reader modules, antennas, contactless interfaces,
+          RC522, PN532 and related hardware.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Cameras</h3>
+
+        <p>
+          Camera modules, image sensors, buses, control signals,
+          power requirements and embedded camera interfaces.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Sensors &amp; Modules</h3>
+
+        <p>
+          Common embedded sensors, breakout boards, actuators,
+          communication modules and peripheral hardware.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       WHY PINOUTS MATTER
+       ========================================================= -->
+
+  <section>
+
+    <h2>Why Pin Information Matters</h2>
+
+    <p>
+      A microcontroller pin is rarely just an input or output.
+      Depending on the device, the same physical pin can provide
+      several different hardware functions.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Capability</th>
+            <th>Example</th>
+            <th>Why It Matters</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>GPIO</td>
+            <td>Digital input/output</td>
+            <td>Basic hardware control</td>
+          </tr>
+
+          <tr>
+            <td>ADC</td>
+            <td>Analog input</td>
+            <td>Read sensors and voltages</td>
+          </tr>
+
+          <tr>
+            <td>PWM</td>
+            <td>LEDC / timer output</td>
+            <td>LEDs, motors and control signals</td>
+          </tr>
+
+          <tr>
+            <td>SPI</td>
+            <td>MOSI / MISO / SCK / CS</td>
+            <td>Displays, RFID, flash and sensors</td>
+          </tr>
+
+          <tr>
+            <td>I2C</td>
+            <td>SDA / SCL</td>
+            <td>Sensors, displays and peripheral ICs</td>
+          </tr>
+
+          <tr>
+            <td>UART</td>
+            <td>TX / RX</td>
+            <td>Serial devices and debugging</td>
+          </tr>
+
+          <tr>
+            <td>Interrupt</td>
+            <td>External GPIO interrupt</td>
+            <td>Event-driven hardware response</td>
+          </tr>
+
+          <tr>
+            <td>RTC / Wake</td>
+            <td>Low-power GPIO</td>
+            <td>Sleep and wake applications</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       SOURCE OF TRUTH
+       ========================================================= -->
+
+  <section>
+
+    <h2>Source-of-Truth Philosophy</h2>
+
+    <p>
+      The encyclopedia is intended to be more than a collection of
+      simplified pinout diagrams. Each hardware entry should eventually
+      distinguish between the microcontroller itself, the development
+      board and the individual breakout module.
+    </p>
+
+    <div class="notice">
+
+      <strong>Three different things must be distinguished:</strong>
+
+      <ul>
+
+        <li>
+          <strong>MCU:</strong>
+          the actual silicon and its electrical/peripheral capabilities.
+        </li>
+
+        <li>
+          <strong>Board:</strong>
+          the development board exposing some subset of those MCU pins.
+        </li>
+
+        <li>
+          <strong>Module:</strong>
+          the external hardware connected to the MCU.
+        </li>
+
+      </ul>
+
+    </div>
+
+    <p>
+      This distinction is particularly important because a pin that
+      exists on an MCU may not be exposed on a particular development
+      board, and a breakout board may add level shifting, pull-up
+      resistors, regulators or other circuitry.
+    </p>
+
+  </section>
+
+
+  <!-- =========================================================
+       HOW TO USE
+       ========================================================= -->
+
+  <section>
+
+    <h2>How to Use the Encyclopedia</h2>
+
+    <div class="interface-box">
+
+      <h3>Recommended Workflow</h3>
+
+      <ol>
+
+        <li>
+          Identify the exact microcontroller or development board.
+        </li>
+
+        <li>
+          Identify the exact peripheral or module being connected.
+        </li>
+
+        <li>
+          Locate its pinout and electrical requirements.
+        </li>
+
+        <li>
+          Determine which communication interface is being used.
+        </li>
+
+        <li>
+          Check the MCU's available pins and alternate functions.
+        </li>
+
+        <li>
+          Check voltage and logic-level compatibility.
+        </li>
+
+        <li>
+          Check for pin conflicts with other peripherals.
+        </li>
+
+        <li>
+          Wire the hardware.
+        </li>
+
+        <li>
+          Configure the appropriate software library or peripheral.
+        </li>
+
+        <li>
+          Test the hardware before building additional functionality.
+        </li>
+
+      </ol>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ELECTRICAL SAFETY
+       ========================================================= -->
+
+  <section>
+
+    <h2>Electrical Compatibility</h2>
+
+    <p>
+      Pin names alone do not guarantee that two devices can be
+      connected directly.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card warning">
+
+        <h3>Voltage</h3>
+
+        <p>
+          Confirm the supply voltage required by the module and
+          the logic voltage used by its communication pins.
+        </p>
+
+      </div>
+
+      <div class="card warning">
+
+        <h3>Current</h3>
+
+        <p>
+          Do not assume an MCU GPIO can safely power a peripheral.
+          Check the actual current requirements and GPIO limits.
+        </p>
+
+      </div>
+
+      <div class="card warning">
+
+        <h3>Pull-Ups</h3>
+
+        <p>
+          Interfaces such as I2C frequently depend on pull-up
+          resistors. Verify whether the module already provides them.
+        </p>
+
+      </div>
+
+      <div class="card warning">
+
+        <h3>Special Pins</h3>
+
+        <p>
+          Boot-strapping, flash-connected, input-only and other
+          special-purpose pins may have restrictions.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       DOCUMENTATION STANDARD
+       ========================================================= -->
+
+  <section>
+
+    <h2>Hardware Documentation Standard</h2>
+
+    <p>
+      Future entries are intended to follow a consistent structure
+      so that information can be compared across different devices.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Category</th>
+            <th>Information</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Identity</td>
+            <td>Manufacturer, part number, family and revision</td>
+          </tr>
+
+          <tr>
+            <td>Electrical</td>
+            <td>Voltage, current, logic levels and limitations</td>
+          </tr>
+
+          <tr>
+            <td>Physical</td>
+            <td>Package, module dimensions and exposed pins</td>
+          </tr>
+
+          <tr>
+            <td>GPIO</td>
+            <td>Input, output, pull-up, pull-down and special behavior</td>
+          </tr>
+
+          <tr>
+            <td>Analog</td>
+            <td>ADC channels, DAC channels and reference information</td>
+          </tr>
+
+          <tr>
+            <td>Timers</td>
+            <td>PWM, timer channels and timing resources</td>
+          </tr>
+
+          <tr>
+            <td>Communication</td>
+            <td>SPI, I2C, UART, CAN, USB and other interfaces</td>
+          </tr>
+
+          <tr>
+            <td>Boot</td>
+            <td>Strapping pins, boot modes and reset behavior</td>
+          </tr>
+
+          <tr>
+            <td>Power</td>
+            <td>Power rails, regulators, sleep modes and consumption</td>
+          </tr>
+
+          <tr>
+            <td>Examples</td>
+            <td>Arduino, ESP-IDF and practical wiring examples</td>
+          </tr>
+
+          <tr>
+            <td>Warnings</td>
+            <td>Known conflicts, unsafe configurations and common mistakes</td>
+          </tr>
+
+          <tr>
+            <td>Sources</td>
+            <td>Datasheets, reference manuals and manufacturer documentation</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       MACHINE READABLE DATA
+       ========================================================= -->
+
+  <section>
+
+    <h2>Machine-Readable Hardware Data</h2>
+
+    <p>
+      A long-term objective is to maintain the hardware information
+      in structured data in addition to the human-readable pages.
+    </p>
+
+    <p>
+      This would allow the encyclopedia to become the foundation
+      for software tools such as automated pin selection, wiring
+      validation, peripheral conflict detection and virtual hardware
+      simulation.
+    </p>
+
+<pre><code>{
+  "device": {
+    "name": "ESP32",
+    "family": "ESP32",
+
+    "pins": {
+      "GPIO21": {
+        "digital_input": true,
+        "digital_output": true,
+        "i2c": {
+          "role": "SDA"
+        }
+      },
+
+      "GPIO22": {
+        "digital_input": true,
+        "digital_output": true,
+        "i2c": {
+          "role": "SCL"
+        }
+      }
+    }
+  }
+}</code></pre>
+
+  </section>
+
+
+  <!-- =========================================================
+       VIRTUAL LAB
+       ========================================================= -->
+
+  <section>
+
+    <h2>Virtual Hardware Lab</h2>
+
+    <p>
+      The encyclopedia is also intended to provide the hardware
+      knowledge needed for a browser-based virtual embedded lab.
+    </p>
+
+    <p>
+      In a virtual environment, the same structured information can
+      describe GPIO, buses, displays, RFID readers, sensors and other
+      peripherals so that software can be tested against a simulated
+      hardware environment.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>MCU Simulation</h3>
+
+        <p>
+          Model microcontroller GPIO, timers and communication buses.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Peripheral Simulation</h3>
+
+        <p>
+          Simulate displays, RFID readers, sensors and other modules.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Pin Validation</h3>
+
+        <p>
+          Detect invalid or conflicting hardware configurations.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Interactive Wiring</h3>
+
+        <p>
+          Eventually connect virtual MCU pins to virtual peripheral pins
+          and observe the resulting system.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       CURRENT COVERAGE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Current Encyclopedia Sections</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Section</th>
+            <th>Focus</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>ESP32</td>
+            <td>GPIO, ADC, DAC, PWM, UART, SPI, I2C, touch, RTC and boot pins</td>
+          </tr>
+
+          <tr>
+            <td>Arduino Nano</td>
+            <td>ATmega328P GPIO, analog inputs, PWM, SPI, I2C, UART and timers</td>
+          </tr>
+
+          <tr>
+            <td>LCD / OLED</td>
+            <td>Character displays, graphical displays, I2C, SPI and controllers</td>
+          </tr>
+
+          <tr>
+            <td>RFID / NFC</td>
+            <td>RC522, MFRC522, PN532, SPI, I2C, UART and RF considerations</td>
+          </tr>
+
+          <tr>
+            <td>Cameras</td>
+            <td>Camera modules, image sensors and embedded interfaces</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ROADMAP
+       ========================================================= -->
+
+  <section>
+
+    <h2>Roadmap</h2>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>More MCUs</h3>
+
+        <p>
+          Expand coverage to ESP32 variants, STM32, RP2040, RP2350,
+          AVR, nRF52 and other embedded platforms.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>More Peripherals</h3>
+
+        <p>
+          Add sensors, motors, GPS, IMUs, displays, storage,
+          networking and communication modules.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Pin Conflict Engine</h3>
+
+        <p>
+          Automatically determine whether a selected collection
+          of peripherals can coexist on a particular MCU.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Wiring Generator</h3>
+
+        <p>
+          Generate wiring tables and diagrams from selected boards
+          and peripherals.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Virtual Hardware</h3>
+
+        <p>
+          Connect the encyclopedia's hardware database to a browser
+          based MCU and peripheral simulator.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Structured Database</h3>
+
+        <p>
+          Convert the encyclopedia into a machine-readable hardware
+          knowledge base powering the tools above.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       CONTRIBUTION / QUALITY
+       ========================================================= -->
+
+  <section>
+
+    <h2>Accuracy &amp; Verification</h2>
+
+    <p>
+      Hardware documentation can contain significant differences
+      between chips, development boards and breakout modules that
+      appear superficially similar.
+    </p>
+
+    <ul class="rules">
+
+      <li>
+        Prefer manufacturer datasheets and reference manuals for
+        electrical specifications.
+      </li>
+
+      <li>
+        Distinguish MCU capabilities from development-board pin labels.
+      </li>
+
+      <li>
+        Identify board-specific circuitry such as regulators,
+        level shifters and pull-up resistors.
+      </li>
+
+      <li>
+        Avoid assuming that similarly named modules are electrically
+        identical.
+      </li>
+
+      <li>
+        Verify voltage and current requirements before connecting
+        hardware.
+      </li>
+
+      <li>
+        Treat example wiring as a configuration rather than a
+        universal pin assignment.
+      </li>
+
+      <li>
+        Preserve manufacturer-specific terminology where it matters
+        for accurate hardware identification.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- =========================================================
+       PHILOSOPHY
+       ========================================================= -->
+
+  <section>
+
+    <h2>Design Philosophy</h2>
+
+    <p>
+      The encyclopedia is designed around a simple principle:
+      <strong>make the hardware understandable before making the
+      software complicated.</strong>
+    </p>
+
+    <p>
+      A good embedded project should make it clear what every wire
+      does, what every pin supports, what voltage is present, which
+      protocol is being used and why a particular pin was selected.
+    </p>
+
+    <p>
+      The goal is therefore not simply to provide pinout pictures.
+      It is to build a reusable technical reference that connects
+      the physical hardware layer to firmware, wiring and eventually
+      simulation.
+    </p>
+
+  </section>
+
+
+  <!-- =========================================================
+       FINAL REFERENCE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Reference at a Glance</h2>
+
+    <div class="interface-box">
+
+      <p>
+        <strong>MCU → Pin → Peripheral → Interface → Firmware</strong>
+      </p>
+
+      <p>
+        Every hardware entry in the encyclopedia should ultimately
+        explain this entire chain.
+      </p>
+
+      <p>
+        Identify the hardware, understand its electrical requirements,
+        select compatible pins, establish the communication interface,
+        wire it correctly and then implement the firmware.
+      </p>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<footer>
+
+  <p>
+    ESP / Arduino Pin Encyclopedia —
+    Embedded Hardware Reference
+  </p>
+
+</footer>
+
 </body>
 </html>
