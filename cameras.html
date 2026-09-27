@@ -1,91 +1,2819 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Camera Modules — ESP / Arduino Pin Encyclopedia
+  </title>
+
+  <meta
+    name="description"
+    content="Camera module reference covering embedded image sensors, OV-series cameras, parallel camera interfaces, control buses, synchronization, clocks, power and ESP32 integration."
+  >
+
   <link rel="stylesheet" href="styles.css">
-  <title>OV5110 Camera Module Pinout and Connection Guide</title>
+
 </head>
+
+
 <body>
-  <header>
-    <h1>OV5110 Camera Module Pinout and Connection Guide</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="esp32.html">ESP32 Ports</a></li>
-        <li><a href="arduino.html">Arduino Ports</a></li>
-        <li><a href="cameras.html">Cameras</a></li>
-        <li><a href="RC522-RFID.html">RFID</a></li>
-        <li><a href="LCD-OLED.html">LCD & OLED</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <section>
-      <h2>Introduction</h2>
-      <p>The OV5110 is a CMOS image sensor module designed for capturing high-quality images in embedded systems. Understanding its pinout and proper connections is essential for integrating it into your projects effectively.</p>
-    </section>
 
-    <section>
-      <h2>OV5110 Pinout Overview</h2>
-      <p>While specific datasheets for the OV5110 are limited, we can infer its pinout based on similar modules like the OV7670 and OV5640. Below is a general overview of the typical pins found on these camera modules:</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Pin Number</th>
-            <th>Pin Name</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>GND</td><td>Ground</td></tr>
-          <tr><td>2</td><td>VCC</td><td>Power Supply (typically 3.3V)</td></tr>
-          <tr><td>3</td><td>XCLK</td><td>External Clock Input</td></tr>
-          <tr><td>4</td><td>PWDN</td><td>Power Down (active low)</td></tr>
-          <tr><td>5</td><td>RESET</td><td>Reset (active low)</td></tr>
-          <tr><td>6</td><td>VSYNC</td><td>Vertical Synchronization</td></tr>
-          <tr><td>7</td><td>HSYNC</td><td>Horizontal Synchronization</td></tr>
-          <tr><td>8</td><td>DEN</td><td>Data Enable</td></tr>
-          <tr><td>9</td><td>OE</td><td>Output Enable</td></tr>
-          <tr><td>10</td><td>RESET</td><td>Reset (active low)</td></tr>
-          <tr><td>11</td><td>D0-D7</td><td>Data Pins (8-bit data bus)</td></tr>
-          <tr><td>12</td><td>VSYNC</td><td>Vertical Synchronization</td></tr>
-          <tr><td>13</td><td>HSYNC</td><td>Horizontal Synchronization</td></tr>
-          <tr><td>14</td><td>DEN</td><td>Data Enable</td></tr>
-          <tr><td>15</td><td>OE</td><td>Output Enable</td></tr>
-        </tbody>
-      </table>
-      <p>Note: The exact pinout may vary depending on the specific module version. Refer to the manufacturer's documentation for precise information.</p>
-    </section>
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
 
-    <section>
-      <h2>Connecting the OV5110 to a Microcontroller</h2>
-      <p>To interface the OV5110 camera module with a microcontroller, follow these steps:</p>
-      <ol>
-        <li><strong>Power Supply:</strong> Connect the VCC pin to a 3.3V power source and the GND pin to ground.</li>
-        <li><strong>Clock Input:</strong> Provide a clock signal to the XCLK pin. This can be sourced from a microcontroller's PWM output or an external oscillator. Ensure the clock frequency matches the camera's requirements.</li>
-        <li><strong>Synchronization Signals:</strong> Connect the VSYNC, HSYNC, DEN, and OE pins to the corresponding GPIO pins on the microcontroller. These signals are essential for capturing image frames and controlling data flow.</li>
-        <li><strong>Data Bus:</strong> Connect the D0-D7 pins to the microcontroller's data bus pins. Configure the microcontroller to read 8-bit parallel data from these pins.</li>
-        <li><strong>Control Signals:</strong> Use GPIO pins to control the PWDN and RESET functions. Implement software routines to manage power-down and reset operations as needed.</li>
-      </ol>
-      <p>Ensure that the microcontroller's I/O voltage levels are compatible with the camera module's requirements. Level shifters may be necessary if there is a voltage mismatch.</p>
-    </section>
+<header>
 
-    <section>
-      <h2>Additional Considerations</h2>
-      <p>When integrating the OV5110 camera module:</p>
-      <ul>
-        <li><strong>Clock Source:</strong> If using an external oscillator for the XCLK pin, ensure it provides a stable clock signal at the required frequency. Some modules offer a jumper to select between an onboard oscillator and an external clock source. For example, the Adafruit PiCowbell Camera Breakout provides such a jumper to connect the XCLK pin to an onboard 16 MHz oscillator or an external source. <a href="https://learn.adafruit.com/adafruit-picowbell-camera-breakout/pinouts">Source</a></li>
-        <li><strong>Data Handling:</strong> Implement appropriate timing and data handling routines in your microcontroller firmware to capture and process image data effectively. Utilize interrupts or polling methods to synchronize with the camera's output signals.</li>
-        <li><strong>Power Management:</strong> Utilize the PWDN pin to implement power-saving features in your application. Properly managing power can extend the lifespan of battery-operated systems.</li>
-      </ul>
-    </section>
-  </main>
+  <div class="site-title">
 
-  <footer>
-    <p>For more detailed information, refer to the datasheets of similar camera modules like the OV7670 and OV5640. While these may not be identical to the OV5110, they share many features and can provide valuable insights. <a href="https://www.instructables.com/OV7670-Arduino-Camera-Sensor-Module-Framecapture-T/">OV7670 Datasheet</a>, <a href="https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/OV5640_datasheet.pdf">OV5640 Datasheet</a></p>
-  </footer>
+    <h1>
+      ESP / Arduino Pin Encyclopedia
+    </h1>
+
+    <p>
+      Embedded hardware reference &amp; interface guide
+    </p>
+
+  </div>
+
+
+  <nav>
+
+    <ul>
+
+      <li>
+        <a href="index.html">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a href="esp32.html">
+          ESP32 Ports
+        </a>
+      </li>
+
+      <li>
+        <a href="arduino.html">
+          Arduino Nano
+        </a>
+      </li>
+
+      <li>
+        <a href="cameras.html" class="active">
+          Camera Modules
+        </a>
+      </li>
+
+      <li>
+        <a href="RC522-RFID.html">
+          RFID / NFC
+        </a>
+      </li>
+
+      <li>
+        <a href="LCD-OLED.html">
+          LCD / OLED
+        </a>
+      </li>
+
+      <li>
+        <a href="about.html">
+          About
+        </a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      CAMERA HARDWARE / IMAGE SENSORS
+    </div>
+
+
+    <h2>
+      Camera Modules
+    </h2>
+
+
+    <p>
+      A practical reference for embedded camera sensors,
+      image-data buses, clocks, synchronization signals,
+      control interfaces, power requirements and
+      microcontroller integration.
+    </p>
+
+
+    <div class="reference-badges">
+
+      <span class="badge">
+        CAMERAS
+      </span>
+
+      <span class="badge">
+        CMOS
+      </span>
+
+      <span class="badge">
+        XCLK
+      </span>
+
+      <span class="badge">
+        DVP
+      </span>
+
+      <span class="badge">
+        SCCB / I2C
+      </span>
+
+      <span class="badge">
+        VSYNC
+      </span>
+
+      <span class="badge">
+        HSYNC
+      </span>
+
+      <span class="badge">
+        PCLK
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     IMPORTANT SCOPE NOTE
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Camera Module Reference Scope
+  </h2>
+
+
+  <p>
+    Embedded camera systems are more complicated than a simple
+    two-wire sensor. A camera normally contains an image sensor,
+    timing generator, control interface and high-speed image-data
+    interface.
+  </p>
+
+
+  <p>
+    Different camera modules can expose completely different
+    connectors and pin assignments even when they use similar
+    image sensors.
+  </p>
+
+
+  <div class="warning-box">
+
+    <strong>
+      Important:
+    </strong>
+
+    Never use a pinout inferred from another camera sensor as the
+    final wiring reference for a production design. Camera modules
+    must be identified by their exact sensor, board revision and
+    connector/module design.
+
+  </div>
+
+
+  <div class="notice">
+
+    <strong>
+      Documentation rule:
+    </strong>
+
+    This page distinguishes the
+    <strong>camera sensor</strong>,
+    <strong>camera module</strong>,
+    <strong>MCU camera interface</strong>
+    and
+    <strong>software driver</strong>.
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAMERA ARCHITECTURE
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    How an Embedded Camera Works
+  </h2>
+
+
+  <div class="card-grid">
+
+
+    <div class="card">
+
+      <h3>
+        1. Lens
+      </h3>
+
+      <p>
+        Focuses incoming light onto the image sensor.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        2. Image Sensor
+      </h3>
+
+      <p>
+        Converts incoming light into electrical pixel data.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        3. Sensor Controller
+      </h3>
+
+      <p>
+        Controls exposure, gain, resolution, frame timing,
+        pixel format and other sensor parameters.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        4. Control Bus
+      </h3>
+
+      <p>
+        Allows the MCU to configure the camera sensor.
+        Common implementations use an SCCB/I2C-style interface.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        5. Pixel Data Bus
+      </h3>
+
+      <p>
+        Transfers image data from the sensor to the
+        microcontroller or camera interface.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        6. MCU / Processor
+      </h3>
+
+      <p>
+        Captures, buffers, processes, stores or transmits
+        the image data.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAMERA SIGNALS
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Common Camera Signals
+  </h2>
+
+
+  <p>
+    Parallel embedded camera modules frequently expose a collection
+    of power, clock, control, synchronization and pixel-data signals.
+  </p>
+
+
+  <div class="table-wrapper">
+
+    <table class="pin-table">
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Signal
+          </th>
+
+          <th>
+            Direction
+          </th>
+
+          <th>
+            Function
+          </th>
+
+          <th>
+            Category
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            VCC
+          </td>
+
+          <td>
+            Power
+          </td>
+
+          <td>
+            Module/sensor supply
+          </td>
+
+          <td>
+            Power
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            GND
+          </td>
+
+          <td>
+            Power
+          </td>
+
+          <td>
+            Ground reference
+          </td>
+
+          <td>
+            Power
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            XCLK
+          </td>
+
+          <td>
+            MCU → camera
+          </td>
+
+          <td>
+            External camera clock
+          </td>
+
+          <td>
+            Timing
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            PCLK
+          </td>
+
+          <td>
+            Camera → MCU
+          </td>
+
+          <td>
+            Pixel clock
+          </td>
+
+          <td>
+            Timing
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            VSYNC
+          </td>
+
+          <td>
+            Camera → MCU
+          </td>
+
+          <td>
+            Frame synchronization
+          </td>
+
+          <td>
+            Synchronization
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            HREF / HSYNC
+          </td>
+
+          <td>
+            Camera → MCU
+          </td>
+
+          <td>
+            Line/data-valid synchronization
+          </td>
+
+          <td>
+            Synchronization
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            D0–D7
+          </td>
+
+          <td>
+            Camera → MCU
+          </td>
+
+          <td>
+            Pixel data
+          </td>
+
+          <td>
+            Data
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            D8–D9
+          </td>
+
+          <td>
+            Camera → MCU
+          </td>
+
+          <td>
+            Additional pixel-data bits on wider buses
+          </td>
+
+          <td>
+            Data
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            SDA / SDIO
+          </td>
+
+          <td>
+            Bidirectional
+          </td>
+
+          <td>
+            Sensor configuration data
+          </td>
+
+          <td>
+            Control
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            SCL / SIOC
+          </td>
+
+          <td>
+            MCU → camera
+          </td>
+
+          <td>
+            Sensor configuration clock
+          </td>
+
+          <td>
+            Control
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            RESET
+          </td>
+
+          <td>
+            MCU → camera
+          </td>
+
+          <td>
+            Hardware reset
+          </td>
+
+          <td>
+            Control
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            PWDN
+          </td>
+
+          <td>
+            MCU → camera
+          </td>
+
+          <td>
+            Power-down control
+          </td>
+
+          <td>
+            Power
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CONTROL VS DATA
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Camera Control vs Camera Data
+  </h2>
+
+
+  <p>
+    A critical concept in embedded camera design is that the
+    camera's configuration interface and its image-data interface
+    are normally separate.
+  </p>
+
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Interface
+          </th>
+
+          <th>
+            Purpose
+          </th>
+
+          <th>
+            Typical Signals
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            Control
+          </td>
+
+          <td>
+            Configure the image sensor
+          </td>
+
+          <td>
+            SDA / SCL or SCCB-style signals
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Clock
+          </td>
+
+          <td>
+            Provide sensor timing
+          </td>
+
+          <td>
+            XCLK
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Pixel data
+          </td>
+
+          <td>
+            Transfer image pixels
+          </td>
+
+          <td>
+            D0–D7 / wider parallel bus
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Frame timing
+          </td>
+
+          <td>
+            Identify image frames and line/data timing
+          </td>
+
+          <td>
+            VSYNC / HREF / HSYNC / PCLK
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     OV SERIES
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Common OV-Series Camera Sensors
+  </h2>
+
+
+  <p>
+    OmniVision has produced a large number of image sensors and
+    camera devices used in embedded systems. The exact electrical
+    interface varies by sensor.
+  </p>
+
+
+  <div class="card-grid">
+
+
+    <div class="card">
+
+      <h3>
+        OV7670
+      </h3>
+
+      <p>
+        A widely used low-cost CMOS image sensor frequently found
+        in educational and embedded camera projects.
+      </p>
+
+      <p>
+        Common interface:
+        <strong>parallel pixel bus + control interface</strong>.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        OV2640
+      </h3>
+
+      <p>
+        Common embedded camera sensor used in ESP32-CAM-class
+        hardware and other compact camera systems.
+      </p>
+
+      <p>
+        Common interface:
+        <strong>parallel camera data + sensor control</strong>.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        OV5640
+      </h3>
+
+      <p>
+        Higher-resolution camera sensor family used in more
+        capable embedded imaging applications.
+      </p>
+
+      <p>
+        Module interface depends on the particular hardware design.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        OV3660
+      </h3>
+
+      <p>
+        Camera sensor found in some ESP32 camera hardware and
+        embedded imaging platforms.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     OV5110 WARNING
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    OV5110 Reference
+  </h2>
+
+
+  <p>
+    The original version of this encyclopedia listed an "OV5110"
+    camera and attempted to derive its pinout from OV7670 and OV5640
+    documentation.
+  </p>
+
+
+  <div class="danger-box">
+
+    <strong>
+      Do not use an inferred pinout as a production wiring reference.
+    </strong>
+
+
+    <p>
+      Camera sensors are not interchangeable simply because they
+      expose similarly named signals. Exact pin numbering,
+      electrical requirements, control protocols, power rails,
+      timing requirements and package connections must come from
+      the actual sensor/module documentation.
+    </p>
+
+  </div>
+
+
+  <p>
+    If a specific camera board is labeled "OV5110", document the
+    exact board manufacturer, module revision, connector pinout
+    and sensor marking before assigning a canonical pin map.
+  </p>
+
+
+  <div class="notice">
+
+    <strong>
+      Encyclopedia policy:
+    </strong>
+
+    Unverified camera pin assignments should be marked as
+    <strong>unverified</strong> rather than presented as definitive.
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     GENERIC PARALLEL CAMERA PINOUT
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Generic Parallel Camera Interface
+  </h2>
+
+
+  <p>
+    The following is a conceptual interface map for common
+    parallel camera modules. It is not a pin-number map for
+    a specific camera.
+  </p>
+
+
+  <div class="table-wrapper">
+
+    <table class="pin-table">
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Signal
+          </th>
+
+          <th>
+            Typical Direction
+          </th>
+
+          <th>
+            Purpose
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            VCC
+          </td>
+
+          <td>
+            Power
+          </td>
+
+          <td>
+            Camera/module supply
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            GND
+          </td>
+
+          <td>
+            Power
+          </td>
+
+          <td>
+            Common ground
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            XCLK
+          </td>
+
+          <td>
+            MCU → camera
+          </td>
+
+          <td>
+            Sensor input clock
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            PCLK
+          </td>
+
+          <td>
+            camera → MCU
+          </td>
+
+          <td>
+            Pixel timing clock
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            VSYNC
+          </td>
+
+          <td>
+            camera → MCU
+          </td>
+
+          <td>
+            Frame boundary
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            HREF
+          </td>
+
+          <td>
+            camera → MCU
+          </td>
+
+          <td>
+            Valid pixel/line timing
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            D0–D7
+          </td>
+
+          <td>
+            camera → MCU
+          </td>
+
+          <td>
+            Parallel pixel data
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            SDA / SDIO
+          </td>
+
+          <td>
+            Bidirectional
+          </td>
+
+          <td>
+            Sensor configuration
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            SCL / SIOC
+          </td>
+
+          <td>
+            MCU → camera
+          </td>
+
+          <td>
+            Configuration clock
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            RESET
+          </td>
+
+          <td>
+            MCU → camera
+          </td>
+
+          <td>
+            Sensor reset
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            PWDN
+          </td>
+
+          <td>
+            MCU → camera
+          </td>
+
+          <td>
+            Power-down mode
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     XCLK
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    XCLK — Camera Clock
+  </h2>
+
+
+  <p>
+    Many camera sensors require an external clock supplied by the
+    host system or camera board.
+  </p>
+
+
+  <div class="interface-box">
+
+    <h3>
+      Typical Clock Relationship
+    </h3>
+
+
+    <p>
+
+      <strong>
+        MCU / oscillator
+        →
+        XCLK
+        →
+        camera sensor
+      </strong>
+
+    </p>
+
+
+    <p>
+      The camera uses this reference clock to generate its internal
+      timing and pixel-data timing.
+    </p>
+
+  </div>
+
+
+  <div class="warning-box">
+
+    <strong>
+      Do not guess the required clock.
+    </strong>
+
+    The acceptable clock frequency and timing requirements are
+    sensor-specific. Always use the actual sensor documentation
+    for the final implementation.
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PCLK
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    PCLK — Pixel Clock
+  </h2>
+
+
+  <p>
+    PCLK is generated by the camera and provides timing for
+    the parallel pixel-data stream.
+  </p>
+
+
+  <p>
+    The receiving MCU must capture the pixel data according to
+    the camera's timing specification.
+  </p>
+
+
+  <div class="notice">
+
+    <strong>
+      Important:
+    </strong>
+
+    Camera data is not equivalent to ordinary GPIO polling.
+    Pixel buses operate according to strict timing relationships
+    between PCLK, data lines and synchronization signals.
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     VSYNC / HREF
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    VSYNC, HREF &amp; HSYNC
+  </h2>
+
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Signal
+          </th>
+
+          <th>
+            Purpose
+          </th>
+
+          <th>
+            Concept
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            VSYNC
+          </td>
+
+          <td>
+            Frame synchronization
+          </td>
+
+          <td>
+            Indicates frame timing/boundaries
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            HREF
+          </td>
+
+          <td>
+            Line/data validity
+          </td>
+
+          <td>
+            Indicates portions of the pixel stream containing valid data
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            HSYNC
+          </td>
+
+          <td>
+            Horizontal synchronization
+          </td>
+
+          <td>
+            Provides horizontal timing on sensors that expose it
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <p>
+    Not every camera exposes these signals using exactly the same
+    names or timing conventions. Always use the sensor-specific
+    documentation.
+  </p>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAMERA DATA FORMATS
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Pixel Data Formats
+  </h2>
+
+
+  <p>
+    A camera does not necessarily output one byte per pixel.
+    Depending on configuration, the sensor may output different
+    pixel formats and packing schemes.
+  </p>
+
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Format
+          </th>
+
+          <th>
+            General Description
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            RGB565
+          </td>
+
+          <td>
+            16-bit packed RGB color format.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            YUV / YCbCr
+          </td>
+
+          <td>
+            Luma/chroma representation commonly used for imaging
+            and video processing.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Grayscale
+          </td>
+
+          <td>
+            Single-channel intensity representation.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            JPEG
+          </td>
+
+          <td>
+            Compressed image representation supported by
+            certain camera architectures.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            RAW
+          </td>
+
+          <td>
+            Sensor-level pixel data requiring additional processing.
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ESP32 CAMERA
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Cameras &amp; ESP32
+  </h2>
+
+
+  <p>
+    ESP32-class systems are widely used for embedded camera
+    projects because some variants and camera-oriented boards
+    provide dedicated hardware support for camera data capture.
+  </p>
+
+
+  <div class="card-grid">
+
+
+    <div class="card">
+
+      <h3>
+        Camera Data
+      </h3>
+
+      <p>
+        Parallel camera data can require a large number of
+        GPIO resources.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Timing
+      </h3>
+
+      <p>
+        XCLK, PCLK and synchronization signals must be mapped
+        correctly to the camera-capable hardware.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Memory
+      </h3>
+
+      <p>
+        Images consume substantially more memory than simple
+        sensor readings or text data.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        PSRAM
+      </h3>
+
+      <p>
+        Camera applications often benefit from additional external
+        RAM for frame buffers and image processing.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ESP32 CAMERA RESOURCE MAP
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Camera Resource Planning
+  </h2>
+
+
+  <p>
+    Before connecting a parallel camera to an MCU, create a complete
+    resource map rather than selecting GPIOs individually.
+  </p>
+
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Resource
+          </th>
+
+          <th>
+            Required Signals
+          </th>
+
+          <th>
+            Design Question
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            Data bus
+          </td>
+
+          <td>
+            D0–D7 or wider
+          </td>
+
+          <td>
+            Does the MCU provide a compatible camera input?
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Pixel clock
+          </td>
+
+          <td>
+            PCLK
+          </td>
+
+          <td>
+            Can the MCU capture the incoming clocked stream?
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Frame sync
+          </td>
+
+          <td>
+            VSYNC
+          </td>
+
+          <td>
+            Is frame timing supported?
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Line sync
+          </td>
+
+          <td>
+            HREF / HSYNC
+          </td>
+
+          <td>
+            Is the line/data-valid timing compatible?
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Sensor clock
+          </td>
+
+          <td>
+            XCLK
+          </td>
+
+          <td>
+            Can the MCU or oscillator generate the required clock?
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Control bus
+          </td>
+
+          <td>
+            SDA/SCL or SCCB
+          </td>
+
+          <td>
+            Can the MCU configure the sensor?
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Reset
+          </td>
+
+          <td>
+            RESET
+          </td>
+
+          <td>
+            Is hardware reset required?
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Power-down
+          </td>
+
+          <td>
+            PWDN
+          </td>
+
+          <td>
+            Is low-power control required?
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAMERA VS NORMAL SENSOR
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Why Cameras Are Different From Ordinary Sensors
+  </h2>
+
+
+  <div class="card-grid">
+
+
+    <div class="card">
+
+      <h3>
+        High Data Rate
+      </h3>
+
+      <p>
+        A single image can contain thousands or millions of pixels,
+        creating much more data than typical environmental sensors.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Strict Timing
+      </h3>
+
+      <p>
+        The MCU must capture data according to camera clock and
+        synchronization timing.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Frame Buffers
+      </h3>
+
+      <p>
+        Images generally require memory buffers for capture,
+        processing and transmission.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Processing
+      </h3>
+
+      <p>
+        Applications may require JPEG encoding, resizing,
+        color conversion, computer vision or streaming.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     POWER
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Camera Power Requirements
+  </h2>
+
+
+  <p>
+    Camera modules can have multiple voltage domains even when
+    the module exposes only a small number of power pins.
+  </p>
+
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Supply
+          </th>
+
+          <th>
+            Purpose
+          </th>
+
+          <th>
+            Important Consideration
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            Digital supply
+          </td>
+
+          <td>
+            Digital logic
+          </td>
+
+          <td>
+            Must match the sensor requirements.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Analog supply
+          </td>
+
+          <td>
+            Sensor analog circuitry
+          </td>
+
+          <td>
+            Noise can affect image quality.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            I/O supply
+          </td>
+
+          <td>
+            Digital interface voltage
+          </td>
+
+          <td>
+            Must be compatible with MCU logic.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Ground
+          </td>
+
+          <td>
+            Electrical reference
+          </td>
+
+          <td>
+            Use appropriate grounding and power distribution.
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <div class="warning-box">
+
+    <strong>
+      Do not assume 3.3V is universally correct.
+    </strong>
+
+    Camera sensors can have separate internal supply domains.
+    Follow the actual sensor/module electrical specification.
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAMERA CLOCKING
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Camera Clock Architecture
+  </h2>
+
+
+  <div class="interface-box">
+
+    <p>
+      <strong>
+        MCU / Oscillator
+        →
+        XCLK
+        →
+        Camera Sensor
+      </strong>
+    </p>
+
+
+    <p>
+      <strong>
+        Camera Sensor
+        →
+        PCLK
+        →
+        MCU Camera Interface
+      </strong>
+    </p>
+
+
+    <p>
+      The first clock provides a reference to the camera while
+      the second is associated with the outgoing pixel stream.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CONTROL INTERFACE
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    SCCB / I2C-Style Camera Control
+  </h2>
+
+
+  <p>
+    Many image sensors use a two-wire serial control interface
+    derived from or compatible with an I2C-like architecture.
+    OmniVision devices commonly refer to this control system as
+    SCCB.
+  </p>
+
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Signal
+          </th>
+
+          <th>
+            Purpose
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            SIOC / SCL
+          </td>
+
+          <td>
+            Serial control clock
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            SIOD / SDA
+          </td>
+
+          <td>
+            Serial control data
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <p>
+    The control interface is used to configure registers controlling
+    resolution, frame format, exposure, gain, timing and other
+    sensor parameters.
+  </p>
+
+</section>
+
+
+
+<!-- =========================================================
+     COMMON PROBLEMS
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Common Camera Problems
+  </h2>
+
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Problem
+          </th>
+
+          <th>
+            Possible Cause
+          </th>
+
+          <th>
+            Check
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            Camera not detected
+          </td>
+
+          <td>
+            Power or control-bus problem
+          </td>
+
+          <td>
+            Verify supply, ground and sensor address/control bus.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            No image
+          </td>
+
+          <td>
+            Clock or data-capture configuration
+          </td>
+
+          <td>
+            Check XCLK, PCLK and synchronization signals.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Corrupted image
+          </td>
+
+          <td>
+            Incorrect timing or data-bit mapping
+          </td>
+
+          <td>
+            Verify pixel clock and D0–D7 assignment.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Wrong colors
+          </td>
+
+          <td>
+            Pixel format/configuration
+          </td>
+
+          <td>
+            Verify RGB/YUV ordering and firmware configuration.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Image is shifted
+          </td>
+
+          <td>
+            Synchronization/timing configuration
+          </td>
+
+          <td>
+            Check VSYNC/HREF/HSYNC behavior.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Random frames
+          </td>
+
+          <td>
+            Memory, timing or signal-integrity issue
+          </td>
+
+          <td>
+            Check frame buffers, clocking and wiring.
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Camera works intermittently
+          </td>
+
+          <td>
+            Power integrity or signal integrity
+          </td>
+
+          <td>
+            Check decoupling, supply stability and wiring.
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAMERA DESIGN RULES
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Camera Engineering Rules
+  </h2>
+
+
+  <ul class="rules">
+
+
+    <li>
+
+      <strong>
+        Identify the exact sensor.
+      </strong>
+
+      Do not assume two similarly named camera modules
+      have identical pinouts.
+
+    </li>
+
+
+    <li>
+
+      <strong>
+        Identify the exact module.
+      </strong>
+
+      Breakout boards can contain regulators, oscillators,
+      level shifting and other circuitry.
+
+    </li>
+
+
+    <li>
+
+      <strong>
+        Verify the control protocol.
+      </strong>
+
+      SCCB and I2C-like interfaces should not automatically
+      be treated as identical without checking the documentation.
+
+    </li>
+
+
+    <li>
+
+      <strong>
+        Verify XCLK requirements.
+      </strong>
+
+      Camera sensors are timing-sensitive devices.
+
+    </li>
+
+
+    <li>
+
+      <strong>
+        Map the entire pixel bus.
+      </strong>
+
+      D0–D7 must correspond to the expected MCU inputs.
+    </li>
+
+
+    <li>
+
+      <strong>
+        Verify synchronization polarity and timing.
+      </strong>
+
+      VSYNC, HREF and HSYNC behavior is sensor-specific.
+
+    </li>
+
+
+    <li>
+
+      <strong>
+        Check memory requirements.
+      </strong>
+
+      Frame buffers can consume significantly more memory
+      than ordinary embedded sensor data.
+    </li>
+
+
+    <li>
+
+      <strong>
+        Protect the power system.
+      </strong>
+
+      Image sensors can be sensitive to supply noise.
+    </li>
+
+
+    <li>
+
+      <strong>
+        Keep high-speed wiring short.
+      </strong>
+
+      Parallel camera buses are more sensitive to signal integrity
+      than simple GPIO connections.
+    </li>
+
+
+  </ul>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAMERA SELECTION
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Choosing a Camera Module
+  </h2>
+
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Requirement
+          </th>
+
+          <th>
+            Consider
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+
+        <tr>
+
+          <td>
+            Simple image capture
+          </td>
+
+          <td>
+            Low-resolution parallel camera module
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            ESP32 camera project
+          </td>
+
+          <td>
+            Camera module with known ESP32 support
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            High resolution
+          </td>
+
+          <td>
+            Sensor resolution and MCU memory/bandwidth
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Streaming
+          </td>
+
+          <td>
+            Sensor bandwidth, frame buffer memory and network throughput
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Computer vision
+          </td>
+
+          <td>
+            Resolution, frame rate, memory and processing capability
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Battery operation
+          </td>
+
+          <td>
+            Sensor power modes and MCU sleep capabilities
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Compact design
+          </td>
+
+          <td>
+            Module dimensions, connector type and flex-cable routing
+          </td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAMERA DATA MODEL
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Machine-Readable Camera Definition
+  </h2>
+
+
+  <p>
+    Camera entries should eventually be represented as structured
+    hardware definitions so the encyclopedia can automatically
+    generate pin tables, wiring diagrams and MCU compatibility checks.
+  </p>
+
+
+<pre><code>{
+  "camera": {
+
+    "name": "Example Camera",
+    "sensor": "Example Sensor",
+
+    "interface": {
+      "type": "parallel",
+      "data_width": 8
+    },
+
+    "control": {
+      "protocol": "SCCB",
+      "clock": "SIOC",
+      "data": "SIOD"
+    },
+
+    "timing": {
+      "input_clock": "XCLK",
+      "pixel_clock": "PCLK",
+      "frame_sync": "VSYNC",
+      "line_sync": "HREF"
+    },
+
+    "data": {
+      "D0": true,
+      "D1": true,
+      "D2": true,
+      "D3": true,
+      "D4": true,
+      "D5": true,
+      "D6": true,
+      "D7": true
+    },
+
+    "control_pins": {
+      "reset": true,
+      "power_down": true
+    },
+
+    "power": {
+      "requires_sensor_specific_verification": true
+    }
+
+  }
+}</code></pre>
+
+</section>
+
+
+
+<!-- =========================================================
+     FUTURE CAMERA DATABASE
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Camera Encyclopedia Roadmap
+  </h2>
+
+
+  <div class="card-grid">
+
+
+    <div class="card">
+
+      <h3>
+        OV7670
+      </h3>
+
+      <p>
+        Full pinout, timing, register control and parallel
+        data-bus reference.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        OV2640
+      </h3>
+
+      <p>
+        ESP32-CAM-oriented reference with image formats,
+        control registers and module variants.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        OV5640
+      </h3>
+
+      <p>
+        Higher-resolution sensor/module reference including
+        supported host interfaces.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        OV3660
+      </h3>
+
+      <p>
+        Embedded camera reference for compatible ESP32 systems.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        MIPI CSI
+      </h3>
+
+      <p>
+        Future reference for high-speed camera interfaces used
+        by more capable embedded processors.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        USB Cameras
+      </h3>
+
+      <p>
+        Future reference for USB UVC cameras and host-side
+        embedded systems.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAMERA SYSTEM STACK
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Embedded Camera Stack
+  </h2>
+
+
+  <div class="interface-box">
+
+    <p>
+
+      <strong>
+        Lens
+        →
+        Image Sensor
+        →
+        Sensor Configuration
+        →
+        Pixel Bus
+        →
+        Camera Interface
+        →
+        Frame Buffer
+        →
+        Image Processing
+        →
+        Application
+      </strong>
+
+    </p>
+
+
+    <p>
+      Understanding this complete path is essential when debugging
+      an embedded camera system. A failure at any layer can result
+      in a camera that appears not to work.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CANONICAL REFERENCE
+     ========================================================= -->
+
+<section>
+
+  <h2>
+    Canonical Camera Reference
+  </h2>
+
+
+  <p>
+    For production hardware designs, the authoritative sources
+    should be the exact image-sensor datasheet, module schematic,
+    module pinout and MCU technical documentation.
+  </p>
+
+
+  <ul class="rules">
+
+    <li>
+      Use the exact sensor datasheet for electrical requirements.
+    </li>
+
+    <li>
+      Use the exact module schematic for connector/pin assignments.
+    </li>
+
+    <li>
+      Use the MCU reference manual for camera-interface capabilities.
+    </li>
+
+    <li>
+      Use the firmware/library documentation for driver behavior.
+    </li>
+
+    <li>
+      Treat generic camera pinouts as conceptual references only.
+    </li>
+
+  </ul>
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+  <p>
+    ESP / Arduino Pin Encyclopedia —
+    Camera &amp; Image Sensor Reference
+  </p>
+
+</footer>
+
+
 </body>
+
 </html>
