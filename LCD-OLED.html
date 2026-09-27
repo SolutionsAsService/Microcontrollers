@@ -3,194 +3,1555 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LCD/OLED Displays</title>
+
+  <title>LCD & OLED Displays — ESP/Arduino Pin Encyclopedia</title>
+
+  <meta
+    name="description"
+    content="Complete LCD and OLED display reference for Arduino, ESP32, and embedded hardware projects."
+  >
+
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <header>
-    <h1>How to Use LCD & OLED</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="esp32.html">ESP32 Ports</a></li>
-        <li><a href="arduino.html">Arduino Ports</a></li>
-        <li><a href="cameras.html">Cameras</a></li>
-        <li><a href="RC522-RFID.html">RFID</a></li>
-        <li><a href="LCD-OLED.html">LCD & OLED</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
-  </header>
-  
-  <main>
-    <section>
-      <p>OLED (Organic Light-Emitting Diode) and LCD (Liquid Crystal Display) are two prevalent display technologies utilized in various electronic devices. Each has unique characteristics, advantages, and applications. This guide delves into their working principles, pin configurations, and interfacing methods.</p>
-    </section>
 
-    <section>
-      <h2>LCD (Liquid Crystal Display)</h2>
-      <p>LCDs function by manipulating liquid crystals to modulate light, creating visible images. They require a backlight since the crystals do not emit light by themselves.</p>
-      <h3>16x2 LCD Pin Configuration</h3>
-      <p>A common LCD module is the 16x2 display, capable of displaying 16 characters per line across two lines. It typically features 16 pins with the following functions:</p>
-      <table>
-        <tr>
-          <th>Pin Number</th>
-          <th>Pin Name</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>VSS</td>
-          <td>Ground pin, connects to the ground of the power source.</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>VCC</td>
-          <td>Power supply pin, connects to the positive terminal of the power source (typically 5V).</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>V0</td>
-          <td>Contrast adjustment pin, connects to a potentiometer to adjust display contrast.</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>RS</td>
-          <td>Register select pin, determines whether data or command is being sent.</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>RW</td>
-          <td>Read/Write pin, selects read or write mode.</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>EN</td>
-          <td>Enable pin, initiates data read/write operations.</td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td>D0</td>
-          <td>Data pin 0, part of the data bus for sending data.</td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>D1</td>
-          <td>Data pin 1, part of the data bus for sending data.</td>
-        </tr>
-        <tr>
-          <td>9</td>
-          <td>D2</td>
-          <td>Data pin 2, part of the data bus for sending data.</td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td>D3</td>
-          <td>Data pin 3, part of the data bus for sending data.</td>
-        </tr>
-        <tr>
-          <td>11</td>
-          <td>D4</td>
-          <td>Data pin 4, part of the data bus for sending data.</td>
-        </tr>
-        <tr>
-          <td>12</td>
-          <td>D5</td>
-          <td>Data pin 5, part of the data bus for sending data.</td>
-        </tr>
-        <tr>
-          <td>13</td>
-          <td>D6</td>
-          <td>Data pin 6, part of the data bus for sending data.</td>
-        </tr>
-        <tr>
-          <td>14</td>
-          <td>D7</td>
-          <td>Data pin 7, part of the data bus for sending data.</td>
-        </tr>
-        <tr>
-          <td>15</td>
-          <td>A</td>
-          <td>Anode pin for LED backlight, connects to the positive terminal of the backlight power source.</td>
-        </tr>
-        <tr>
-          <td>16</td>
-          <td>K</td>
-          <td>Cathode pin for LED backlight, connects to the ground of the backlight power source.</td>
-        </tr>
+<header>
+  <div class="site-title">
+    <h1>ESP / Arduino Pin Encyclopedia</h1>
+    <p>Embedded hardware reference &amp; interface guide</p>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="esp32.html">ESP32 Ports</a></li>
+      <li><a href="arduino.html">Arduino Ports</a></li>
+      <li><a href="cameras.html">Cameras</a></li>
+      <li><a href="RC522-RFID.html">RFID</a></li>
+      <li><a href="LCD-OLED.html" class="active">LCD &amp; OLED</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+<main>
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        DISPLAY HARDWARE / INTERFACES
+      </div>
+
+      <h2>LCD &amp; OLED Displays</h2>
+
+      <p>
+        A practical reference for connecting character LCDs, graphical LCDs,
+        OLED displays, and common display controller interfaces to Arduino,
+        ESP32, and other microcontrollers.
+      </p>
+
+      <div class="reference-badges">
+        <span class="badge">LCD</span>
+        <span class="badge">OLED</span>
+        <span class="badge">I2C</span>
+        <span class="badge">SPI</span>
+        <span class="badge">Parallel</span>
+        <span class="badge">SSD1306</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       QUICK REFERENCE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Quick Reference</h2>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>16×2 Character LCD</h3>
+        <p>
+          Typically uses the HD44780-compatible interface and can operate
+          using either 4-bit or 8-bit parallel communication.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>20×4 Character LCD</h3>
+        <p>
+          Larger HD44780-compatible character display commonly used for
+          instrumentation and embedded control panels.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>0.96″ OLED</h3>
+        <p>
+          Small graphical display commonly based on the SSD1306 controller,
+          usually using I2C or SPI.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>1.3″ OLED</h3>
+        <p>
+          Larger monochrome OLED modules commonly using SSD1306 or
+          SH1106-compatible controllers.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       LCD OVERVIEW
+       ========================================================= -->
+
+  <section>
+
+    <h2>LCD — Liquid Crystal Display</h2>
+
+    <p>
+      LCDs use liquid crystals to control the passage of light through
+      the display. Character LCD modules are especially common in
+      microcontroller projects because they are inexpensive, robust,
+      and supported by many libraries.
+    </p>
+
+    <p>
+      The classic embedded character LCD is based around the
+      <strong>HD44780-compatible interface</strong>.
+    </p>
+
+    <div class="notice">
+
+      <strong>Important:</strong>
+
+      Character LCD modules and graphical LCD modules are not necessarily
+      electrically or software compatible. Always identify the controller
+      and interface before wiring a display.
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       16x2 LCD PINOUT
+       ========================================================= -->
+
+  <section>
+
+    <h2>16×2 LCD Pin Configuration</h2>
+
+    <p>
+      A standard 16×2 character LCD commonly exposes 16 pins.
+      Pins D0–D7 form the parallel data bus while RS, RW, and EN
+      control communication.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table class="pin-table">
+
+        <thead>
+
+          <tr>
+            <th>Pin</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Function</th>
+            <th>Typical Connection</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>1</td>
+            <td>VSS</td>
+            <td>Power</td>
+            <td>Ground</td>
+            <td>GND</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>VDD / VCC</td>
+            <td>Power</td>
+            <td>LCD supply voltage</td>
+            <td>Usually 5V</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>V0 / VEE</td>
+            <td>Analog</td>
+            <td>Contrast adjustment</td>
+            <td>Potentiometer / contrast circuit</td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td>RS</td>
+            <td>Input</td>
+            <td>Register Select</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+            <td>RW</td>
+            <td>Input</td>
+            <td>Read / Write selection</td>
+            <td>GND for write-only operation</td>
+          </tr>
+
+          <tr>
+            <td>6</td>
+            <td>EN</td>
+            <td>Input</td>
+            <td>Enable / latch control</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>7</td>
+            <td>D0</td>
+            <td>Data</td>
+            <td>Data bit 0</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>8</td>
+            <td>D1</td>
+            <td>Data</td>
+            <td>Data bit 1</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>9</td>
+            <td>D2</td>
+            <td>Data</td>
+            <td>Data bit 2</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>10</td>
+            <td>D3</td>
+            <td>Data</td>
+            <td>Data bit 3</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>11</td>
+            <td>D4</td>
+            <td>Data</td>
+            <td>Data bit 4</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>12</td>
+            <td>D5</td>
+            <td>Data</td>
+            <td>Data bit 5</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>13</td>
+            <td>D6</td>
+            <td>Data</td>
+            <td>Data bit 6</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>14</td>
+            <td>D7</td>
+            <td>Data</td>
+            <td>Data bit 7</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>15</td>
+            <td>A / LED+</td>
+            <td>Power</td>
+            <td>Backlight anode</td>
+            <td>Backlight supply</td>
+          </tr>
+
+          <tr>
+            <td>16</td>
+            <td>K / LED−</td>
+            <td>Power</td>
+            <td>Backlight cathode</td>
+            <td>GND</td>
+          </tr>
+
+        </tbody>
+
       </table>
-    </section>
 
-    <section>
-      <h2>OLED (Organic Light-Emitting Diode)</h2>
-      <p>OLEDs consist of organic compounds that emit light when an electric current passes through them, allowing for thinner displays with better contrast ratios.</p>
-      <h3>OLED Pin Configuration</h3>
-      <p>OLED displays often utilize the I2C communication protocol, simplifying wiring. A typical 0.96-inch OLED display with I2C interface has the following pins:</p>
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       LCD 4 BIT MODE
+       ========================================================= -->
+
+  <section>
+
+    <h2>LCD 4-Bit Mode</h2>
+
+    <p>
+      Most Arduino projects do not need all eight LCD data lines.
+      In 4-bit mode, only D4–D7 are used for data transfer.
+    </p>
+
+    <div class="interface-box">
+
+      <h3>Typical Wiring</h3>
+
       <table>
-        <tr>
-          <th>Pin Number</th>
-          <th>Pin Name</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>GND</td>
-          <td>Ground pin, connects to the ground of the circuit.</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>VCC</td>
-          <td>Power supply pin, connects to 3.3V or 5V depending on the display specifications.</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>SCL</td>
-          <td>Clock line for I2C communication, connects to the SCL pin of the microcontroller.</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>SDA</td>
-          <td>Data line for I2C communication, connects to the SDA pin of the microcontroller.</td>
-        </tr>
+
+        <thead>
+          <tr>
+            <th>LCD</th>
+            <th>Microcontroller</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>RS</td>
+            <td>GPIO</td>
+          </tr>
+
+          <tr>
+            <td>RW</td>
+            <td>GND</td>
+          </tr>
+
+          <tr>
+            <td>EN</td>
+            <td>GPIO</td>
+          </tr>
+
+          <tr>
+            <td>D4</td>
+            <td>GPIO</td>
+          </tr>
+
+          <tr>
+            <td>D5</td>
+            <td>GPIO</td>
+          </tr>
+
+          <tr>
+            <td>D6</td>
+            <td>GPIO</td>
+          </tr>
+
+          <tr>
+            <td>D7</td>
+            <td>GPIO</td>
+          </tr>
+
+        </tbody>
+
       </table>
-      <p>For detailed wiring instructions with Arduino, refer to this guide: <a href="https://randomnerdtutorials.com/guide-for-oled-display-with-arduino/?utm_source=chatgpt.com">Random Nerd Tutorials</a></p>
-    </section>
 
-    <section>
-      <h2>Key Differences Between OLED and LCD</h2>
-      <ul>
-        <li><strong>Contrast Ratio:</strong> OLED displays offer higher contrast ratios, producing deeper blacks and brighter whites compared to LCDs. (<a href="https://newhavendisplay.com/blog/oled-vs-lcd/?utm_source=chatgpt.com">New Haven Display</a>)</li>
-        <li><strong>Viewing Angles:</strong> OLEDs maintain consistent color and brightness even at wide viewing angles, while LCDs tend to degrade in color and brightness at sharp angles.</li>
-        <li><strong>Power Consumption:</strong> OLED displays are more power-efficient when displaying dark content, as individual pixels emit light. LCDs, however, use a constant backlight, leading to higher power consumption.</li>
-        <li><strong>Durability:</strong> LCDs are generally more durable than OLEDs, which can suffer from burn-in when static images are displayed for long periods.</li>
-        <li><strong>Size and Thickness:</strong> OLEDs are thinner and more flexible than LCDs, allowing for more versatile applications in terms of display design.</li>
-      </ul>
-    </section>
+    </div>
 
-    <section>
-      <h2>Applications of OLED and LCD</h2>
-      <h3>OLED Applications:</h3>
-      <ul>
-        <li>Smartphones</li>
-        <li>TVs</li>
-        <li>Wearables</li>
-        <li>Digital Signage</li>
-        <li>High-End Monitors</li>
-      </ul>
-      <h3>LCD Applications:</h3>
-      <ul>
-        <li>Monitors</li>
-        <li>Televisions</li>
-        <li>Clocks</li>
-        <li>Calculators</li>
-        <li>Kitchen Appliances</li>
-      </ul>
-    </section>
+    <p>
+      This reduces the required data/control GPIO count to
+      approximately six pins.
+    </p>
 
-  </main>
+  </section>
 
-  <footer>
-    <p>Information sourced from various technical manuals and datasheets.</p>
-  </footer>
+
+  <!-- =========================================================
+       I2C LCD
+       ========================================================= -->
+
+  <section>
+
+    <h2>I2C LCD Backpack</h2>
+
+    <p>
+      Many character LCDs are fitted with an I2C backpack based on an
+      I/O expander such as the PCF8574 family. This converts the
+      parallel LCD interface into a two-wire I2C connection.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>LCD Backpack</th>
+            <th>MCU Interface</th>
+            <th>Purpose</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+            <td>Ground</td>
+          </tr>
+
+          <tr>
+            <td>VCC</td>
+            <td>5V / compatible supply</td>
+            <td>Power</td>
+          </tr>
+
+          <tr>
+            <td>SDA</td>
+            <td>I2C SDA</td>
+            <td>Data</td>
+          </tr>
+
+          <tr>
+            <td>SCL</td>
+            <td>I2C SCL</td>
+            <td>Clock</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="warning-box">
+
+      <strong>Voltage warning:</strong>
+
+      Many inexpensive I2C LCD backpacks are designed around 5V systems.
+      When connecting one to a 3.3V-only MCU such as many ESP32 boards,
+      verify the backpack's pull-up configuration and voltage compatibility.
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       OLED OVERVIEW
+       ========================================================= -->
+
+  <section>
+
+    <h2>OLED — Organic Light-Emitting Diode</h2>
+
+    <p>
+      OLED displays contain pixels that emit their own light. Unlike
+      conventional LCDs, an OLED does not require a separate backlight
+      to illuminate the image.
+    </p>
+
+    <p>
+      Small monochrome OLED modules are particularly popular in
+      embedded systems because they provide graphics, text, icons,
+      sensor values, status information, and simple user interfaces
+      with very few MCU pins.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>SSD1306</h3>
+
+        <p>
+          One of the most common controller families found in small
+          monochrome OLED modules.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>SH1106</h3>
+
+        <p>
+          Another common monochrome OLED controller found in
+          approximately 1.3-inch modules.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>I2C</h3>
+
+        <p>
+          Requires only SDA and SCL for communication, making it
+          convenient for compact embedded projects.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>SPI</h3>
+
+        <p>
+          Uses additional signals but can provide faster display
+          transfers depending on the controller and implementation.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       OLED I2C PINOUT
+       ========================================================= -->
+
+  <section>
+
+    <h2>Typical I2C OLED Pinout</h2>
+
+    <p>
+      A common four-pin OLED module exposes power and the two I2C
+      communication lines.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table class="pin-table">
+
+        <thead>
+
+          <tr>
+            <th>Pin</th>
+            <th>Name</th>
+            <th>Function</th>
+            <th>MCU Connection</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>1</td>
+            <td>GND</td>
+            <td>Ground</td>
+            <td>GND</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>VCC</td>
+            <td>Power</td>
+            <td>Compatible 3.3V / 5V supply</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>SCL</td>
+            <td>I2C clock</td>
+            <td>MCU SCL</td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td>SDA</td>
+            <td>I2C data</td>
+            <td>MCU SDA</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ESP32 OLED
+       ========================================================= -->
+
+  <section>
+
+    <h2>ESP32 + I2C OLED</h2>
+
+    <p>
+      A common ESP32 arrangement uses GPIO21 for SDA and GPIO22 for
+      SCL, although the ESP32 GPIO matrix allows peripherals to be
+      routed to other suitable GPIOs.
+    </p>
+
+    <div class="interface-box">
+
+      <h3>Common ESP32 Wiring</h3>
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>OLED</th>
+            <th>ESP32</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+          </tr>
+
+          <tr>
+            <td>VCC</td>
+            <td>3.3V or module-compatible supply</td>
+          </tr>
+
+          <tr>
+            <td>SDA</td>
+            <td>GPIO21</td>
+          </tr>
+
+          <tr>
+            <td>SCL</td>
+            <td>GPIO22</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="notice">
+
+      <strong>Important:</strong>
+
+      GPIO21/22 are common ESP32 defaults, not universal hardware
+      requirements. Check your specific board and firmware configuration.
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ARDUINO NANO OLED
+       ========================================================= -->
+
+  <section>
+
+    <h2>Arduino Nano + I2C OLED</h2>
+
+    <p>
+      On the classic ATmega328P Arduino Nano, I2C is provided through
+      A4 and A5.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>OLED</th>
+            <th>Arduino Nano</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+          </tr>
+
+          <tr>
+            <td>VCC</td>
+            <td>Compatible supply</td>
+          </tr>
+
+          <tr>
+            <td>SDA</td>
+            <td>A4</td>
+          </tr>
+
+          <tr>
+            <td>SCL</td>
+            <td>A5</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       OLED CONTROLLER ADDRESSES
+       ========================================================= -->
+
+  <section>
+
+    <h2>Common OLED I2C Addresses</h2>
+
+    <p>
+      OLED modules frequently use one of a small number of I2C addresses.
+      The exact address depends on the controller and board configuration.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Address</th>
+            <th>Common Usage</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td><code>0x3C</code></td>
+            <td>Very common SSD1306 OLED address</td>
+          </tr>
+
+          <tr>
+            <td><code>0x3D</code></td>
+            <td>Common alternate OLED address</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="warning-box">
+
+      <strong>Do not assume the address.</strong>
+
+      If the display does not respond, use an I2C scanner or verify
+      the module documentation and address-selection hardware.
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       SPI OLED
+       ========================================================= -->
+
+  <section>
+
+    <h2>SPI OLED</h2>
+
+    <p>
+      Some OLED modules use SPI rather than I2C. SPI generally requires
+      more connections but can provide higher communication throughput.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Signal</th>
+            <th>Function</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>VCC</td>
+            <td>Power</td>
+          </tr>
+
+          <tr>
+            <td>GND</td>
+            <td>Ground</td>
+          </tr>
+
+          <tr>
+            <td>SCLK / CLK</td>
+            <td>SPI clock</td>
+          </tr>
+
+          <tr>
+            <td>MOSI / DIN</td>
+            <td>Display data</td>
+          </tr>
+
+          <tr>
+            <td>CS</td>
+            <td>Chip Select</td>
+          </tr>
+
+          <tr>
+            <td>DC</td>
+            <td>Data / Command selection</td>
+          </tr>
+
+          <tr>
+            <td>RST / RES</td>
+            <td>Display reset</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       LCD VS OLED
+       ========================================================= -->
+
+  <section>
+
+    <h2>LCD vs OLED</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Characteristic</th>
+            <th>LCD</th>
+            <th>OLED</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Light generation</td>
+            <td>Uses backlight</td>
+            <td>Pixels emit light</td>
+          </tr>
+
+          <tr>
+            <td>Black level</td>
+            <td>Depends on LCD technology and backlight</td>
+            <td>Can produce very dark blacks</td>
+          </tr>
+
+          <tr>
+            <td>Viewing angle</td>
+            <td>Depends on panel technology</td>
+            <td>Generally wide</td>
+          </tr>
+
+          <tr>
+            <td>Thickness</td>
+            <td>Requires display/backlight structure</td>
+            <td>Can be very thin</td>
+          </tr>
+
+          <tr>
+            <td>Static-image concern</td>
+            <td>Generally not susceptible to OLED-style burn-in</td>
+            <td>Long-term static content can cause image retention/burn-in</td>
+          </tr>
+
+          <tr>
+            <td>Embedded text displays</td>
+            <td>Excellent</td>
+            <td>Excellent</td>
+          </tr>
+
+          <tr>
+            <td>Graphics</td>
+            <td>Depends on controller</td>
+            <td>Common on small modules</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       DISPLAY INTERFACES
+       ========================================================= -->
+
+  <section>
+
+    <h2>Display Interface Types</h2>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>Parallel</h3>
+
+        <p>
+          Multiple GPIO lines transfer data directly to the display.
+          Common with HD44780-compatible character LCDs.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>I2C</h3>
+
+        <p>
+          Two communication wires: SDA and SCL. Excellent when GPIO
+          availability is limited.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>SPI</h3>
+
+        <p>
+          Uses clock, data, chip select and often command/reset lines.
+          Useful for faster graphical display updates.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>UART</h3>
+
+        <p>
+          Some intelligent displays expose a serial interface and
+          implement graphics or commands internally.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ARDUINO EXAMPLE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Arduino OLED Example</h2>
+
+    <p>
+      A typical SSD1306 I2C display can be driven using a graphics
+      library such as Adafruit SSD1306 together with Adafruit GFX.
+    </p>
+
+<pre><code>#include &lt;Wire.h&gt;
+#include &lt;Adafruit_GFX.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+
+#define OLED_RESET -1
+#define OLED_ADDRESS 0x3C
+
+Adafruit_SSD1306 display(
+  SCREEN_WIDTH,
+  SCREEN_HEIGHT,
+  &amp;Wire,
+  OLED_RESET
+);
+
+void setup() {
+
+  Serial.begin(115200);
+
+  if (!display.begin(
+        SSD1306_SWITCHCAPVCC,
+        OLED_ADDRESS
+      )) {
+
+    Serial.println("OLED initialization failed");
+
+    while (true) {
+      delay(1000);
+    }
+  }
+
+  display.clearDisplay();
+
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+
+  display.setCursor(0, 0);
+  display.println("ESP/Arduino Lab");
+
+  display.setCursor(0, 16);
+  display.println("OLED ONLINE");
+
+  display.display();
+}
+
+void loop() {
+
+}</code></pre>
+
+  </section>
+
+
+  <!-- =========================================================
+       COMMON OLED FUNCTIONS
+       ========================================================= -->
+
+  <section>
+
+    <h2>Common OLED Operations</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Operation</th>
+            <th>Purpose</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td><code>clearDisplay()</code></td>
+            <td>Clears the graphics buffer</td>
+          </tr>
+
+          <tr>
+            <td><code>setCursor()</code></td>
+            <td>Sets text position</td>
+          </tr>
+
+          <tr>
+            <td><code>setTextSize()</code></td>
+            <td>Changes text scale</td>
+          </tr>
+
+          <tr>
+            <td><code>setTextColor()</code></td>
+            <td>Sets text rendering color</td>
+          </tr>
+
+          <tr>
+            <td><code>print()</code></td>
+            <td>Writes text without automatically adding a newline</td>
+          </tr>
+
+          <tr>
+            <td><code>println()</code></td>
+            <td>Writes text and advances to a new line</td>
+          </tr>
+
+          <tr>
+            <td><code>display()</code></td>
+            <td>Transfers the graphics buffer to the physical display</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       COMMON LCD FUNCTIONS
+       ========================================================= -->
+
+  <section>
+
+    <h2>Common Character LCD Operations</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Operation</th>
+            <th>Purpose</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td><code>lcd.begin(cols, rows)</code></td>
+            <td>Initializes the LCD dimensions</td>
+          </tr>
+
+          <tr>
+            <td><code>lcd.clear()</code></td>
+            <td>Clears the display</td>
+          </tr>
+
+          <tr>
+            <td><code>lcd.setCursor()</code></td>
+            <td>Moves the cursor</td>
+          </tr>
+
+          <tr>
+            <td><code>lcd.print()</code></td>
+            <td>Writes characters</td>
+          </tr>
+
+          <tr>
+            <td><code>lcd.home()</code></td>
+            <td>Moves cursor to the home position</td>
+          </tr>
+
+          <tr>
+            <td><code>lcd.noDisplay()</code></td>
+            <td>Turns character display rendering off</td>
+          </tr>
+
+          <tr>
+            <td><code>lcd.display()</code></td>
+            <td>Turns character display rendering on</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       POWER / VOLTAGE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Power &amp; Voltage Considerations</h2>
+
+    <div class="card-grid">
+
+      <div class="card warning">
+
+        <h3>Check VCC</h3>
+
+        <p>
+          Never assume that every display module accepts both 3.3V and 5V.
+          Verify the actual module specifications.
+        </p>
+
+      </div>
+
+      <div class="card warning">
+
+        <h3>Check Logic Levels</h3>
+
+        <p>
+          A display can have a supply voltage that differs from its
+          required digital logic voltage.
+        </p>
+
+      </div>
+
+      <div class="card warning">
+
+        <h3>Check Pull-Ups</h3>
+
+        <p>
+          I2C requires pull-up resistors. Some display modules include
+          them already.
+        </p>
+
+      </div>
+
+      <div class="card warning">
+
+        <h3>Backlight Current</h3>
+
+        <p>
+          Character LCD backlights can draw significantly more current
+          than the controller logic.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       COMMON PROBLEMS
+       ========================================================= -->
+
+  <section>
+
+    <h2>Common Problems</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Problem</th>
+            <th>Possible Cause</th>
+            <th>Check</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>OLED completely blank</td>
+            <td>Incorrect address or wiring</td>
+            <td>Run an I2C scanner</td>
+          </tr>
+
+          <tr>
+            <td>LCD boxes only</td>
+            <td>Contrast or initialization problem</td>
+            <td>Adjust V0 and verify wiring</td>
+          </tr>
+
+          <tr>
+            <td>Random characters</td>
+            <td>Incorrect data/control wiring</td>
+            <td>Verify RS, EN and data lines</td>
+          </tr>
+
+          <tr>
+            <td>I2C device not detected</td>
+            <td>SDA/SCL or power problem</td>
+            <td>Check voltage, ground and pull-ups</td>
+          </tr>
+
+          <tr>
+            <td>OLED initializes but shows nothing</td>
+            <td>Buffer was not transferred</td>
+            <td>Call <code>display.display()</code></td>
+          </tr>
+
+          <tr>
+            <td>Display works on Nano but not ESP32</td>
+            <td>Voltage or logic-level mismatch</td>
+            <td>Check module electrical specifications</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ENGINEERING RULES
+       ========================================================= -->
+
+  <section>
+
+    <h2>Engineering Rules</h2>
+
+    <ul class="rules">
+
+      <li>
+        <strong>Identify the controller.</strong>
+        SSD1306, SH1106 and HD44780-compatible modules are different devices.
+      </li>
+
+      <li>
+        <strong>Identify the interface.</strong>
+        Determine whether the display uses I2C, SPI, parallel, UART,
+        or another interface.
+      </li>
+
+      <li>
+        <strong>Verify voltage.</strong>
+        Check both supply voltage and digital logic levels.
+      </li>
+
+      <li>
+        <strong>Verify the I2C address.</strong>
+        Do not assume every OLED is <code>0x3C</code>.
+      </li>
+
+      <li>
+        <strong>Do not power displays from arbitrary GPIO pins.</strong>
+        Use the board's appropriate power rail unless the current
+        requirements are explicitly within GPIO limits.
+      </li>
+
+      <li>
+        <strong>Keep grounds common.</strong>
+        The MCU and display normally need a shared reference.
+      </li>
+
+      <li>
+        <strong>Consider bus conflicts.</strong>
+        Multiple I2C devices can share SDA/SCL, but address conflicts
+        must be resolved.
+      </li>
+
+      <li>
+        <strong>Consider refresh rate.</strong>
+        Continuously redrawing an entire graphical display can consume
+        significant bus bandwidth and processing time.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- =========================================================
+       APPLICATIONS
+       ========================================================= -->
+
+  <section>
+
+    <h2>Typical Embedded Applications</h2>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>Sensor Monitor</h3>
+        <p>
+          Temperature, humidity, pressure, voltage, current and other
+          telemetry can be displayed locally.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Network Monitor</h3>
+        <p>
+          Display IP addresses, Wi-Fi status, RSSI, connection state,
+          packet counters and other network information.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Hardware Controller</h3>
+        <p>
+          Combine a display with buttons, encoders, switches or touch
+          input to create a local control interface.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Diagnostics</h3>
+        <p>
+          Show boot state, firmware version, error codes, sensor values,
+          power information and system status.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       DISPLAY SELECTION
+       ========================================================= -->
+
+  <section>
+
+    <h2>Which Display Should You Use?</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Requirement</th>
+            <th>Typical Choice</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Simple text</td>
+            <td>16×2 LCD</td>
+          </tr>
+
+          <tr>
+            <td>More text</td>
+            <td>20×4 LCD</td>
+          </tr>
+
+          <tr>
+            <td>Small graphics</td>
+            <td>128×64 OLED</td>
+          </tr>
+
+          <tr>
+            <td>Minimal GPIO usage</td>
+            <td>I2C OLED / I2C LCD</td>
+          </tr>
+
+          <tr>
+            <td>Higher display throughput</td>
+            <td>SPI graphical display</td>
+          </tr>
+
+          <tr>
+            <td>Classic industrial-style interface</td>
+            <td>Character LCD</td>
+          </tr>
+
+          <tr>
+            <td>Compact embedded status panel</td>
+            <td>SSD1306-class OLED</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       CANONICAL REFERENCE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Canonical Display Reference</h2>
+
+    <p>
+      This page is intended to serve as the display-interface reference
+      for the ESP/Arduino hardware encyclopedia.
+    </p>
+
+    <p>
+      Future entries can expand this section into controller-specific
+      references including:
+    </p>
+
+    <ul>
+
+      <li>SSD1306</li>
+      <li>SH1106</li>
+      <li>SSD1327</li>
+      <li>ST7735</li>
+      <li>ST7789</li>
+      <li>ILI9341</li>
+      <li>HD44780</li>
+      <li>PCF8574 I2C LCD backpacks</li>
+      <li>RGB TFT displays</li>
+      <li>e-paper displays</li>
+      <li>SPI display modules</li>
+      <li>parallel TFT interfaces</li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+</main>
+
+<footer>
+
+  <p>
+    ESP / Arduino Pin Encyclopedia —
+    LCD, OLED &amp; Embedded Display Reference
+  </p>
+
+</footer>
+
 </body>
 </html>
