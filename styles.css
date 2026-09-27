@@ -158,7 +158,7 @@ header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 
   background:
-    rgba(255, 255, 255, 0.88);
+    rgba(255, 255, 255, 0.92);
 
   backdrop-filter:
     blur(14px)
@@ -180,8 +180,8 @@ header > .site-title {
   margin: 0 auto;
 
   padding:
-    18px 24px
-    8px;
+    16px 24px
+    6px;
 }
 
 
@@ -242,7 +242,7 @@ nav ul {
 
   align-items: center;
 
-  gap: 2px;
+  gap: 4px;
 
   max-width: var(--content-width);
 
@@ -250,7 +250,7 @@ nav ul {
 
   padding:
     4px 24px
-    10px;
+    12px;
 
   list-style: none;
 
@@ -274,7 +274,7 @@ nav ul li a {
   min-height: 32px;
 
   padding:
-    5px 9px;
+    5px 11px;
 
   border-radius: var(--radius-sm);
 
@@ -318,14 +318,16 @@ nav ul li a.active::after {
 
   position: absolute;
 
-  left: 9px;
-  right: 9px;
+  left: 11px;
+  right: 11px;
 
   bottom: -7px;
 
-  height: 1px;
+  height: 1.5px;
 
   background: var(--black);
+
+  border-radius: 1px;
 }
 
 
@@ -354,7 +356,7 @@ main {
 
 section {
 
-  margin-bottom: 58px;
+  margin-bottom: 64px;
 
   scroll-margin-top: 100px;
 }
@@ -367,15 +369,15 @@ section:last-child {
 
 section > h2 {
 
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 
   color: var(--black);
 
-  font-size: 26px;
+  font-size: 28px;
 
   font-weight: 650;
 
-  line-height: 1.2;
+  line-height: 1.15;
 
   letter-spacing: -0.035em;
 }
@@ -421,14 +423,14 @@ section > h4 {
 
   align-items: center;
 
-  min-height: 390px;
+  min-height: 420px;
 
   margin:
     -42px
     calc(
       (var(--content-width) - 100vw) / 2
     )
-    64px;
+    72px;
 
   padding:
     80px max(
@@ -445,7 +447,7 @@ section > h4 {
   background:
     radial-gradient(
       circle at 50% 0%,
-      rgba(0, 0, 0, 0.035),
+      rgba(0, 0, 0, 0.04),
       transparent 55%
     ),
     linear-gradient(
@@ -544,15 +546,15 @@ section > h4 {
 
   max-width: 850px;
 
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 
   color: var(--black);
 
   font-size:
     clamp(
-      36px,
+      38px,
       6vw,
-      64px
+      66px
     );
 
   font-weight: 700;
@@ -567,7 +569,7 @@ section > h4 {
 
   max-width: 720px;
 
-  margin-bottom: 26px;
+  margin-bottom: 30px;
 
   color: var(--gray-600);
 
@@ -592,7 +594,7 @@ section > h4 {
 
   flex-wrap: wrap;
 
-  gap: 7px;
+  gap: 8px;
 }
 
 
@@ -635,7 +637,7 @@ p {
 
   max-width: 850px;
 
-  margin-bottom: 17px;
+  margin-bottom: 18px;
 
   color: var(--gray-700);
 
@@ -1310,9 +1312,9 @@ pre::-webkit-scrollbar-thumb {
       )
     );
 
-  gap: 12px;
+  gap: 14px;
 
-  margin-top: 20px;
+  margin-top: 22px;
 }
 
 
@@ -1340,9 +1342,9 @@ pre::-webkit-scrollbar-thumb {
   overflow: hidden;
 
   transition:
-    transform 150ms ease,
-    border-color 150ms ease,
-    box-shadow 150ms ease;
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 
@@ -1477,11 +1479,14 @@ main a {
     3px;
 
   transition:
+    color 120ms ease,
     text-decoration-color 120ms ease;
 }
 
 
 main a:hover {
+
+  color: var(--black);
 
   text-decoration-color:
     var(--black);
@@ -1503,7 +1508,7 @@ footer {
     0 auto;
 
   padding:
-    34px 0 42px;
+    40px 0 48px;
 
   border-top:
     1px solid var(--border);
@@ -1687,12 +1692,12 @@ textarea:focus-visible {
 
   nav ul {
 
-    gap: 0;
+    gap: 2px;
 
     padding:
       3px
-      10px
-      9px;
+      12px
+      11px;
   }
 
 
@@ -1702,7 +1707,7 @@ textarea:focus-visible {
       30px;
 
     padding:
-      5px 8px;
+      5px 9px;
 
     font-size:
       11px;
@@ -1712,13 +1717,13 @@ textarea:focus-visible {
   nav ul li a.active::after {
 
     left:
-      8px;
+      9px;
 
     right:
-      8px;
+      9px;
 
     bottom:
-      -6px;
+      -9px;
   }
 
 
@@ -1738,12 +1743,12 @@ textarea:focus-visible {
   .hero {
 
     min-height:
-      350px;
+      360px;
 
     margin:
       -26px
       -12px
-      45px;
+      50px;
 
     padding:
       60px 20px;
@@ -1832,7 +1837,7 @@ textarea:focus-visible {
       1fr;
 
     gap:
-      9px;
+      12px;
   }
 
 
@@ -1907,9 +1912,9 @@ textarea:focus-visible {
       );
 
     padding:
-      28px
+      32px
       0
-      35px;
+      40px;
   }
 
 }
@@ -1930,7 +1935,7 @@ textarea:focus-visible {
   .hero {
 
     min-height:
-      330px;
+      340px;
 
     padding:
       52px 17px;
