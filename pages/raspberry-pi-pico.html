@@ -1,0 +1,3488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Raspberry Pi Pico — RP2040 Pinout & Hardware Reference</title>
+
+  <meta
+    name="description"
+    content="Comprehensive Raspberry Pi Pico RP2040 pinout, GPIO, ADC, PWM, SPI, I2C, UART, power, boot, debugging, and peripheral reference."
+  />
+
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+
+<header>
+  <div class="site-title">
+    <h1>Embedded Hardware Encyclopedia</h1>
+    <p>Microcontrollers, boards, peripherals, interfaces, and hardware references.</p>
+  </div>
+
+  <nav aria-label="Primary navigation">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../esp32.html">ESP32</a></li>
+      <li><a href="../arduino.html">Arduino Nano</a></li>
+      <li><a href="../cameras.html">Cameras</a></li>
+      <li><a href="../RC522-RFID.html">RFID / NFC</a></li>
+      <li><a href="../LCD-OLED.html">LCD / OLED</a></li>
+      <li><a class="active" href="raspberry-pi-pico.html">Raspberry Pi Pico</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ========================================================= -->
+  <!-- HERO -->
+  <!-- ========================================================= -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        MICROCONTROLLER REFERENCE
+      </div>
+
+      <h2>Raspberry Pi Pico — RP2040</h2>
+
+      <p>
+        Complete reference for the original Raspberry Pi Pico development
+        board based on the RP2040 dual-core Arm Cortex-M0+ microcontroller.
+      </p>
+
+      <div class="reference-badges">
+        <span class="badge">RP2040</span>
+        <span class="badge">Dual Cortex-M0+</span>
+        <span class="badge">133 MHz</span>
+        <span class="badge">3.3V GPIO</span>
+        <span class="badge">26 GPIO</span>
+        <span class="badge">3 ADC Inputs</span>
+        <span class="badge">USB</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- SCOPE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Reference Scope</h2>
+
+    <div class="notice">
+
+      <strong>This page covers the original Raspberry Pi Pico based on RP2040.</strong>
+
+      <p>
+        It should not be treated as a reference for the Raspberry Pi Pico 2,
+        which uses the newer RP2350 microcontroller and has a different
+        architecture and feature set.
+      </p>
+
+    </div>
+
+    <p>
+      The Raspberry Pi Pico is a small microcontroller development board
+      designed around Raspberry Pi's RP2040 MCU.
+    </p>
+
+    <p>
+      It is fundamentally different from a Raspberry Pi computer such as
+      a Raspberry Pi 4 or Raspberry Pi 5. The Pico is a microcontroller
+      platform intended for firmware-controlled embedded applications.
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- QUICK REFERENCE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Quick Reference</h2>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>Microcontroller</h3>
+        <p>RP2040</p>
+      </div>
+
+      <div class="card">
+        <h3>CPU</h3>
+        <p>Dual-core Arm Cortex-M0+</p>
+      </div>
+
+      <div class="card">
+        <h3>Maximum Clock</h3>
+        <p>133 MHz</p>
+      </div>
+
+      <div class="card">
+        <h3>GPIO</h3>
+        <p>26 exposed GPIO</p>
+      </div>
+
+      <div class="card">
+        <h3>ADC</h3>
+        <p>3 user-accessible ADC inputs</p>
+      </div>
+
+      <div class="card">
+        <h3>ADC Resolution</h3>
+        <p>12-bit hardware ADC</p>
+      </div>
+
+      <div class="card">
+        <h3>Logic</h3>
+        <p>3.3V</p>
+      </div>
+
+      <div class="card">
+        <h3>USB</h3>
+        <p>USB 1.1 device and host support</p>
+      </div>
+
+      <div class="card">
+        <h3>Flash</h3>
+        <p>2 MB onboard QSPI flash on standard Pico</p>
+      </div>
+
+      <div class="card">
+        <h3>SRAM</h3>
+        <p>264 KB</p>
+      </div>
+
+      <div class="card">
+        <h3>PWM</h3>
+        <p>16 PWM channels</p>
+      </div>
+
+      <div class="card">
+        <h3>PIO</h3>
+        <p>2 programmable I/O blocks</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- BOARD OVERVIEW -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Board Overview</h2>
+
+    <p>
+      The Raspberry Pi Pico exposes the RP2040's GPIO through two rows of
+      castellated and through-hole-compatible pins.
+    </p>
+
+    <p>
+      The board provides 40 physical pins, including GPIO, power,
+      ground, ADC-related connections, and system interfaces.
+    </p>
+
+    <div class="interface-box">
+
+      <strong>Important:</strong>
+
+      <p>
+        The 40-pin board count does not mean there are 40 GPIO pins.
+        The standard Pico exposes 26 GPIO pins: GPIO0 through GPIO22,
+        plus GPIO26 through GPIO28.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- PHYSICAL PINOUT -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Complete Raspberry Pi Pico Pinout</h2>
+
+    <div class="table-wrapper">
+
+      <table class="pin-table">
+
+        <thead>
+
+          <tr>
+            <th>Physical Pin</th>
+            <th>Function</th>
+            <th>GPIO</th>
+            <th>ADC</th>
+            <th>Power / Special</th>
+            <th>Notes</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>1</td>
+            <td>GP0</td>
+            <td>GPIO0</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART0 TX / SPI0 RX / I2C0 SDA options</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>GP1</td>
+            <td>GPIO1</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART0 RX / SPI0 CSn / I2C0 SCL options</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>GND</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Ground</td>
+            <td>Ground reference</td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td>GP2</td>
+            <td>GPIO2</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>I2C1 SDA / SPI0 SCK options</td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+            <td>GP3</td>
+            <td>GPIO3</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>I2C1 SCL / SPI0 TX options</td>
+          </tr>
+
+          <tr>
+            <td>6</td>
+            <td>GP4</td>
+            <td>GPIO4</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 TX / I2C0 SDA / SPI0 RX options</td>
+          </tr>
+
+          <tr>
+            <td>7</td>
+            <td>GP5</td>
+            <td>GPIO5</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 RX / I2C0 SCL / SPI0 CSn options</td>
+          </tr>
+
+          <tr>
+            <td>8</td>
+            <td>GND</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Ground</td>
+            <td>Ground reference</td>
+          </tr>
+
+          <tr>
+            <td>9</td>
+            <td>GP6</td>
+            <td>GPIO6</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 TX / SPI0 SCK / I2C1 SDA options</td>
+          </tr>
+
+          <tr>
+            <td>10</td>
+            <td>GP7</td>
+            <td>GPIO7</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 RX / SPI0 TX / I2C1 SCL options</td>
+          </tr>
+
+          <tr>
+            <td>11</td>
+            <td>GP8</td>
+            <td>GPIO8</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 TX / SPI1 RX / I2C0 SDA options</td>
+          </tr>
+
+          <tr>
+            <td>12</td>
+            <td>GP9</td>
+            <td>GPIO9</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 RX / SPI1 CSn / I2C0 SCL options</td>
+          </tr>
+
+          <tr>
+            <td>13</td>
+            <td>GND</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Ground</td>
+            <td>Ground reference</td>
+          </tr>
+
+          <tr>
+            <td>14</td>
+            <td>GP10</td>
+            <td>GPIO10</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 TX / SPI1 SCK / I2C1 SDA options</td>
+          </tr>
+
+          <tr>
+            <td>15</td>
+            <td>GP11</td>
+            <td>GPIO11</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 RX / SPI1 TX / I2C1 SCL options</td>
+          </tr>
+
+          <tr>
+            <td>16</td>
+            <td>GP12</td>
+            <td>GPIO12</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>SPI1 RX / I2C0 SDA options</td>
+          </tr>
+
+          <tr>
+            <td>17</td>
+            <td>GP13</td>
+            <td>GPIO13</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>SPI1 CSn / I2C0 SCL options</td>
+          </tr>
+
+          <tr>
+            <td>18</td>
+            <td>GND</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Ground</td>
+            <td>Ground reference</td>
+          </tr>
+
+          <tr>
+            <td>19</td>
+            <td>GP14</td>
+            <td>GPIO14</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>SPI1 SCK / I2C1 SDA options</td>
+          </tr>
+
+          <tr>
+            <td>20</td>
+            <td>GP15</td>
+            <td>GPIO15</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>SPI1 TX / I2C1 SCL options</td>
+          </tr>
+
+          <tr>
+            <td>21</td>
+            <td>GP16</td>
+            <td>GPIO16</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART0 TX / SPI0 RX / I2C0 SDA options</td>
+          </tr>
+
+          <tr>
+            <td>22</td>
+            <td>GP17</td>
+            <td>GPIO17</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART0 RX / SPI0 CSn / I2C0 SCL options</td>
+          </tr>
+
+          <tr>
+            <td>23</td>
+            <td>GND</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Ground</td>
+            <td>Ground reference</td>
+          </tr>
+
+          <tr>
+            <td>24</td>
+            <td>GP18</td>
+            <td>GPIO18</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>SPI0 SCK / UART0 TX / I2C1 SDA options</td>
+          </tr>
+
+          <tr>
+            <td>25</td>
+            <td>GP19</td>
+            <td>GPIO19</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>SPI0 TX / UART0 RX / I2C1 SCL options</td>
+          </tr>
+
+          <tr>
+            <td>26</td>
+            <td>GP20</td>
+            <td>GPIO20</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 TX / SPI0 RX / I2C0 SDA options</td>
+          </tr>
+
+          <tr>
+            <td>27</td>
+            <td>GP21</td>
+            <td>GPIO21</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>UART1 RX / SPI0 CSn / I2C0 SCL options</td>
+          </tr>
+
+          <tr>
+            <td>28</td>
+            <td>GP22</td>
+            <td>GPIO22</td>
+            <td>—</td>
+            <td>Digital</td>
+            <td>Digital GPIO / PWM capable</td>
+          </tr>
+
+          <tr>
+            <td>29</td>
+            <td>VSYS</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Power input</td>
+            <td>System supply input</td>
+          </tr>
+
+          <tr>
+            <td>30</td>
+            <td>GND</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Ground</td>
+            <td>Ground reference</td>
+          </tr>
+
+          <tr>
+            <td>31</td>
+            <td>3V3_EN</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Power control</td>
+            <td>Enables onboard 3.3V regulator</td>
+          </tr>
+
+          <tr>
+            <td>32</td>
+            <td>3V3(OUT)</td>
+            <td>—</td>
+            <td>—</td>
+            <td>3.3V output</td>
+            <td>Regulated 3.3V rail</td>
+          </tr>
+
+          <tr>
+            <td>33</td>
+            <td>GND</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Ground</td>
+            <td>Ground reference</td>
+          </tr>
+
+          <tr>
+            <td>34</td>
+            <td>GP28</td>
+            <td>GPIO28</td>
+            <td>ADC2</td>
+            <td>Analog / Digital</td>
+            <td>ADC2 / digital GPIO / PWM</td>
+          </tr>
+
+          <tr>
+            <td>35</td>
+            <td>ADC_VREF</td>
+            <td>—</td>
+            <td>Reference</td>
+            <td>ADC reference</td>
+            <td>ADC reference input</td>
+          </tr>
+
+          <tr>
+            <td>36</td>
+            <td>3V3(OUT)</td>
+            <td>—</td>
+            <td>—</td>
+            <td>3.3V output</td>
+            <td>Regulated 3.3V rail</td>
+          </tr>
+
+          <tr>
+            <td>37</td>
+            <td>GP27</td>
+            <td>GPIO27</td>
+            <td>ADC1</td>
+            <td>Analog / Digital</td>
+            <td>ADC1 / digital GPIO / PWM</td>
+          </tr>
+
+          <tr>
+            <td>38</td>
+            <td>GND</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Ground</td>
+            <td>Ground reference</td>
+          </tr>
+
+          <tr>
+            <td>39</td>
+            <td>GP26</td>
+            <td>GPIO26</td>
+            <td>ADC0</td>
+            <td>Analog / Digital</td>
+            <td>ADC0 / digital GPIO / PWM</td>
+          </tr>
+
+          <tr>
+            <td>40</td>
+            <td>VBUS</td>
+            <td>—</td>
+            <td>—</td>
+            <td>USB 5V</td>
+            <td>USB bus voltage</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- GPIO -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>GPIO</h2>
+
+    <p>
+      The RP2040 exposes GPIO0 through GPIO29 internally, but the standard
+      Raspberry Pi Pico board exposes GPIO0–GPIO22 and GPIO26–GPIO28.
+    </p>
+
+    <p>
+      GPIO functionality is highly flexible. Many peripheral functions can
+      be routed to different GPIO pins using the RP2040's GPIO function
+      selection system.
+    </p>
+
+    <div class="interface-box">
+
+      <strong>GPIO range exposed by the standard Pico:</strong>
+
+      <p>
+        GPIO0–GPIO22, GPIO26–GPIO28
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- GPIO CAPABILITIES -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>GPIO Capabilities</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Availability</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Digital Input</td>
+            <td>GPIO</td>
+            <td>Available on exposed GPIO</td>
+          </tr>
+
+          <tr>
+            <td>Digital Output</td>
+            <td>GPIO</td>
+            <td>Available on exposed GPIO</td>
+          </tr>
+
+          <tr>
+            <td>Pull-up</td>
+            <td>GPIO</td>
+            <td>Internal programmable pull-up</td>
+          </tr>
+
+          <tr>
+            <td>Pull-down</td>
+            <td>GPIO</td>
+            <td>Internal programmable pull-down</td>
+          </tr>
+
+          <tr>
+            <td>Interrupts</td>
+            <td>GPIO</td>
+            <td>GPIO interrupt functionality</td>
+          </tr>
+
+          <tr>
+            <td>PWM</td>
+            <td>GPIO</td>
+            <td>Hardware PWM slices</td>
+          </tr>
+
+          <tr>
+            <td>ADC</td>
+            <td>GPIO26–28</td>
+            <td>Three user-accessible ADC channels</td>
+          </tr>
+
+          <tr>
+            <td>PIO</td>
+            <td>GPIO</td>
+            <td>Programmable I/O state machines</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- ANALOG -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>ADC / Analog Inputs</h2>
+
+    <p>
+      The RP2040 contains a 12-bit ADC. The standard Pico exposes three
+      ADC-capable GPIO pins for general-purpose analog measurement.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>GPIO</th>
+            <th>ADC Channel</th>
+            <th>Physical Pin</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>GPIO26</td>
+            <td>ADC0</td>
+            <td>39</td>
+          </tr>
+
+          <tr>
+            <td>GPIO27</td>
+            <td>ADC1</td>
+            <td>37</td>
+          </tr>
+
+          <tr>
+            <td>GPIO28</td>
+            <td>ADC2</td>
+            <td>34</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="notice">
+
+      <strong>ADC3:</strong>
+
+      <p>
+        The RP2040 ADC includes an additional internal channel associated
+        with the onboard temperature sensor. It is not exposed as a normal
+        external GPIO analog input.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- TEMPERATURE SENSOR -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Internal Temperature Sensor</h2>
+
+    <p>
+      The RP2040 includes an internal temperature sensor connected to
+      the ADC.
+    </p>
+
+    <p>
+      This sensor is intended primarily for temperature estimation and
+      thermal monitoring rather than precision environmental measurement.
+    </p>
+
+    <div class="warning-box">
+
+      <strong>Do not treat the internal sensor as a precision thermometer.</strong>
+
+      <p>
+        Use an external temperature sensor when accurate environmental
+        temperature measurement is required.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- PWM -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>PWM</h2>
+
+    <p>
+      RP2040 provides hardware PWM through multiple PWM slices.
+      PWM can be used for LEDs, motors, servos, buzzers, DAC-like
+      output, and other timing applications.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>RP2040</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>PWM Slices</td>
+            <td>8</td>
+          </tr>
+
+          <tr>
+            <td>PWM Channels</td>
+            <td>16</td>
+          </tr>
+
+          <tr>
+            <td>GPIO Routing</td>
+            <td>Flexible</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <p>
+      PWM channel placement follows the RP2040's GPIO-to-PWM slice
+      mapping. GPIO pairs generally share PWM slices, so applications
+      requiring precise independent PWM configuration should account
+      for slice sharing.
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- UART -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>UART</h2>
+
+    <p>
+      The RP2040 provides two hardware UART peripherals:
+      UART0 and UART1.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Peripheral</th>
+            <th>Typical Signals</th>
+            <th>Possible GPIO Examples</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>UART0</td>
+            <td>TX / RX</td>
+            <td>GPIO0 / GPIO1, GPIO16 / GPIO17</td>
+          </tr>
+
+          <tr>
+            <td>UART1</td>
+            <td>TX / RX</td>
+            <td>GPIO4 / GPIO5, GPIO8 / GPIO9</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="notice">
+
+      <strong>Important:</strong>
+
+      <p>
+        These are alternate-function mappings, not permanently dedicated
+        UART pins. The RP2040's GPIO function system allows peripheral
+        functions to be routed to multiple supported GPIO positions.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- I2C -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>I2C</h2>
+
+    <p>
+      RP2040 provides two I2C controllers:
+    </p>
+
+    <ul>
+      <li>I2C0</li>
+      <li>I2C1</li>
+    </ul>
+
+    <p>
+      The flexible GPIO matrix allows these interfaces to be assigned
+      to different supported pin combinations.
+    </p>
+
+    <h3>Common Pico I2C Arrangement</h3>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Signal</th>
+            <th>GPIO</th>
+            <th>Physical Pin</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>SDA</td>
+            <td>GPIO4</td>
+            <td>6</td>
+          </tr>
+
+          <tr>
+            <td>SCL</td>
+            <td>GPIO5</td>
+            <td>7</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <p>
+      This is a common configuration rather than a requirement.
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- SPI -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>SPI</h2>
+
+    <p>
+      RP2040 provides two hardware SPI controllers:
+    </p>
+
+    <ul>
+      <li>SPI0</li>
+      <li>SPI1</li>
+    </ul>
+
+    <h3>Common SPI0 Configuration</h3>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Signal</th>
+            <th>GPIO</th>
+            <th>Physical Pin</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>SCK</td>
+            <td>GPIO18</td>
+            <td>24</td>
+          </tr>
+
+          <tr>
+            <td>MOSI / TX</td>
+            <td>GPIO19</td>
+            <td>25</td>
+          </tr>
+
+          <tr>
+            <td>MISO / RX</td>
+            <td>GPIO16</td>
+            <td>21</td>
+          </tr>
+
+          <tr>
+            <td>CS</td>
+            <td>GPIO17</td>
+            <td>22</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <p>
+      SPI is especially useful for displays, RFID/NFC readers,
+      flash devices, ADCs, DACs, sensors, and other high-speed
+      peripherals.
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- PIO -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Programmable I/O — PIO</h2>
+
+    <p>
+      One of the defining features of RP2040 is its programmable I/O
+      subsystem.
+    </p>
+
+    <p>
+      RP2040 contains two PIO blocks. Each PIO block contains four
+      state machines, providing eight programmable state machines total.
+    </p>
+
+    <div class="interface-box">
+
+      <strong>PIO is not ordinary GPIO.</strong>
+
+      <p>
+        PIO allows deterministic, programmable hardware-like I/O
+        behavior without requiring the CPU to handle every individual
+        signal transition.
+      </p>
+
+    </div>
+
+    <h3>Potential PIO Applications</h3>
+
+    <ul>
+
+      <li>Custom serial protocols</li>
+      <li>WS2812 / addressable LEDs</li>
+      <li>Parallel interfaces</li>
+      <li>Custom clocks</li>
+      <li>Timing-sensitive protocols</li>
+      <li>VGA-style output</li>
+      <li>Logic analyzers</li>
+      <li>Signal generation</li>
+      <li>Protocol bridges</li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- USB -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>USB</h2>
+
+    <p>
+      RP2040 contains a USB 1.1 controller and PHY.
+    </p>
+
+    <p>
+      The standard Pico exposes USB through its micro-USB connector.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Feature</th>
+            <th>Support</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>USB Device</td>
+            <td>Yes</td>
+          </tr>
+
+          <tr>
+            <td>USB Host</td>
+            <td>Supported by RP2040 hardware/software</td>
+          </tr>
+
+          <tr>
+            <td>USB Programming</td>
+            <td>Yes</td>
+          </tr>
+
+          <tr>
+            <td>USB Serial</td>
+            <td>Yes</td>
+          </tr>
+
+          <tr>
+            <td>USB HID</td>
+            <td>Possible</td>
+          </tr>
+
+          <tr>
+            <td>USB MIDI</td>
+            <td>Possible</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- USB BOOT -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>USB Bootloader</h2>
+
+    <p>
+      The Raspberry Pi Pico can enter its USB mass-storage bootloader
+      by holding the BOOTSEL button while connecting USB.
+    </p>
+
+    <div class="interface-box">
+
+      <strong>BOOTSEL</strong>
+
+      <p>
+        BOOTSEL places the RP2040 into its ROM-resident USB bootloader.
+        This allows firmware to be loaded without requiring a traditional
+        external programmer.
+      </p>
+
+    </div>
+
+    <h3>Typical Workflow</h3>
+
+    <pre><code>Hold BOOTSEL
+      ↓
+Connect USB
+      ↓
+RP2040 USB bootloader
+      ↓
+RPI-RP2 storage device
+      ↓
+Copy firmware
+      ↓
+Reboot
+      ↓
+Application firmware</code></pre>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- POWER -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Power Pins</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Pin</th>
+            <th>Name</th>
+            <th>Function</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>27</td>
+            <td>GP21</td>
+            <td>GPIO</td>
+          </tr>
+
+          <tr>
+            <td>29</td>
+            <td>VSYS</td>
+            <td>System supply input</td>
+          </tr>
+
+          <tr>
+            <td>30</td>
+            <td>GND</td>
+            <td>Ground</td>
+          </tr>
+
+          <tr>
+            <td>31</td>
+            <td>3V3_EN</td>
+            <td>Enable for onboard 3.3V regulator</td>
+          </tr>
+
+          <tr>
+            <td>32</td>
+            <td>3V3(OUT)</td>
+            <td>Regulated 3.3V output</td>
+          </tr>
+
+          <tr>
+            <td>36</td>
+            <td>3V3(OUT)</td>
+            <td>Regulated 3.3V output</td>
+          </tr>
+
+          <tr>
+            <td>40</td>
+            <td>VBUS</td>
+            <td>USB bus supply</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- VSYS -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>VSYS</h2>
+
+    <p>
+      VSYS is the primary system supply input to the Pico's power
+      architecture.
+    </p>
+
+    <p>
+      It is useful when powering the board from a source other than
+      the USB connector.
+    </p>
+
+    <div class="warning-box">
+
+      <strong>Do not treat VSYS as a GPIO or ordinary 3.3V pin.</strong>
+
+      <p>
+        Always verify the supply voltage and board power architecture
+        before connecting an external source.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- 3V3 -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>3V3(OUT)</h2>
+
+    <p>
+      The Pico provides a regulated 3.3V output from its onboard
+      power circuitry.
+    </p>
+
+    <p>
+      This rail can be used to power suitable 3.3V peripherals,
+      subject to the regulator's current limitations and the total
+      system power budget.
+    </p>
+
+    <div class="danger-box">
+
+      <strong>Do not assume every 3.3V peripheral can be powered from this pin.</strong>
+
+      <p>
+        High-current modules such as motors, radios, LEDs, and some
+        displays may require a separate regulator or power supply.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- 3V3_EN -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>3V3_EN</h2>
+
+    <p>
+      3V3_EN controls the onboard 3.3V regulator.
+    </p>
+
+    <p>
+      Pulling this signal low disables the regulator and therefore
+      removes the main 3.3V rail.
+    </p>
+
+    <div class="warning-box">
+
+      <strong>Power-control pin:</strong>
+
+      <p>
+        Do not use 3V3_EN as an ordinary GPIO.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- ADC VREF -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>ADC_VREF</h2>
+
+    <p>
+      ADC_VREF provides the reference input for the RP2040 ADC.
+    </p>
+
+    <p>
+      The reference voltage affects the relationship between ADC
+      counts and input voltage.
+    </p>
+
+    <div class="interface-box">
+
+      <strong>ADC accuracy depends on the reference.</strong>
+
+      <p>
+        For precision analog measurement, consider the reference
+        architecture and the electrical characteristics of the
+        connected signal rather than assuming a perfect 3.3V ADC.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- GPIO FUNCTION MAP -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Peripheral Function Mapping</h2>
+
+    <p>
+      The RP2040 has flexible GPIO function selection. The following
+      table provides representative mappings rather than an exhaustive
+      alternate-function matrix.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>GPIO</th>
+            <th>UART</th>
+            <th>SPI</th>
+            <th>I2C</th>
+            <th>PWM</th>
+            <th>ADC</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>GPIO0</td>
+            <td>UART0 TX</td>
+            <td>SPI0 RX</td>
+            <td>I2C0 SDA</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO1</td>
+            <td>UART0 RX</td>
+            <td>SPI0 CS</td>
+            <td>I2C0 SCL</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO2</td>
+            <td>—</td>
+            <td>SPI0 SCK</td>
+            <td>I2C1 SDA</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO3</td>
+            <td>—</td>
+            <td>SPI0 TX</td>
+            <td>I2C1 SCL</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO4</td>
+            <td>UART1 TX</td>
+            <td>SPI0 RX</td>
+            <td>I2C0 SDA</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO5</td>
+            <td>UART1 RX</td>
+            <td>SPI0 CS</td>
+            <td>I2C0 SCL</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO16</td>
+            <td>UART0 TX</td>
+            <td>SPI0 RX</td>
+            <td>I2C0 SDA</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO17</td>
+            <td>UART0 RX</td>
+            <td>SPI0 CS</td>
+            <td>I2C0 SCL</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO18</td>
+            <td>UART0 TX</td>
+            <td>SPI0 SCK</td>
+            <td>I2C1 SDA</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO19</td>
+            <td>UART0 RX</td>
+            <td>SPI0 TX</td>
+            <td>I2C1 SCL</td>
+            <td>Yes</td>
+            <td>—</td>
+          </tr>
+
+          <tr>
+            <td>GPIO26</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Yes</td>
+            <td>ADC0</td>
+          </tr>
+
+          <tr>
+            <td>GPIO27</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Yes</td>
+            <td>ADC1</td>
+          </tr>
+
+          <tr>
+            <td>GPIO28</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Yes</td>
+            <td>ADC2</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- INTERRUPTS -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>GPIO Interrupts</h2>
+
+    <p>
+      GPIO pins can be used as interrupt sources for embedded applications.
+    </p>
+
+    <p>
+      Common applications include:
+
+    </p>
+
+    <ul>
+      <li>Buttons</li>
+      <li>Rotary encoders</li>
+      <li>Motion sensors</li>
+      <li>NFC reader IRQ</li>
+      <li>Pulse counters</li>
+      <li>External timing signals</li>
+      <li>Data-ready signals</li>
+    </ul>
+
+    <div class="notice">
+
+      <strong>Interrupt design:</strong>
+
+      <p>
+        Keep interrupt handlers short and deterministic. Defer substantial
+        processing to the main application or a task/state machine.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- CLOCK -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Clock Architecture</h2>
+
+    <p>
+      The RP2040 uses a flexible clock system capable of supporting
+      multiple clock domains and peripheral timing requirements.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>CPU</h3>
+        <p>Dual Cortex-M0+ cores.</p>
+      </div>
+
+      <div class="card">
+        <h3>Default Operating Point</h3>
+        <p>Common Pico firmware operates around 125 MHz.</p>
+      </div>
+
+      <div class="card">
+        <h3>Maximum Specification</h3>
+        <p>133 MHz nominal maximum operating frequency.</p>
+      </div>
+
+      <div class="card">
+        <h3>Clock Flexibility</h3>
+        <p>Clock domains can be configured for different peripherals.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- MEMORY -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Memory</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Memory</th>
+            <th>Amount</th>
+            <th>Purpose</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>SRAM</td>
+            <td>264 KB</td>
+            <td>Runtime memory</td>
+          </tr>
+
+          <tr>
+            <td>Flash</td>
+            <td>2 MB on standard Pico</td>
+            <td>Firmware and persistent application data</td>
+          </tr>
+
+          <tr>
+            <td>ROM</td>
+            <td>On-chip</td>
+            <td>Bootloader and low-level functions</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- DUAL CORE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Dual-Core Architecture</h2>
+
+    <p>
+      RP2040 contains two Arm Cortex-M0+ cores.
+    </p>
+
+    <p>
+      Applications can run primarily on one core or use both cores
+      where the software architecture benefits from parallel execution.
+    </p>
+
+    <h3>Potential Architecture</h3>
+
+    <pre><code>Core 0
+├── Main application
+├── Network / protocol processing
+├── UI
+└── State management
+
+Core 1
+├── Timing-sensitive work
+├── Sensor processing
+├── Protocol engine
+└── Background tasks</code></pre>
+
+    <div class="notice">
+
+      <strong>Dual-core does not automatically mean faster.</strong>
+
+      <p>
+        Shared resources and synchronization must be designed carefully.
+        A single-core architecture may be simpler and more reliable
+        for many projects.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- PIO ARCHITECTURE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>PIO Architecture</h2>
+
+    <pre><code>RP2040
+│
+├── PIO0
+│   ├── State Machine 0
+│   ├── State Machine 1
+│   ├── State Machine 2
+│   └── State Machine 3
+│
+└── PIO1
+    ├── State Machine 0
+    ├── State Machine 1
+    ├── State Machine 2
+    └── State Machine 3</code></pre>
+
+    <p>
+      PIO state machines can perform deterministic I/O operations
+      independently of the CPU cores.
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- ONBOARD LED -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Onboard LED</h2>
+
+    <p>
+      The standard Raspberry Pi Pico includes an onboard user LED.
+    </p>
+
+    <p>
+      On the original Pico hardware, the LED is controlled through
+      the board's USB-related interface rather than simply being
+      treated as a normal RP2040 GPIO connection.
+    </p>
+
+    <div class="warning-box">
+
+      <strong>Board-specific behavior:</strong>
+
+      <p>
+        Do not assume the onboard LED corresponds to a normal exposed
+        GPIO in the same way it does on many Arduino boards.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- RESET -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Reset / RUN</h2>
+
+    <p>
+      The Pico exposes the RP2040 RUN control signal.
+    </p>
+
+    <p>
+      Pulling RUN low resets the RP2040.
+    </p>
+
+    <div class="interface-box">
+
+      <strong>RUN</strong>
+
+      <p>
+        RUN is useful when integrating the Pico into external hardware
+        that needs hardware-controlled reset behavior.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- DEBUG -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Debugging</h2>
+
+    <p>
+      RP2040 supports SWD debugging.
+    </p>
+
+    <h3>Typical Debug Signals</h3>
+
+    <ul>
+      <li>SWCLK</li>
+      <li>SWDIO</li>
+      <li>GND</li>
+    </ul>
+
+    <p>
+      Debugging can be performed using compatible SWD debug hardware
+      and development tools.
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- COMMON PERIPHERAL MAP -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Practical Peripheral Map</h2>
+
+    <p>
+      One possible project configuration:
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Peripheral</th>
+            <th>GPIO</th>
+            <th>Purpose</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>OLED SDA</td>
+            <td>GPIO4</td>
+            <td>I2C</td>
+          </tr>
+
+          <tr>
+            <td>OLED SCL</td>
+            <td>GPIO5</td>
+            <td>I2C</td>
+          </tr>
+
+          <tr>
+            <td>NFC SCK</td>
+            <td>GPIO18</td>
+            <td>SPI</td>
+          </tr>
+
+          <tr>
+            <td>NFC MOSI</td>
+            <td>GPIO19</td>
+            <td>SPI</td>
+          </tr>
+
+          <tr>
+            <td>NFC MISO</td>
+            <td>GPIO16</td>
+            <td>SPI</td>
+          </tr>
+
+          <tr>
+            <td>NFC CS</td>
+            <td>GPIO17</td>
+            <td>SPI chip select</td>
+          </tr>
+
+          <tr>
+            <td>NFC IRQ</td>
+            <td>GPIO20</td>
+            <td>Reader interrupt</td>
+          </tr>
+
+          <tr>
+            <td>Button A</td>
+            <td>GPIO10</td>
+            <td>User input</td>
+          </tr>
+
+          <tr>
+            <td>Button B</td>
+            <td>GPIO11</td>
+            <td>User input</td>
+          </tr>
+
+          <tr>
+            <td>Encoder A</td>
+            <td>GPIO12</td>
+            <td>Rotary encoder</td>
+          </tr>
+
+          <tr>
+            <td>Encoder B</td>
+            <td>GPIO13</td>
+            <td>Rotary encoder</td>
+          </tr>
+
+          <tr>
+            <td>Encoder Press</td>
+            <td>GPIO14</td>
+            <td>Encoder switch</td>
+          </tr>
+
+          <tr>
+            <td>Analog Sensor</td>
+            <td>GPIO26</td>
+            <td>ADC0</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="warning-box">
+
+      <strong>Example only.</strong>
+
+      <p>
+        GPIO assignments should be selected based on the actual board,
+        firmware framework, peripheral requirements, and complete system
+        pin budget.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- OLED WIRING -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>SSD1306 OLED Example</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Pico</th>
+            <th>OLED</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>3V3</td>
+            <td>VCC</td>
+          </tr>
+
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+          </tr>
+
+          <tr>
+            <td>GPIO4</td>
+            <td>SDA</td>
+          </tr>
+
+          <tr>
+            <td>GPIO5</td>
+            <td>SCL</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <pre><code>#include &lt;Wire.h&gt;
+
+void setup() {
+  Wire.begin(4, 5);
+}
+
+void loop() {
+}</code></pre>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- SPI RFID -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>RC522 / SPI RFID Example</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Pico</th>
+            <th>RC522</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>3V3</td>
+            <td>3.3V supply</td>
+          </tr>
+
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+          </tr>
+
+          <tr>
+            <td>GPIO18</td>
+            <td>SCK</td>
+          </tr>
+
+          <tr>
+            <td>GPIO19</td>
+            <td>MOSI</td>
+          </tr>
+
+          <tr>
+            <td>GPIO16</td>
+            <td>MISO</td>
+          </tr>
+
+          <tr>
+            <td>GPIO17</td>
+            <td>SDA / SS / CS</td>
+          </tr>
+
+          <tr>
+            <td>GPIO20</td>
+            <td>RST</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="warning-box">
+
+      <strong>Verify the exact RC522 module.</strong>
+
+      <p>
+        Cheap RFID modules vary in regulator and level-shifting design.
+        Do not assume the module's breakout-board pins are electrically
+        identical across manufacturers.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- UART EXAMPLE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>UART Example</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Pico</th>
+            <th>External Device</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>GPIO0 / UART0 TX</td>
+            <td>RX</td>
+          </tr>
+
+          <tr>
+            <td>GPIO1 / UART0 RX</td>
+            <td>TX</td>
+          </tr>
+
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- DIGITAL INPUT -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Button Example</h2>
+
+    <p>
+      A button can be connected between a GPIO and ground while using
+      the internal pull-up resistor.
+    </p>
+
+    <pre><code>const int BUTTON_PIN = 10;
+
+void setup() {
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+}
+
+void loop() {
+
+  if (digitalRead(BUTTON_PIN) == LOW) {
+    // Button pressed
+  }
+
+}</code></pre>
+
+    <div class="notice">
+
+      <strong>Logic:</strong>
+
+      <p>
+        With an internal pull-up, the normal state is HIGH and the
+        pressed state is LOW.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- ANALOG EXAMPLE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Analog Sensor Example</h2>
+
+    <pre><code>const int SENSOR_PIN = A0;
+
+void setup() {
+  Serial.begin(115200);
+}
+
+void loop() {
+
+  int value = analogRead(SENSOR_PIN);
+
+  Serial.println(value);
+
+  delay(100);
+}</code></pre>
+
+    <p>
+      On Arduino-style RP2040 environments, analog pin aliases such as
+      A0, A1, and A2 commonly correspond to GPIO26, GPIO27, and GPIO28.
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- SERIAL -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Serial Communication</h2>
+
+    <p>
+      RP2040 applications may use USB serial or one of the hardware
+      UART peripherals depending on the development framework.
+    </p>
+
+    <pre><code>void setup() {
+  Serial.begin(115200);
+}
+
+void loop() {
+  Serial.println("RP2040 online");
+  delay(1000);
+}</code></pre>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- ARDUINO CORE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Arduino Support</h2>
+
+    <p>
+      RP2040 boards can be programmed using Arduino-compatible
+      development environments and cores.
+    </p>
+
+    <p>
+      This provides familiar APIs such as:
+    </p>
+
+    <ul>
+      <li>pinMode()</li>
+      <li>digitalRead()</li>
+      <li>digitalWrite()</li>
+      <li>analogRead()</li>
+      <li>analogWrite()</li>
+      <li>Serial</li>
+      <li>Wire</li>
+      <li>SPI</li>
+    </ul>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- C/C++ SDK -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Native SDK</h2>
+
+    <p>
+      Raspberry Pi provides an official C/C++ SDK for RP2040 development.
+    </p>
+
+    <p>
+      Native SDK applications can access features such as:
+
+    </p>
+
+    <ul>
+      <li>PIO</li>
+      <li>hardware timers</li>
+      <li>DMA</li>
+      <li>hardware PWM</li>
+      <li>ADC</li>
+      <li>USB</li>
+      <li>multicore execution</li>
+      <li>hardware registers</li>
+    </ul>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- MICROPYTHON -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>MicroPython</h2>
+
+    <p>
+      RP2040 is also widely used with MicroPython.
+    </p>
+
+    <p>
+      MicroPython is useful for rapid experimentation, hardware
+      prototyping, educational projects, sensors, displays, and
+      interactive development.
+    </p>
+
+    <pre><code>from machine import Pin
+import time
+
+led = Pin("LED", Pin.OUT)
+
+while True:
+    led.toggle()
+    time.sleep(0.5)</code></pre>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- CIRCUITPYTHON -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>CircuitPython</h2>
+
+    <p>
+      RP2040-based boards are also supported by CircuitPython.
+    </p>
+
+    <p>
+      CircuitPython is particularly useful for rapid hardware
+      prototyping and educational embedded applications.
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- DMA -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>DMA</h2>
+
+    <p>
+      RP2040 contains a DMA controller that can move data between
+      peripherals and memory without requiring the CPU to handle
+      every transfer.
+    </p>
+
+    <p>
+      DMA can be particularly useful for:
+
+    </p>
+
+    <ul>
+      <li>ADC sampling</li>
+      <li>SPI transfers</li>
+      <li>UART streams</li>
+      <li>PIO data</li>
+      <li>audio</li>
+      <li>display updates</li>
+      <li>high-rate sensor acquisition</li>
+    </ul>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- COMMON USES -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Common Uses</h2>
+
+    <div class="card-grid">
+
+      <div class="card safe">
+        <h3>Embedded Controllers</h3>
+        <p>Control motors, relays, LEDs, and sensors.</p>
+      </div>
+
+      <div class="card safe">
+        <h3>USB Devices</h3>
+        <p>Build HID, serial, MIDI, and other USB applications.</p>
+      </div>
+
+      <div class="card safe">
+        <h3>Sensor Systems</h3>
+        <p>Read analog and digital sensors.</p>
+      </div>
+
+      <div class="card safe">
+        <h3>Displays</h3>
+        <p>Drive OLED, LCD, TFT, and custom display interfaces.</p>
+      </div>
+
+      <div class="card safe">
+        <h3>RFID / NFC</h3>
+        <p>Communicate with external RFID/NFC controllers.</p>
+      </div>
+
+      <div class="card safe">
+        <h3>Robotics</h3>
+        <p>Control motors, servos, sensors, and communications.</p>
+      </div>
+
+      <div class="card safe">
+        <h3>PIO Projects</h3>
+        <p>Implement custom timing-sensitive protocols.</p>
+      </div>
+
+      <div class="card safe">
+        <h3>Education</h3>
+        <p>Learn embedded programming and electronics.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- WHAT PICO IS NOT -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>What the Pico Is Not</h2>
+
+    <div class="warning-box">
+
+      <p>
+        The Raspberry Pi Pico is not a Linux computer.
+      </p>
+
+      <p>
+        It does not normally run Raspberry Pi OS, Debian, Ubuntu,
+        or other desktop/server operating systems.
+      </p>
+
+    </div>
+
+    <p>
+      It is intended for deterministic embedded control rather than
+      general-purpose desktop computing.
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- ESP32 COMPARISON -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Pico vs ESP32</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Feature</th>
+            <th>Raspberry Pi Pico</th>
+            <th>Classic ESP32</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>MCU</td>
+            <td>RP2040</td>
+            <td>ESP32</td>
+          </tr>
+
+          <tr>
+            <td>CPU</td>
+            <td>Dual Cortex-M0+</td>
+            <td>Dual Xtensa LX6</td>
+          </tr>
+
+          <tr>
+            <td>Clock</td>
+            <td>Up to 133 MHz</td>
+            <td>Typically up to 240 MHz</td>
+          </tr>
+
+          <tr>
+            <td>Wi-Fi</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+
+          <tr>
+            <td>Bluetooth</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+
+          <tr>
+            <td>GPIO</td>
+            <td>26 exposed</td>
+            <td>Many GPIO functions</td>
+          </tr>
+
+          <tr>
+            <td>ADC</td>
+            <td>12-bit hardware ADC</td>
+            <td>12-bit ADC architecture</td>
+          </tr>
+
+          <tr>
+            <td>PIO</td>
+            <td>Yes</td>
+            <td>No equivalent RP2040 PIO subsystem</td>
+          </tr>
+
+          <tr>
+            <td>USB</td>
+            <td>Native USB</td>
+            <td>Depends on ESP32 variant</td>
+          </tr>
+
+          <tr>
+            <td>Typical Strength</td>
+            <td>Deterministic I/O / PIO / embedded control</td>
+            <td>Wireless embedded applications</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- RP2040 VS PICO -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>RP2040 vs Raspberry Pi Pico</h2>
+
+    <p>
+      These terms should not be treated as interchangeable.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Term</th>
+            <th>Meaning</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>RP2040</td>
+            <td>The microcontroller chip.</td>
+          </tr>
+
+          <tr>
+            <td>Raspberry Pi Pico</td>
+            <td>A development board built around RP2040.</td>
+          </tr>
+
+          <tr>
+            <td>Pico W</td>
+            <td>Pico-family board with wireless hardware.</td>
+          </tr>
+
+          <tr>
+            <td>Pico 2</td>
+            <td>Newer Pico family using RP2350.</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- PICO W -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Pico W</h2>
+
+    <p>
+      Raspberry Pi also produces the Pico W, which adds wireless
+      networking hardware to the Pico family.
+    </p>
+
+    <div class="notice">
+
+      <strong>Do not merge Pico and Pico W hardware definitions.</strong>
+
+      <p>
+        The basic RP2040 GPIO architecture remains important, but
+        wireless hardware introduces additional board-level considerations.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- BOOT / FLASH -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Flash and Boot Architecture</h2>
+
+    <p>
+      The standard Pico uses external QSPI flash for application
+      firmware and persistent program storage.
+    </p>
+
+    <p>
+      The RP2040's ROM contains the low-level boot functionality
+      required to enter the USB bootloader.
+    </p>
+
+    <pre><code>RP2040 ROM
+    │
+    ├── Normal boot
+    │       ↓
+    │   External QSPI Flash
+    │       ↓
+    │   Application Firmware
+    │
+    └── BOOTSEL
+            ↓
+        USB Bootloader
+            ↓
+        Firmware Upload</code></pre>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- QSPI -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>QSPI Flash</h2>
+
+    <p>
+      The external flash used by the standard Pico is connected to
+      the RP2040 through its dedicated QSPI interface.
+    </p>
+
+    <div class="danger-box">
+
+      <strong>Reserved hardware:</strong>
+
+      <p>
+        QSPI-connected pins are not intended to be treated as normal
+        user GPIO on the standard Pico.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- HARDWARE RULES -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Engineering Rules</h2>
+
+    <ol class="rules">
+
+      <li>
+        Treat Pico GPIO as 3.3V logic.
+      </li>
+
+      <li>
+        Do not apply 5V directly to GPIO.
+      </li>
+
+      <li>
+        Verify the voltage requirements of every peripheral.
+      </li>
+
+      <li>
+        Keep motor and high-current loads away from MCU power rails
+        unless the power budget explicitly supports them.
+      </li>
+
+      <li>
+        Use appropriate pull-ups for I2C.
+      </li>
+
+      <li>
+        Account for SPI chip-select requirements when sharing a bus.
+      </li>
+
+      <li>
+        Verify alternate-function assignments before finalizing a PCB.
+      </li>
+
+      <li>
+        Account for PWM slice sharing.
+      </li>
+
+      <li>
+        Use ADC-capable GPIO only for external analog inputs.
+      </li>
+
+      <li>
+        Keep analog signals away from unnecessary digital noise.
+      </li>
+
+      <li>
+        Use PIO when deterministic custom I/O is required.
+      </li>
+
+      <li>
+        Do not use reserved flash connections as normal GPIO.
+      </li>
+
+      <li>
+        Treat BOOTSEL and RUN as system functions rather than ordinary
+        application inputs.
+      </li>
+
+      <li>
+        Verify the exact Pico hardware revision before designing a PCB
+        around board-specific behavior.
+      </li>
+
+    </ol>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- PIN SELECTION -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Practical Pin Selection</h2>
+
+    <h3>Good Candidates for Digital Inputs</h3>
+
+    <p>
+      Most exposed GPIO can be used for ordinary digital inputs.
+    </p>
+
+    <h3>Good Candidates for Analog Inputs</h3>
+
+    <p>
+      GPIO26, GPIO27, and GPIO28.
+    </p>
+
+    <h3>Good Candidates for I2C</h3>
+
+    <p>
+      GPIO4 / GPIO5 are a common convenient arrangement, although
+      other valid mappings exist.
+    </p>
+
+    <h3>Good Candidates for SPI</h3>
+
+    <p>
+      GPIO16–19 are a commonly used SPI arrangement.
+    </p>
+
+    <h3>Use PIO When</h3>
+
+    <ul>
+
+      <li>A peripheral uses a non-standard protocol.</li>
+      <li>Precise timing is required.</li>
+      <li>CPU-driven bit banging is undesirable.</li>
+      <li>A custom serial protocol must be implemented.</li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- TROUBLESHOOTING -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Pico Does Not Appear Over USB</h3>
+
+    <ul>
+
+      <li>Check USB cable.</li>
+      <li>Try BOOTSEL mode.</li>
+      <li>Verify firmware image.</li>
+      <li>Check USB power.</li>
+      <li>Try another USB port.</li>
+
+    </ul>
+
+    <h3>OLED Does Not Work</h3>
+
+    <ul>
+
+      <li>Check VCC.</li>
+      <li>Check GND.</li>
+      <li>Verify SDA/SCL.</li>
+      <li>Verify I2C address.</li>
+      <li>Check pull-ups.</li>
+      <li>Confirm the display controller.</li>
+
+    </ul>
+
+    <h3>SPI Device Does Not Respond</h3>
+
+    <ul>
+
+      <li>Check SCK.</li>
+      <li>Check MOSI.</li>
+      <li>Check MISO.</li>
+      <li>Check CS.</li>
+      <li>Verify SPI mode.</li>
+      <li>Check voltage levels.</li>
+      <li>Verify device reset state.</li>
+
+    </ul>
+
+    <h3>ADC Values Look Wrong</h3>
+
+    <ul>
+
+      <li>Verify the input voltage range.</li>
+      <li>Verify ADC reference assumptions.</li>
+      <li>Check grounding.</li>
+      <li>Reduce digital noise.</li>
+      <li>Verify ADC pin selection.</li>
+    </ul>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- PIN CONFLICTS -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Common Pin Conflicts</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Requirement</th>
+            <th>Potential Conflict</th>
+            <th>Solution</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr class="warning-row">
+            <td>Multiple SPI devices</td>
+            <td>Shared bus</td>
+            <td>Use separate CS pins</td>
+          </tr>
+
+          <tr>
+            <td>Multiple I2C devices</td>
+            <td>Same address</td>
+            <td>Change address or use another bus</td>
+          </tr>
+
+          <tr>
+            <td>Multiple PWM outputs</td>
+            <td>Slice/channel relationship</td>
+            <td>Plan PWM slices</td>
+          </tr>
+
+          <tr>
+            <td>Analog sensor</td>
+            <td>Non-ADC GPIO</td>
+            <td>Use GPIO26–28</td>
+          </tr>
+
+          <tr>
+            <td>External flash</td>
+            <td>Reserved QSPI resources</td>
+            <td>Do not repurpose flash connections</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- HARDWARE WALLET -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Example: NFC Hardware Wallet</h2>
+
+    <p>
+      The Raspberry Pi Pico can serve as a controller in an embedded
+      wallet prototype, although the exact security architecture should
+      use a dedicated secure element for private-key protection.
+    </p>
+
+    <div class="interface-box">
+
+      <pre><code>Raspberry Pi Pico
+│
+├── I2C
+│   ├── OLED
+│   └── Secure Element
+│
+├── SPI
+│   └── NFC / RFID Reader
+│
+├── GPIO
+│   ├── Confirm Button
+│   ├── Cancel Button
+│   ├── Encoder A
+│   ├── Encoder B
+│   └── Encoder Press
+│
+└── USB
+    └── Companion Application</code></pre>
+
+    </div>
+
+    <div class="warning-box">
+
+      <strong>Security boundary:</strong>
+
+      <p>
+        The Pico should act as the application controller. Long-term
+        private signing keys should be protected by a dedicated secure
+        element rather than stored as ordinary firmware data.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- VIRTUAL LAB -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Virtual Hardware Lab Model</h2>
+
+    <p>
+      The Pico is also a useful target for the encyclopedia's
+      virtual hardware laboratory.
+    </p>
+
+    <pre><code>Virtual Pico
+│
+├── GPIO
+├── ADC
+├── PWM
+├── UART
+├── I2C
+├── SPI
+├── PIO
+├── USB
+├── Timers
+├── DMA
+└── Dual Core
+     │
+     ├── Virtual OLED
+     ├── Virtual Buttons
+     ├── Virtual Encoder
+     ├── Virtual NFC
+     └── Virtual Sensors</code></pre>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- MACHINE READABLE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Machine-Readable Definition</h2>
+
+    <p>
+      A future canonical RP2040/Pico definition should be represented
+      as structured data.
+    </p>
+
+    <pre><code>{
+  "id": "raspberry-pi-pico-rp2040",
+
+  "name": "Raspberry Pi Pico",
+
+  "manufacturer": "Raspberry Pi",
+
+  "mcu": {
+    "part": "RP2040",
+    "architecture": "ARM Cortex-M0+",
+    "cores": 2,
+    "clock_mhz": 133
+  },
+
+  "memory": {
+    "sram_kb": 264,
+    "flash_mb": 2
+  },
+
+  "gpio": {
+    "exposed": [
+      0, 1, 2, 3, 4, 5,
+      6, 7, 8, 9, 10, 11,
+      12, 13, 14, 15, 16, 17,
+      18, 19, 20, 21, 22,
+      26, 27, 28
+    ]
+  },
+
+  "adc": {
+    "resolution_bits": 12,
+    "channels": {
+      "GPIO26": 0,
+      "GPIO27": 1,
+      "GPIO28": 2
+    }
+  },
+
+  "interfaces": {
+    "uart": 2,
+    "spi": 2,
+    "i2c": 2,
+    "pio_blocks": 2,
+    "usb": true
+  },
+
+  "logic_voltage": 3.3
+}</code></pre>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- SOURCE POLICY -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Canonical Reference Policy</h2>
+
+    <p>
+      This page is intended as an encyclopedia reference, but the
+      Raspberry Pi Pico hardware should ultimately be verified against
+      official RP2040 and Pico documentation.
+    </p>
+
+    <p>
+      Board-specific details should be separated from RP2040 silicon
+      details.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card safe">
+
+        <h3>RP2040 Datasheet</h3>
+
+        <p>
+          Canonical source for MCU architecture, GPIO, ADC, PWM,
+          PIO, clocks, memory, peripherals, and electrical behavior.
+        </p>
+
+      </div>
+
+      <div class="card safe">
+
+        <h3>Pico Documentation</h3>
+
+        <p>
+          Canonical source for board-level power, physical pins,
+          USB, flash, regulator, and board implementation.
+        </p>
+
+      </div>
+
+      <div class="card safe">
+
+        <h3>Board Schematics</h3>
+
+        <p>
+          Important when determining how the physical board connects
+          the RP2040 to flash, regulator, USB, LED, and other hardware.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- QUICK REFERENCE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Quick Reference</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Item</th>
+            <th>Value</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Board</td>
+            <td>Raspberry Pi Pico</td>
+          </tr>
+
+          <tr>
+            <td>MCU</td>
+            <td>RP2040</td>
+          </tr>
+
+          <tr>
+            <td>CPU</td>
+            <td>Dual Arm Cortex-M0+</td>
+          </tr>
+
+          <tr>
+            <td>Maximum Clock</td>
+            <td>133 MHz</td>
+          </tr>
+
+          <tr>
+            <td>SRAM</td>
+            <td>264 KB</td>
+          </tr>
+
+          <tr>
+            <td>Standard Flash</td>
+            <td>2 MB</td>
+          </tr>
+
+          <tr>
+            <td>GPIO</td>
+            <td>26 exposed</td>
+          </tr>
+
+          <tr>
+            <td>ADC</td>
+            <td>3 external channels</td>
+          </tr>
+
+          <tr>
+            <td>ADC Resolution</td>
+            <td>12-bit</td>
+          </tr>
+
+          <tr>
+            <td>PWM</td>
+            <td>16 channels</td>
+          </tr>
+
+          <tr>
+            <td>UART</td>
+            <td>2</td>
+          </tr>
+
+          <tr>
+            <td>SPI</td>
+            <td>2</td>
+          </tr>
+
+          <tr>
+            <td>I2C</td>
+            <td>2</td>
+          </tr>
+
+          <tr>
+            <td>PIO</td>
+            <td>2 blocks / 8 state machines</td>
+          </tr>
+
+          <tr>
+            <td>USB</td>
+            <td>USB 1.1</td>
+          </tr>
+
+          <tr>
+            <td>Logic Voltage</td>
+            <td>3.3V</td>
+          </tr>
+
+          <tr>
+            <td>Programming</td>
+            <td>USB / SWD</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- RELATED -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Related Encyclopedia References</h2>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>ESP32</h3>
+
+        <p>
+          Wireless MCU with Wi-Fi and Bluetooth.
+        </p>
+
+        <a href="../esp32.html">
+          Open ESP32 Reference →
+        </a>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Arduino Nano</h3>
+
+        <p>
+          ATmega328P-based 5V AVR development board.
+        </p>
+
+        <a href="../arduino.html">
+          Open Arduino Reference →
+        </a>
+
+      </div>
+
+      <div class="card">
+
+        <h3>RFID / NFC</h3>
+
+        <p>
+          Reader modules and contactless interfaces.
+        </p>
+
+        <a href="../RC522-RFID.html">
+          Open RFID Reference →
+        </a>
+
+      </div>
+
+      <div class="card">
+
+        <h3>OLED / LCD</h3>
+
+        <p>
+          Embedded display interfaces.
+        </p>
+
+        <a href="../LCD-OLED.html">
+          Open Display Reference →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- ROADMAP -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <h2>Raspberry Pi Reference Roadmap</h2>
+
+    <ul class="rules">
+
+      <li>
+        <strong>Raspberry Pi Pico / RP2040</strong> — current reference.
+      </li>
+
+      <li>
+        <strong>Pico W</strong> — wireless board reference.
+      </li>
+
+      <li>
+        <strong>Pico 2 / RP2350</strong> — separate MCU and board reference.
+      </li>
+
+      <li>
+        <strong>RP2350 GPIO</strong> — detailed pin and peripheral matrix.
+      </li>
+
+      <li>
+        <strong>PIO examples</strong> — practical programmable-I/O library.
+      </li>
+
+      <li>
+        <strong>RP2040 JSON</strong> — canonical machine-readable definition.
+      </li>
+
+      <li>
+        <strong>Pico virtual model</strong> — virtual lab implementation.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================================= -->
+
+</main>
+
+<footer>
+
+  <p>
+    Embedded Hardware Encyclopedia
+  </p>
+
+  <p>
+    Raspberry Pi Pico / RP2040 Reference
+  </p>
+
+  <p>
+    Document hardware carefully. Verify electrical assumptions before
+    connecting unknown hardware.
+  </p>
+
+</footer>
+
+</body>
+</html>
