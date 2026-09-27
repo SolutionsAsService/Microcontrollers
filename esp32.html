@@ -2,149 +2,2154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ESP32 Ports - ESP/Arduino Pin Encyclopedia</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="Canonical ESP32 GPIO, pinout, peripheral, ADC, DAC, touch, RTC, boot strapping, UART, SPI, I2C, PWM and hardware reference."
+  >
+
+  <meta
+    name="keywords"
+    content="ESP32, ESP32 GPIO, ESP32 pins, ESP32 WROOM-32D, ESP32 pinout, ESP32 ADC, ESP32 DAC, ESP32 UART, ESP32 SPI, ESP32 I2C, ESP32 PWM, Arduino ESP32"
+  >
+
+  <title>ESP32 Pin Encyclopedia — Complete GPIO & Hardware Reference</title>
+
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <header>
-    <h1>ESP32 Ports & Pin Functions</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="esp32.html">ESP32 Ports</a></li>
-        <li><a href="arduino.html">Arduino Ports</a></li>
-        <li><a href="cameras.html">Cameras</a></li>
-        <li><a href="RC522-RFID.html">RFID</a></li>
-        <li><a href="LCD-OLED.html">LCD & OLED</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
-  </header>
-  
-  <main>
-    <!-- Introduction Section -->
-    <section>
-      <h2>About ESP32 Pins</h2>
-      <p>
-        The ESP32 is a powerful, feature-rich microcontroller that offers a wide range of I/O capabilities. Its versatile GPIO pins support digital I/O, analog input (ADC), pulse width modulation (PWM) through LEDC, communication interfaces (I2C, SPI, UART), and more. This page is dedicated to explaining the various ports available on the ESP32 WROOM-32D module, their functions, and how you can use them in your projects.
-      </p>
-    </section>
 
-    <!-- Overview Section -->
-    <section>
-      <h2>ESP32 WROOM-32D Overview</h2>
-      <p>
-        The ESP32 WROOM-32D is one of the most popular modules in the ESP32 family. It features dual-core processing, built-in WiFi and Bluetooth, and a rich set of I/O pins. Typically, the module offers around 30 usable GPIOs that are multiplexed with various functions. Below, we break down these pins into categories based on their typical usage.
-      </p>
-    </section>
+<header>
 
-    <!-- Digital I/O Section -->
-    <section>
-      <h2>Digital I/O Pins</h2>
-      <p>
-        The digital I/O pins on the ESP32 are used to read digital sensors, control LEDs, relays, and other binary devices. They support standard digitalRead() and digitalWrite() functions. Many of these pins are also capable of interfacing with more advanced peripherals when configured appropriately.
-      </p>
-      <ul>
-        <li><strong>GPIO 0-39:</strong> Most of these pins can serve as digital I/O. However, some have additional functions or restrictions (for example, some ADC-only pins, or pins that affect boot mode).</li>
-        <li><strong>Special notes:</strong> Avoid using certain pins (like GPIO 6-11) for external I/O as they are used internally for flash memory.</li>
-      </ul>
-    </section>
+  <div class="site-title">
+    <h1>ESP32 Pin Encyclopedia</h1>
+    <p>Canonical GPIO & Hardware Reference</p>
+  </div>
 
-    <!-- Analog & ADC Section -->
-    <section>
-      <h2>Analog Inputs (ADC)</h2>
-      <p>
-        The ESP32 features two ADC units, ADC1 and ADC2, that convert analog voltages to digital values. This is useful for reading sensor data such as temperature, light intensity, or potentiometer values.
-      </p>
-      <ul>
-        <li><strong>ADC1:</strong> Typically available on GPIO 32-39 (e.g., GPIO 32, 33, 34, 35, 36, 39). These pins are not used by WiFi.</li>
-        <li><strong>ADC2:</strong> Available on several other GPIO pins (e.g., GPIO 0, 2, 4, 12-15, 25-27), but be aware that they may conflict with WiFi usage.</li>
-      </ul>
-    </section>
+  <nav>
+    <ul>
+      <li>
+        <a href="index.html">Home</a>
+      </li>
 
-    <!-- PWM Section -->
-    <section>
-      <h2>PWM & LEDC</h2>
-      <p>
-        Many ESP32 GPIOs can be configured to output PWM signals using the LEDC (LED Controller) module. PWM is used for dimming LEDs, controlling motors, and other applications where variable analog-like control is needed.
-      </p>
-      <ul>
-        <li>You can use the <code>ledcSetup()</code> and <code>ledcAttachPin()</code> functions to configure PWM on any capable GPIO.</li>
-      </ul>
-    </section>
+      <li>
+        <a href="esp32.html" class="active">
+          ESP32
+        </a>
+      </li>
 
-    <!-- Communication Interfaces Section -->
-    <section>
-      <h2>Communication Interfaces</h2>
-      <h3>I2C</h3>
-      <p>
-        The I2C interface uses two pins, SDA (data) and SCL (clock), and is used to communicate with sensors, displays, and other I2C-compatible devices. The default pins on many ESP32 boards are GPIO 21 for SDA and GPIO 22 for SCL.
-      </p>
-      <h3>SPI</h3>
-      <p>
-        The SPI interface is used for high-speed data transfer and can be found on multiple pins, typically including SCK (clock), MOSI (Master Out Slave In), MISO (Master In Slave Out), and CS (Chip Select). Many ESP32 boards allow flexible reassignment of these functions.
-      </p>
-      <h3>UART</h3>
-      <p>
-        ESP32 supports several UART ports for serial communication. They are commonly used for debugging, connecting GPS modules, or interfacing with other serial devices.
-      </p>
-    </section>
+      <li>
+        <a href="arduino.html">
+          Arduino
+        </a>
+      </li>
 
-    <!-- Power Pins Section -->
-    <section>
-      <h2>Power & Special Function Pins</h2>
-      <p>
-        The ESP32 WROOM-32D includes a few dedicated power pins:
-      </p>
-      <ul>
-        <li><strong>3.3V:</strong> The regulated output that powers many external modules such as OLED displays and sensors.</li>
-        <li><strong>5V:</strong> Some boards include a 5V pin (often from USB) that can be used to power devices that require 5V.</li>
-        <li><strong>GND:</strong> Common ground for all devices.</li>
-      </ul>
-      <p>
-        Additionally, some pins have special functions during boot (like GPIO0, GPIO2, and GPIO15) and should be used with caution to avoid interfering with the startup process.
-      </p>
-    </section>
+      <li>
+        <a href="esp32-s3.html">
+          ESP32-S3
+        </a>
+      </li>
 
-    <!-- Diagram Section -->
-    <section>
-      <h2>Pinout Diagram</h2>
-      <p>
-        Below is a simplified diagram illustrating the connections for common peripherals on an ESP32 WROOM-32D:
-      </p>
-      <pre>
-          +-----------------------+
-          |   ESP32 WROOM-32D     |
-          |                       |
-          |   3.3V  -------->  Power (OLED, Sensors, etc.)
-          |   GND   -------->  Ground
-          |                       |
-          |   GPIO21 -------->  I2C SDA (OLED)
-          |   GPIO22 -------->  I2C SCL (OLED)
-          |                       |
-          |   GPIO16 -------->  GPS TX (Software RX)
-          |   GPIO17 -------->  GPS RX (Software TX)
-          |                       |
-          |   ... (Other GPIOs available for digital I/O, ADC, PWM, etc.)   |
-          +-----------------------+
-      </pre>
-      <p>
-        Note: For full details, refer to the ESP32 datasheet and board-specific pinout diagrams.
-      </p>
-    </section>
+      <li>
+        <a href="esp8266.html">
+          ESP8266
+        </a>
+      </li>
 
-    <!-- Conclusion Section -->
-    <section>
-      <h2>Conclusion</h2>
-      <p>
-        The ESP32 WROOM-32D is a versatile microcontroller with a broad range of pin functionalities. Whether you’re reading analog sensor data, controlling LEDs with PWM, or communicating over I2C/SPI/UART, understanding each pin’s capabilities is crucial for designing effective projects. This encyclopedia is intended to be a starting point for exploring the various features of ESP32 pins and how they can be used in your applications.
-      </p>
-    </section>
-  </main>
+      <li>
+        <a href="cameras.html">
+          Cameras
+        </a>
+      </li>
 
-  <footer>
-    <p>&copy; 2025 ESP/Arduino Encyclopedia</p>
-  </footer>
+      <li>
+        <a href="RC522-RFID.html">
+          RFID
+        </a>
+      </li>
+
+      <li>
+        <a href="LCD-OLED.html">
+          Displays
+        </a>
+      </li>
+
+      <li>
+        <a href="about.html">
+          About
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</header>
+
+
+<main>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <span class="eyebrow">
+      ESP / ARDUINO ENCYCLOPEDIA
+    </span>
+
+    <h2>
+      ESP32 Complete Pin Reference
+    </h2>
+
+    <p>
+      A comprehensive reference for the original Espressif ESP32
+      architecture, including GPIO, ADC, DAC, touch sensing,
+      RTC GPIO, UART, SPI, I2C, PWM, boot strapping, JTAG,
+      flash-connected pins and common Arduino usage.
+    </p>
+
+    <div class="reference-badges">
+
+      <span class="badge">
+        ESP32
+      </span>
+
+      <span class="badge">
+        WROOM-32D
+      </span>
+
+      <span class="badge">
+        34 GPIO
+      </span>
+
+      <span class="badge">
+        3 UART
+      </span>
+
+      <span class="badge">
+        2 I²C
+      </span>
+
+      <span class="badge">
+        SPI
+      </span>
+
+      <span class="badge">
+        ADC
+      </span>
+
+      <span class="badge">
+        DAC
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     IMPORTANT SCOPE
+========================================================= -->
+
+<section>
+
+  <h2>Reference Scope</h2>
+
+  <div class="notice">
+
+    <strong>Important:</strong>
+
+    ESP32 refers to a family of chips and modules.
+
+    This page primarily documents the
+    <strong>original ESP32 silicon</strong>
+    and the
+    <strong>ESP32-WROOM-32 / WROOM-32D class modules</strong>.
+
+    Other members of the ESP32 family, such as
+    ESP32-S2, ESP32-S3, ESP32-C3, ESP32-C6 and ESP32-H2,
+    have different GPIO counts and peripheral mappings and
+    should have their own dedicated encyclopedia entries.
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUICK REFERENCE
+========================================================= -->
+
+<section>
+
+  <h2>ESP32 Quick Reference</h2>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Classic ESP32</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>GPIO hardware</td>
+          <td>34 physical GPIOs</td>
+        </tr>
+
+        <tr>
+          <td>GPIO numbering</td>
+          <td>0–19, 21–23, 25–27, 32–39</td>
+        </tr>
+
+        <tr>
+          <td>Input-only GPIO</td>
+          <td>34, 35, 36, 37, 38, 39</td>
+        </tr>
+
+        <tr>
+          <td>ADC units</td>
+          <td>ADC1 + ADC2</td>
+        </tr>
+
+        <tr>
+          <td>ADC resolution</td>
+          <td>12-bit hardware ADC</td>
+        </tr>
+
+        <tr>
+          <td>DAC</td>
+          <td>GPIO25 + GPIO26</td>
+        </tr>
+
+        <tr>
+          <td>UART</td>
+          <td>UART0, UART1, UART2</td>
+        </tr>
+
+        <tr>
+          <td>I²C</td>
+          <td>2 controllers</td>
+        </tr>
+
+        <tr>
+          <td>SPI</td>
+          <td>Multiple SPI controllers / signals</td>
+        </tr>
+
+        <tr>
+          <td>PWM</td>
+          <td>LEDC peripheral</td>
+        </tr>
+
+        <tr>
+          <td>Touch</td>
+          <td>10 capacitive touch channels</td>
+        </tr>
+
+        <tr>
+          <td>RTC GPIO</td>
+          <td>Multiple RTC-capable GPIOs</td>
+        </tr>
+
+        <tr>
+          <td>Wi-Fi</td>
+          <td>2.4 GHz 802.11 b/g/n</td>
+        </tr>
+
+        <tr>
+          <td>Bluetooth</td>
+          <td>Bluetooth / BLE</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     COMPLETE GPIO TABLE
+========================================================= -->
+
+<section>
+
+  <h2>Complete ESP32 GPIO Matrix</h2>
+
+  <p>
+    The original ESP32 contains 34 physical GPIOs. GPIO functionality
+    is highly multiplexed through the ESP32 GPIO matrix and IO MUX.
+    A peripheral signal can often be routed to a different GPIO rather
+    than being permanently tied to one Arduino-style pin number.
+  </p>
+
+  <div class="table-wrapper">
+
+    <table class="pin-table">
+
+      <thead>
+
+        <tr>
+          <th>GPIO</th>
+          <th>ADC</th>
+          <th>DAC</th>
+          <th>RTC GPIO</th>
+          <th>Digital I/O</th>
+          <th>Special Function</th>
+          <th>Primary Warning</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>GPIO0</td>
+          <td>ADC2_CH1</td>
+          <td>—</td>
+          <td>RTC11</td>
+          <td>Yes</td>
+          <td>Boot / strapping</td>
+          <td class="warning">Boot sensitive</td>
+        </tr>
+
+        <tr>
+          <td>GPIO1</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes</td>
+          <td>UART0 TX</td>
+          <td class="warning">Serial console</td>
+        </tr>
+
+        <tr>
+          <td>GPIO2</td>
+          <td>ADC2_CH2</td>
+          <td>—</td>
+          <td>RTC12</td>
+          <td>Yes</td>
+          <td>Boot / strapping</td>
+          <td class="warning">Boot sensitive</td>
+        </tr>
+
+        <tr>
+          <td>GPIO3</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes</td>
+          <td>UART0 RX</td>
+          <td class="warning">Serial console</td>
+        </tr>
+
+        <tr>
+          <td>GPIO4</td>
+          <td>ADC2_CH0</td>
+          <td>—</td>
+          <td>RTC10</td>
+          <td>Yes</td>
+          <td>Touch</td>
+          <td>ADC2 / Wi-Fi consideration</td>
+        </tr>
+
+        <tr>
+          <td>GPIO5</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes</td>
+          <td>Strapping / SPI</td>
+          <td class="warning">Boot sensitive</td>
+        </tr>
+
+        <tr class="danger-row">
+          <td>GPIO6</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>No</td>
+          <td>SPI0/1 flash</td>
+          <td>Do not use on WROOM</td>
+        </tr>
+
+        <tr class="danger-row">
+          <td>GPIO7</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>No</td>
+          <td>SPI0/1 flash</td>
+          <td>Do not use on WROOM</td>
+        </tr>
+
+        <tr class="danger-row">
+          <td>GPIO8</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>No</td>
+          <td>SPI0/1 flash</td>
+          <td>Do not use on WROOM</td>
+        </tr>
+
+        <tr class="danger-row">
+          <td>GPIO9</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>No</td>
+          <td>SPI0/1 flash</td>
+          <td>Do not use on WROOM</td>
+        </tr>
+
+        <tr class="danger-row">
+          <td>GPIO10</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>No</td>
+          <td>SPI0/1 flash</td>
+          <td>Do not use on WROOM</td>
+        </tr>
+
+        <tr class="danger-row">
+          <td>GPIO11</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>No</td>
+          <td>SPI0/1 flash</td>
+          <td>Do not use on WROOM</td>
+        </tr>
+
+        <tr>
+          <td>GPIO12</td>
+          <td>ADC2_CH5</td>
+          <td>—</td>
+          <td>RTC15</td>
+          <td>Yes</td>
+          <td>MTDI / strapping</td>
+          <td class="warning">Flash voltage strap</td>
+        </tr>
+
+        <tr>
+          <td>GPIO13</td>
+          <td>ADC2_CH4</td>
+          <td>—</td>
+          <td>RTC14</td>
+          <td>Yes</td>
+          <td>MTCK / JTAG</td>
+          <td>JTAG capable</td>
+        </tr>
+
+        <tr>
+          <td>GPIO14</td>
+          <td>ADC2_CH6</td>
+          <td>—</td>
+          <td>RTC16</td>
+          <td>Yes</td>
+          <td>MTMS / JTAG</td>
+          <td>JTAG capable</td>
+        </tr>
+
+        <tr>
+          <td>GPIO15</td>
+          <td>ADC2_CH3</td>
+          <td>—</td>
+          <td>RTC13</td>
+          <td>Yes</td>
+          <td>MTDO / strapping</td>
+          <td class="warning">Boot sensitive</td>
+        </tr>
+
+        <tr>
+          <td>GPIO16</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes*</td>
+          <td>SPI / UART routing</td>
+          <td>Module-dependent</td>
+        </tr>
+
+        <tr>
+          <td>GPIO17</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes*</td>
+          <td>SPI / UART routing</td>
+          <td>Module-dependent</td>
+        </tr>
+
+        <tr>
+          <td>GPIO18</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes</td>
+          <td>SPI2 SCK</td>
+          <td>General purpose</td>
+        </tr>
+
+        <tr>
+          <td>GPIO19</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes</td>
+          <td>SPI2 MISO</td>
+          <td>General purpose</td>
+        </tr>
+
+        <tr>
+          <td>GPIO21</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes</td>
+          <td>I²C SDA</td>
+          <td>Common default SDA</td>
+        </tr>
+
+        <tr>
+          <td>GPIO22</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes</td>
+          <td>I²C SCL</td>
+          <td>Common default SCL</td>
+        </tr>
+
+        <tr>
+          <td>GPIO23</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Yes</td>
+          <td>SPI2 MOSI</td>
+          <td>General purpose</td>
+        </tr>
+
+        <tr>
+          <td>GPIO25</td>
+          <td>ADC2_CH8</td>
+          <td>DAC1</td>
+          <td>RTC6</td>
+          <td>Yes</td>
+          <td>DAC</td>
+          <td>ADC2 / Wi-Fi consideration</td>
+        </tr>
+
+        <tr>
+          <td>GPIO26</td>
+          <td>ADC2_CH9</td>
+          <td>DAC2</td>
+          <td>RTC7</td>
+          <td>Yes</td>
+          <td>DAC</td>
+          <td>ADC2 / Wi-Fi consideration</td>
+        </tr>
+
+        <tr>
+          <td>GPIO27</td>
+          <td>ADC2_CH7</td>
+          <td>—</td>
+          <td>RTC17</td>
+          <td>Yes</td>
+          <td>Touch / ADC</td>
+          <td>ADC2 / Wi-Fi consideration</td>
+        </tr>
+
+        <tr>
+          <td>GPIO32</td>
+          <td>ADC1_CH4</td>
+          <td>—</td>
+          <td>RTC9</td>
+          <td>Yes</td>
+          <td>Touch / ADC</td>
+          <td>Excellent analog choice</td>
+        </tr>
+
+        <tr>
+          <td>GPIO33</td>
+          <td>ADC1_CH5</td>
+          <td>—</td>
+          <td>RTC8</td>
+          <td>Yes</td>
+          <td>Touch / ADC</td>
+          <td>Excellent analog choice</td>
+        </tr>
+
+        <tr>
+          <td>GPIO34</td>
+          <td>ADC1_CH6</td>
+          <td>—</td>
+          <td>RTC4</td>
+          <td>INPUT ONLY</td>
+          <td>Sensor VP / ADC</td>
+          <td class="warning">No output</td>
+        </tr>
+
+        <tr>
+          <td>GPIO35</td>
+          <td>ADC1_CH7</td>
+          <td>—</td>
+          <td>RTC5</td>
+          <td>INPUT ONLY</td>
+          <td>Sensor VN / ADC</td>
+          <td class="warning">No output</td>
+        </tr>
+
+        <tr>
+          <td>GPIO36</td>
+          <td>ADC1_CH0</td>
+          <td>—</td>
+          <td>RTC0</td>
+          <td>INPUT ONLY</td>
+          <td>SENSOR_VP</td>
+          <td class="warning">No output</td>
+        </tr>
+
+        <tr>
+          <td>GPIO37</td>
+          <td>ADC1_CH1</td>
+          <td>—</td>
+          <td>RTC1</td>
+          <td>INPUT ONLY</td>
+          <td>RTC ADC</td>
+          <td class="warning">No output</td>
+        </tr>
+
+        <tr>
+          <td>GPIO38</td>
+          <td>ADC1_CH2</td>
+          <td>—</td>
+          <td>RTC2</td>
+          <td>INPUT ONLY</td>
+          <td>RTC ADC</td>
+          <td class="warning">No output</td>
+        </tr>
+
+        <tr>
+          <td>GPIO39</td>
+          <td>ADC1_CH3</td>
+          <td>—</td>
+          <td>RTC3</td>
+          <td>INPUT ONLY</td>
+          <td>SENSOR_VN</td>
+          <td class="warning">No output</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PIN SAFETY CLASSIFICATION
+========================================================= -->
+
+<section>
+
+  <h2>GPIO Safety Classification</h2>
+
+  <div class="card-grid">
+
+    <article class="card safe">
+
+      <h3>Generally Flexible</h3>
+
+      <p>
+        GPIO18, GPIO19, GPIO21, GPIO22, GPIO23,
+        GPIO25, GPIO26, GPIO27, GPIO32 and GPIO33
+        are commonly useful for general projects,
+        subject to peripheral configuration.
+      </p>
+
+    </article>
+
+
+    <article class="card analog">
+
+      <h3>Analog / Input Focus</h3>
+
+      <p>
+        GPIO32–39 provide ADC1 channels.
+        GPIO34–39 are input-only and therefore
+        cannot drive LEDs, relays or other outputs.
+      </p>
+
+    </article>
+
+
+    <article class="card warning">
+
+      <h3>Boot / Strapping</h3>
+
+      <p>
+        GPIO0, GPIO2, GPIO5, GPIO12 and GPIO15
+        participate in ESP32 startup configuration.
+        External circuits connected to these pins
+        must not unintentionally force an invalid
+        boot configuration.
+      </p>
+
+    </article>
+
+
+    <article class="card danger">
+
+      <h3>Reserved for Flash</h3>
+
+      <p>
+        GPIO6–GPIO11 are connected to the ESP32's
+        internal SPI flash interface on WROOM-class
+        modules and should not be treated as normal
+        external GPIO.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ADC
+========================================================= -->
+
+<section>
+
+  <h2>ADC — Analog-to-Digital Converter</h2>
+
+  <p>
+    The classic ESP32 contains two SAR ADC controllers.
+    ADC1 and ADC2 expose different channels through the GPIO
+    matrix and analog subsystem.
+  </p>
+
+  <h3>ADC1</h3>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>GPIO</th>
+          <th>ADC Channel</th>
+          <th>Common Use</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>GPIO36</td>
+          <td>ADC1_CH0</td>
+          <td>Analog sensor input</td>
+        </tr>
+
+        <tr>
+          <td>GPIO37</td>
+          <td>ADC1_CH1</td>
+          <td>Analog input</td>
+        </tr>
+
+        <tr>
+          <td>GPIO38</td>
+          <td>ADC1_CH2</td>
+          <td>Analog input</td>
+        </tr>
+
+        <tr>
+          <td>GPIO39</td>
+          <td>ADC1_CH3</td>
+          <td>Analog sensor input</td>
+        </tr>
+
+        <tr>
+          <td>GPIO32</td>
+          <td>ADC1_CH4</td>
+          <td>Analog / touch</td>
+        </tr>
+
+        <tr>
+          <td>GPIO33</td>
+          <td>ADC1_CH5</td>
+          <td>Analog / touch</td>
+        </tr>
+
+        <tr>
+          <td>GPIO34</td>
+          <td>ADC1_CH6</td>
+          <td>Input-only analog</td>
+        </tr>
+
+        <tr>
+          <td>GPIO35</td>
+          <td>ADC1_CH7</td>
+          <td>Input-only analog</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <h3>ADC2</h3>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>GPIO</th>
+          <th>ADC Channel</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>GPIO4</td>
+          <td>ADC2_CH0</td>
+        </tr>
+
+        <tr>
+          <td>GPIO0</td>
+          <td>ADC2_CH1</td>
+        </tr>
+
+        <tr>
+          <td>GPIO2</td>
+          <td>ADC2_CH2</td>
+        </tr>
+
+        <tr>
+          <td>GPIO15</td>
+          <td>ADC2_CH3</td>
+        </tr>
+
+        <tr>
+          <td>GPIO13</td>
+          <td>ADC2_CH4</td>
+        </tr>
+
+        <tr>
+          <td>GPIO12</td>
+          <td>ADC2_CH5</td>
+        </tr>
+
+        <tr>
+          <td>GPIO14</td>
+          <td>ADC2_CH6</td>
+        </tr>
+
+        <tr>
+          <td>GPIO27</td>
+          <td>ADC2_CH7</td>
+        </tr>
+
+        <tr>
+          <td>GPIO25</td>
+          <td>ADC2_CH8</td>
+        </tr>
+
+        <tr>
+          <td>GPIO26</td>
+          <td>ADC2_CH9</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="notice warning">
+
+    <strong>ADC2 + Wi-Fi:</strong>
+
+    ADC2 has restrictions when the Wi-Fi subsystem is active.
+    For applications requiring analog measurements while Wi-Fi
+    is operating, ADC1 is generally the preferred ADC bank.
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     DAC
+========================================================= -->
+
+<section>
+
+  <h2>DAC — Digital-to-Analog Converter</h2>
+
+  <p>
+    The original ESP32 contains two 8-bit DAC channels.
+  </p>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>GPIO</th>
+          <th>DAC Channel</th>
+          <th>Typical Function</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>GPIO25</td>
+          <td>DAC1</td>
+          <td>Analog waveform output</td>
+        </tr>
+
+        <tr>
+          <td>GPIO26</td>
+          <td>DAC2</td>
+          <td>Analog waveform output</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PWM
+========================================================= -->
+
+<section>
+
+  <h2>PWM / LEDC</h2>
+
+  <p>
+    The ESP32 LEDC peripheral provides hardware PWM functionality.
+    PWM can be used for LEDs, motors, servos and other control
+    applications.
+  </p>
+
+  <ul>
+
+    <li>
+      LED brightness control
+    </li>
+
+    <li>
+      Motor speed control
+    </li>
+
+    <li>
+      Servo-style pulse generation
+    </li>
+
+    <li>
+      Tone generation
+    </li>
+
+    <li>
+      Hardware-timed periodic waveforms
+    </li>
+
+  </ul>
+
+  <p>
+    PWM-capable signals can generally be routed through the GPIO
+    matrix rather than requiring one permanently dedicated PWM pin.
+  </p>
+
+</section>
+
+
+<!-- =========================================================
+     I2C
+========================================================= -->
+
+<section>
+
+  <h2>I²C</h2>
+
+  <p>
+    I²C is a two-wire synchronous bus commonly used for sensors,
+    OLED displays, RTC modules, ADCs, GPIO expanders and EEPROM.
+  </p>
+
+  <div class="interface-box">
+
+    <div>
+      <strong>SDA</strong>
+      <span>GPIO21</span>
+    </div>
+
+    <div>
+      <strong>SCL</strong>
+      <span>GPIO22</span>
+    </div>
+
+  </div>
+
+  <p>
+    GPIO21 and GPIO22 are the common Arduino-ESP32 defaults,
+    but the ESP32 GPIO matrix allows I²C signals to be assigned
+    to other suitable GPIOs.
+  </p>
+
+  <h3>Typical OLED Connection</h3>
+
+  <pre>
+ESP32          SSD1306 OLED
+
+3.3V  -------- VCC
+GND   -------- GND
+GPIO21 -------- SDA
+GPIO22 -------- SCL
+  </pre>
+
+</section>
+
+
+<!-- =========================================================
+     SPI
+========================================================= -->
+
+<section>
+
+  <h2>SPI</h2>
+
+  <p>
+    SPI is a synchronous high-speed serial interface commonly
+    used for displays, SD cards, RFID readers, flash memory,
+    sensors and other peripherals.
+  </p>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Signal</th>
+          <th>Common ESP32 GPIO</th>
+          <th>Typical Meaning</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>SCK</td>
+          <td>GPIO18</td>
+          <td>Clock</td>
+        </tr>
+
+        <tr>
+          <td>MISO</td>
+          <td>GPIO19</td>
+          <td>Controller input</td>
+        </tr>
+
+        <tr>
+          <td>MOSI</td>
+          <td>GPIO23</td>
+          <td>Controller output</td>
+        </tr>
+
+        <tr>
+          <td>CS</td>
+          <td>GPIO5</td>
+          <td>Chip select</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <p>
+    GPIO5 is commonly used as a chip-select line, but because it
+    participates in boot strapping, designs should ensure the
+    connected peripheral does not create an unwanted boot state.
+  </p>
+
+</section>
+
+
+<!-- =========================================================
+     UART
+========================================================= -->
+
+<section>
+
+  <h2>UART</h2>
+
+  <p>
+    The classic ESP32 contains three UART controllers:
+    UART0, UART1 and UART2.
+  </p>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>UART</th>
+          <th>Common RX</th>
+          <th>Common TX</th>
+          <th>Typical Usage</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>UART0</td>
+          <td>GPIO3</td>
+          <td>GPIO1</td>
+          <td>USB serial / programming / logs</td>
+        </tr>
+
+        <tr>
+          <td>UART1</td>
+          <td>GPIO9*</td>
+          <td>GPIO10*</td>
+          <td>Peripheral UART</td>
+        </tr>
+
+        <tr>
+          <td>UART2</td>
+          <td>GPIO16</td>
+          <td>GPIO17</td>
+          <td>GPS / modem / external serial</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <p>
+    <strong>*Important:</strong>
+    UART signals are highly configurable and may be routed through
+    the GPIO matrix. GPIO9/10 are associated with flash on WROOM
+    modules and should not be treated as ordinary external UART pins
+    on those modules.
+  </p>
+
+</section>
+
+
+<!-- =========================================================
+     TOUCH
+========================================================= -->
+
+<section>
+
+  <h2>Capacitive Touch</h2>
+
+  <p>
+    The original ESP32 provides ten capacitive touch sensing channels.
+  </p>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Touch Channel</th>
+          <th>GPIO</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr><td>TOUCH0</td><td>GPIO4</td></tr>
+        <tr><td>TOUCH1</td><td>GPIO0</td></tr>
+        <tr><td>TOUCH2</td><td>GPIO2</td></tr>
+        <tr><td>TOUCH3</td><td>GPIO15</td></tr>
+        <tr><td>TOUCH4</td><td>GPIO13</td></tr>
+        <tr><td>TOUCH5</td><td>GPIO12</td></tr>
+        <tr><td>TOUCH6</td><td>GPIO14</td></tr>
+        <tr><td>TOUCH7</td><td>GPIO27</td></tr>
+        <tr><td>TOUCH8</td><td>GPIO33</td></tr>
+        <tr><td>TOUCH9</td><td>GPIO32</td></tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     RTC GPIO
+========================================================= -->
+
+<section>
+
+  <h2>RTC GPIO</h2>
+
+  <p>
+    A subset of ESP32 GPIOs are connected to the RTC subsystem.
+    These pins are particularly important for low-power operation,
+    wake-up sources and RTC-domain functionality.
+  </p>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>RTC GPIO</th>
+          <th>Physical GPIO</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr><td>RTC_GPIO0</td><td>GPIO36</td></tr>
+        <tr><td>RTC_GPIO1</td><td>GPIO37</td></tr>
+        <tr><td>RTC_GPIO2</td><td>GPIO38</td></tr>
+        <tr><td>RTC_GPIO3</td><td>GPIO39</td></tr>
+        <tr><td>RTC_GPIO4</td><td>GPIO34</td></tr>
+        <tr><td>RTC_GPIO5</td><td>GPIO35</td></tr>
+        <tr><td>RTC_GPIO6</td><td>GPIO25</td></tr>
+        <tr><td>RTC_GPIO7</td><td>GPIO26</td></tr>
+        <tr><td>RTC_GPIO8</td><td>GPIO33</td></tr>
+        <tr><td>RTC_GPIO9</td><td>GPIO32</td></tr>
+        <tr><td>RTC_GPIO10</td><td>GPIO4</td></tr>
+        <tr><td>RTC_GPIO11</td><td>GPIO0</td></tr>
+        <tr><td>RTC_GPIO12</td><td>GPIO2</td></tr>
+        <tr><td>RTC_GPIO13</td><td>GPIO15</td></tr>
+        <tr><td>RTC_GPIO14</td><td>GPIO13</td></tr>
+        <tr><td>RTC_GPIO15</td><td>GPIO12</td></tr>
+        <tr><td>RTC_GPIO16</td><td>GPIO14</td></tr>
+        <tr><td>RTC_GPIO17</td><td>GPIO27</td></tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     BOOT STRAPPING
+========================================================= -->
+
+<section>
+
+  <h2>Boot & Strapping Pins</h2>
+
+  <p>
+    Strapping pins are sampled during reset/startup to determine
+    configuration parameters. After reset, they can operate as
+    normal GPIOs.
+  </p>
+
+  <div class="warning-box">
+
+    <h3>Important Design Rule</h3>
+
+    <p>
+      Never assume a strapping pin behaves like an ordinary GPIO
+      during the entire power-on sequence. External pull-ups,
+      pull-downs, sensors, displays and other peripherals can
+      influence the startup configuration.
+    </p>
+
+  </div>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Pin</th>
+          <th>Strapping Role</th>
+          <th>Design Consideration</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>GPIO0</td>
+          <td>Boot mode</td>
+          <td>Low during reset can select download mode</td>
+        </tr>
+
+        <tr>
+          <td>GPIO2</td>
+          <td>Boot mode</td>
+          <td>Startup level matters</td>
+        </tr>
+
+        <tr>
+          <td>GPIO5</td>
+          <td>Strapping</td>
+          <td>Startup state matters</td>
+        </tr>
+
+        <tr>
+          <td>GPIO12 / MTDI</td>
+          <td>Flash voltage</td>
+          <td>Critical for flash configuration</td>
+        </tr>
+
+        <tr>
+          <td>GPIO15 / MTDO</td>
+          <td>Strapping</td>
+          <td>Startup state matters</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     FLASH
+========================================================= -->
+
+<section>
+
+  <h2>Flash-Connected GPIO</h2>
+
+  <div class="danger-box">
+
+    <h3>Do Not Use GPIO6–GPIO11 as Normal I/O on WROOM</h3>
+
+    <p>
+      GPIO6 through GPIO11 are associated with the ESP32's
+      SPI0/SPI1 flash interface. On WROOM-class modules these
+      signals are normally consumed by the module's internal flash.
+    </p>
+
+    <pre>
+GPIO6   → Flash
+GPIO7   → Flash
+GPIO8   → Flash
+GPIO9   → Flash
+GPIO10  → Flash
+GPIO11  → Flash
+    </pre>
+
+    <p>
+      Treat these pins as reserved when designing around an
+      ESP32-WROOM-32D.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     INPUT ONLY
+========================================================= -->
+
+<section>
+
+  <h2>Input-Only GPIO</h2>
+
+  <p>
+    GPIO34 through GPIO39 are input-only on the classic ESP32.
+    They are excellent for sensors and ADC measurements but
+    cannot be configured as ordinary digital outputs.
+  </p>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>GPIO</th>
+          <th>ADC</th>
+          <th>Output?</th>
+          <th>Good Uses</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>GPIO34</td>
+          <td>ADC1_CH6</td>
+          <td>NO</td>
+          <td>Sensor input</td>
+        </tr>
+
+        <tr>
+          <td>GPIO35</td>
+          <td>ADC1_CH7</td>
+          <td>NO</td>
+          <td>Sensor input</td>
+        </tr>
+
+        <tr>
+          <td>GPIO36</td>
+          <td>ADC1_CH0</td>
+          <td>NO</td>
+          <td>Analog measurement</td>
+        </tr>
+
+        <tr>
+          <td>GPIO37</td>
+          <td>ADC1_CH1</td>
+          <td>NO</td>
+          <td>Analog measurement</td>
+        </tr>
+
+        <tr>
+          <td>GPIO38</td>
+          <td>ADC1_CH2</td>
+          <td>NO</td>
+          <td>Analog measurement</td>
+        </tr>
+
+        <tr>
+          <td>GPIO39</td>
+          <td>ADC1_CH3</td>
+          <td>NO</td>
+          <td>Analog measurement</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     COMMON PERIPHERAL MAP
+========================================================= -->
+
+<section>
+
+  <h2>Common Peripheral Pin Map</h2>
+
+  <p>
+    These are common Arduino/ESP32 development assignments,
+    not immutable hardware requirements.
+  </p>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Peripheral</th>
+          <th>Signal</th>
+          <th>Common GPIO</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>I²C</td>
+          <td>SDA</td>
+          <td>GPIO21</td>
+        </tr>
+
+        <tr>
+          <td>I²C</td>
+          <td>SCL</td>
+          <td>GPIO22</td>
+        </tr>
+
+        <tr>
+          <td>SPI</td>
+          <td>SCK</td>
+          <td>GPIO18</td>
+        </tr>
+
+        <tr>
+          <td>SPI</td>
+          <td>MISO</td>
+          <td>GPIO19</td>
+        </tr>
+
+        <tr>
+          <td>SPI</td>
+          <td>MOSI</td>
+          <td>GPIO23</td>
+        </tr>
+
+        <tr>
+          <td>SPI</td>
+          <td>CS</td>
+          <td>GPIO5</td>
+        </tr>
+
+        <tr>
+          <td>UART0</td>
+          <td>TX</td>
+          <td>GPIO1</td>
+        </tr>
+
+        <tr>
+          <td>UART0</td>
+          <td>RX</td>
+          <td>GPIO3</td>
+        </tr>
+
+        <tr>
+          <td>UART2</td>
+          <td>TX</td>
+          <td>GPIO17</td>
+        </tr>
+
+        <tr>
+          <td>UART2</td>
+          <td>RX</td>
+          <td>GPIO16</td>
+        </tr>
+
+        <tr>
+          <td>DAC</td>
+          <td>DAC1</td>
+          <td>GPIO25</td>
+        </tr>
+
+        <tr>
+          <td>DAC</td>
+          <td>DAC2</td>
+          <td>GPIO26</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRACTICAL GPIO SELECTION
+========================================================= -->
+
+<section>
+
+  <h2>Practical GPIO Selection Guide</h2>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Task</th>
+          <th>Preferred GPIOs</th>
+          <th>Avoid / Consider</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>LED output</td>
+          <td>18, 19, 21, 22, 23, 25, 26, 27, 32, 33</td>
+          <td>34–39</td>
+        </tr>
+
+        <tr>
+          <td>Analog sensor</td>
+          <td>32–39</td>
+          <td>ADC2 when Wi-Fi is active</td>
+        </tr>
+
+        <tr>
+          <td>OLED I²C</td>
+          <td>21 / 22</td>
+          <td>None normally</td>
+        </tr>
+
+        <tr>
+          <td>RC522 SPI</td>
+          <td>18 / 19 / 23 + CS</td>
+          <td>Boot-sensitive CS designs</td>
+        </tr>
+
+        <tr>
+          <td>GPS UART</td>
+          <td>16 / 17</td>
+          <td>UART0 if serial debugging is required</td>
+        </tr>
+
+        <tr>
+          <td>DAC output</td>
+          <td>25 / 26</td>
+          <td>ADC2 Wi-Fi interactions</td>
+        </tr>
+
+        <tr>
+          <td>Boot button</td>
+          <td>GPIO0</td>
+          <td>Do not force incorrect boot state</td>
+        </tr>
+
+        <tr>
+          <td>General analog</td>
+          <td>32 / 33 / 34 / 35 / 36 / 39</td>
+          <td>34–39 cannot output</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     POWER
+========================================================= -->
+
+<section>
+
+  <h2>Power & Control Pins</h2>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Pin</th>
+          <th>Purpose</th>
+          <th>Notes</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>3V3</td>
+          <td>3.3 V rail</td>
+          <td>Board/module dependent</td>
+        </tr>
+
+        <tr>
+          <td>GND</td>
+          <td>Ground</td>
+          <td>Common reference</td>
+        </tr>
+
+        <tr>
+          <td>EN</td>
+          <td>Chip enable / reset</td>
+          <td>Board-specific implementation</td>
+        </tr>
+
+        <tr>
+          <td>5V / VIN</td>
+          <td>Board power input</td>
+          <td>Development-board dependent</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="notice">
+
+    <strong>Board warning:</strong>
+
+    Do not assume that a generic "ESP32 board" has the same
+    power pins or regulator arrangement as another ESP32 board.
+    The module and development board must be identified separately.
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     EXAMPLE: OLED
+========================================================= -->
+
+<section>
+
+  <h2>Example — SSD1306 OLED</h2>
+
+  <pre>
+ESP32 WROOM-32D
+
+GPIO21  ───────── SDA
+GPIO22  ───────── SCL
+3.3V    ───────── VCC
+GND     ───────── GND
+  </pre>
+
+  <pre>
+#include &lt;Wire.h&gt;
+#include &lt;Adafruit_GFX.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+
+#define OLED_SDA 21
+#define OLED_SCL 22
+
+Adafruit_SSD1306 display(
+  128,
+  64,
+  &Wire,
+  -1
+);
+
+void setup() {
+
+  Wire.begin(
+    OLED_SDA,
+    OLED_SCL
+  );
+
+  display.begin(
+    SSD1306_SWITCHCAPVCC,
+    0x3C
+  );
+
+  display.clearDisplay();
+
+  display.setTextColor(
+    SSD1306_WHITE
+  );
+
+  display.setCursor(
+    0,
+    0
+  );
+
+  display.println(
+    "ESP32 ONLINE"
+  );
+
+  display.display();
+}
+
+void loop() {
+}
+  </pre>
+
+</section>
+
+
+<!-- =========================================================
+     EXAMPLE: RC522
+========================================================= -->
+
+<section>
+
+  <h2>Example — RC522 RFID / SPI</h2>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>RC522</th>
+          <th>ESP32</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>SDA / SS</td>
+          <td>GPIO5</td>
+        </tr>
+
+        <tr>
+          <td>SCK</td>
+          <td>GPIO18</td>
+        </tr>
+
+        <tr>
+          <td>MOSI</td>
+          <td>GPIO23</td>
+        </tr>
+
+        <tr>
+          <td>MISO</td>
+          <td>GPIO19</td>
+        </tr>
+
+        <tr>
+          <td>RST</td>
+          <td>GPIO27</td>
+        </tr>
+
+        <tr>
+          <td>3.3V</td>
+          <td>3.3V</td>
+        </tr>
+
+        <tr>
+          <td>GND</td>
+          <td>GND</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     BOOT MODES
+========================================================= -->
+
+<section>
+
+  <h2>Boot Mode Reference</h2>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>GPIO0</th>
+          <th>GPIO2</th>
+          <th>General Result</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>HIGH</td>
+          <td>LOW / appropriate state</td>
+          <td>Normal SPI boot</td>
+        </tr>
+
+        <tr>
+          <td>LOW</td>
+          <td>LOW</td>
+          <td>Download / programming mode</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <p>
+    Exact boot configuration also depends on additional strapping
+    configuration and the specific ESP32 implementation. GPIO0 and
+    GPIO2 should therefore be treated as startup-sensitive signals.
+  </p>
+
+</section>
+
+
+<!-- =========================================================
+     ENGINEERING RULES
+========================================================= -->
+
+<section>
+
+  <h2>ESP32 Engineering Rules</h2>
+
+  <ol class="rules">
+
+    <li>
+      <strong>Never use GPIO6–11 as normal WROOM GPIO.</strong>
+      They are associated with the module's flash interface.
+    </li>
+
+    <li>
+      <strong>Remember GPIO34–39 are input-only.</strong>
+      They cannot drive outputs.
+    </li>
+
+    <li>
+      <strong>Prefer ADC1 for analog measurements when Wi-Fi is active.</strong>
+    </li>
+
+    <li>
+      <strong>Treat GPIO0, GPIO2, GPIO5, GPIO12 and GPIO15 as boot-sensitive.</strong>
+    </li>
+
+    <li>
+      <strong>Do not assume Arduino defaults are hardware restrictions.</strong>
+      The ESP32 GPIO matrix provides substantial signal routing flexibility.
+    </li>
+
+    <li>
+      <strong>Identify the exact module.</strong>
+      ESP32-WROOM, WROVER and newer ESP32-family devices are not
+      interchangeable pin-for-pin.
+    </li>
+
+    <li>
+      <strong>Verify the development board separately.</strong>
+      Board labels, regulators, USB interfaces and exposed pins
+      vary between manufacturers.
+    </li>
+
+    <li>
+      <strong>Check the datasheet before production hardware.</strong>
+      Development-board conventions are not substitutes for
+      electrical specifications.
+    </li>
+
+  </ol>
+
+</section>
+
+
+<!-- =========================================================
+     CANONICAL SOURCE
+========================================================= -->
+
+<section>
+
+  <h2>Canonical Reference Sources</h2>
+
+  <p>
+    This encyclopedia should treat Espressif's documentation as
+    the authoritative hardware source. The encyclopedia organizes
+    that information into a practical engineering reference rather
+    than replacing the manufacturer's electrical specifications.
+  </p>
+
+  <ul>
+
+    <li>
+      Espressif ESP32 GPIO & RTC GPIO documentation
+    </li>
+
+    <li>
+      Espressif ESP32-WROOM-32D / 32U datasheet
+    </li>
+
+    <li>
+      Espressif ESP32 Hardware Design Guidelines
+    </li>
+
+    <li>
+      Espressif ESP-IDF peripheral documentation
+    </li>
+
+    <li>
+      ESP32 Technical Reference Manual
+    </li>
+
+  </ul>
+
+  <p>
+    Manufacturer documentation should always take precedence when
+    an electrical limit, boot condition, package limitation or
+    silicon-specific behavior conflicts with a simplified
+    encyclopedia description.
+  </p>
+
+</section>
+
+
+<!-- =========================================================
+     FAMILY ROADMAP
+========================================================= -->
+
+<section>
+
+  <h2>ESP32 Family Encyclopedia Roadmap</h2>
+
+  <div class="card-grid">
+
+    <article class="card">
+      <h3>ESP32</h3>
+      <p>
+        Classic dual-core Xtensa ESP32.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>ESP32-S2</h3>
+      <p>
+        Single-core Xtensa architecture with
+        different peripheral and GPIO mapping.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>ESP32-S3</h3>
+      <p>
+        Dual-core Xtensa architecture with
+        expanded GPIO and USB capabilities.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>ESP32-C2</h3>
+      <p>
+        RISC-V based compact ESP32 family member.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>ESP32-C3</h3>
+      <p>
+        RISC-V ESP32 family member with
+        substantially different pin mapping.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>ESP32-C5</h3>
+      <p>
+        Newer RISC-V ESP32 family architecture
+        with different radio and GPIO capabilities.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>ESP32-C6</h3>
+      <p>
+        RISC-V ESP32 family member with
+        Wi-Fi 6 and additional wireless capabilities.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>ESP32-H2</h3>
+      <p>
+        RISC-V wireless MCU focused on
+        low-power IoT connectivity.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>ESP32-P4</h3>
+      <p>
+        High-performance MCU architecture with
+        substantially different I/O capabilities.
+      </p>
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+</main>
+
+
+<footer>
+
+  <p>
+    ESP / Arduino Encyclopedia
+  </p>
+
+  <p>
+    ESP32 GPIO Reference
+  </p>
+
+  <p>
+    Hardware information should be verified against the
+    applicable Espressif datasheet before production use.
+  </p>
+
+</footer>
+
+
 </body>
 </html>
