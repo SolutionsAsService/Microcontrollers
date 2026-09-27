@@ -3,102 +3,1174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RC522 RFID Module Pinout and Connection Guide</title>
+
+  <title>RFID & NFC Readers — ESP/Arduino Pin Encyclopedia</title>
+
+  <meta
+    name="description"
+    content="Complete RFID and NFC reader reference covering RC522, MFRC522, PN532, SPI, I2C, UART, pinouts, wiring, voltage, and microcontroller integration."
+  >
+
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <header>
-    <h1>RC522 RFID Module Pinout and Connection Guide</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="esp32.html">ESP32 Ports</a></li>
-        <li><a href="arduino.html">Arduino Ports</a></li>
-        <li><a href="cameras.html">Cameras</a></li>
-        <li><a href="RC522-RFID.html">RFID</a></li>
-        <li><a href="LCD-OLED.html">LCD & OLED</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <section>
-      <p>The RC522 RFID module is a compact and versatile device used for reading and writing RFID tags operating at a frequency of 13.56 MHz. It supports communication protocols like SPI, I2C, and UART, making it compatible with various microcontrollers, including Arduino.</p>
-      
-      <h2>RC522 Module Pinout</h2>
+<header>
+
+  <div class="site-title">
+    <h1>ESP / Arduino Pin Encyclopedia</h1>
+    <p>Embedded hardware reference &amp; interface guide</p>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="esp32.html">ESP32 Ports</a></li>
+      <li><a href="arduino.html">Arduino Ports</a></li>
+      <li><a href="cameras.html">Cameras</a></li>
+      <li><a href="RC522-RFID.html" class="active">RFID / NFC</a></li>
+      <li><a href="LCD-OLED.html">LCD &amp; OLED</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+
+<main>
+
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        RFID / NFC / CONTACTLESS INTERFACES
+      </div>
+
+      <h2>RFID &amp; NFC Readers</h2>
+
+      <p>
+        A hardware reference for RC522/MFRC522, PN532 and related
+        13.56 MHz RFID/NFC readers, including pinouts, SPI, I2C,
+        UART, power, wiring, antennas and microcontroller integration.
+      </p>
+
+      <div class="reference-badges">
+        <span class="badge">RFID</span>
+        <span class="badge">NFC</span>
+        <span class="badge">RC522</span>
+        <span class="badge">MFRC522</span>
+        <span class="badge">PN532</span>
+        <span class="badge">SPI</span>
+        <span class="badge">I2C</span>
+        <span class="badge">UART</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       SCOPE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Reference Scope</h2>
+
+    <p>
+      RFID and NFC are related technologies, but a reader module,
+      controller IC, antenna, tag/card and software library are
+      separate components of the overall system.
+    </p>
+
+    <div class="notice">
+
+      <strong>Important distinction:</strong>
+
+      The RC522 is primarily an MFRC522-based 13.56 MHz contactless
+      reader/writer module. PN532-based modules provide a broader
+      NFC feature set and support additional communication interfaces
+      and operating modes.
+
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>RC522 / MFRC522</h3>
+
+        <p>
+          Low-cost 13.56 MHz reader/writer commonly used with
+          MIFARE-class cards and tags.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>PN532</h3>
+
+        <p>
+          Popular NFC controller supporting multiple host interfaces
+          and a wider range of NFC/contactless functions.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>13.56 MHz</h3>
+
+        <p>
+          RC522 and PN532 modules operate in the high-frequency
+          contactless RFID/NFC range.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Host Interface</h3>
+
+        <p>
+          The reader communicates with the MCU through interfaces
+          such as SPI, I2C or UART depending on the hardware.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       RFID VS NFC
+       ========================================================= -->
+
+  <section>
+
+    <h2>RFID vs NFC</h2>
+
+    <div class="table-wrapper">
+
       <table>
-        <tr>
-          <th>Pin Number</th>
-          <th>Pin Name</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>VCC</td>
-          <td>Power supply pin. Connect to 3.3V on the Arduino. Note: The module operates at 3.3V; supplying 5V may damage it.</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>RST</td>
-          <td>Reset pin. Used to reset or initialize the module. Connect to a digital pin on the Arduino (e.g., D9).</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Ground (GND)</td>
-          <td>Ground pin. Connect to GND on the Arduino.</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>IRQ</td>
-          <td>Interrupt pin. Used to signal the microcontroller when an RFID tag is detected. Not always used in basic applications.</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>MISO</td>
-          <td>Master In Slave Out. SPI data output from the module to the microcontroller. Connect to MISO (D12) on the Arduino.</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>MOSI</td>
-          <td>Master Out Slave In. SPI data input to the module from the microcontroller. Connect to MOSI (D11) on the Arduino.</td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td>SCK</td>
-          <td>Serial Clock. Provides the clock signal for SPI communication. Connect to SCK (D13) on the Arduino.</td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>SS</td>
-          <td>Slave Select. Used to select the module for SPI communication. Connect to a digital pin on the Arduino (e.g., D10).</td>
-        </tr>
+
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Meaning</th>
+            <th>Typical Embedded Use</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>RFID</td>
+            <td>Radio-frequency identification</td>
+            <td>Identification and tag/card reading</td>
+          </tr>
+
+          <tr>
+            <td>NFC</td>
+            <td>Near Field Communication</td>
+            <td>Short-range contactless communication</td>
+          </tr>
+
+          <tr>
+            <td>HF RFID</td>
+            <td>High-frequency RFID, commonly 13.56 MHz</td>
+            <td>Cards, tags and access systems</td>
+          </tr>
+
+          <tr>
+            <td>Reader</td>
+            <td>Device that communicates with a contactless tag</td>
+            <td>Card/tag detection and communication</td>
+          </tr>
+
+          <tr>
+            <td>Tag</td>
+            <td>Passive or active contactless device</td>
+            <td>Identification/data storage</td>
+          </tr>
+
+        </tbody>
+
       </table>
-    </section>
 
-    <section>
-      <h2>Connecting RC522 to Arduino Uno</h2>
-      <p>For SPI communication, connect the RC522 module to the Arduino Uno as follows:</p>
-      <ul>
-        <li><strong>VCC</strong> to Arduino 3.3V</li>
-        <li><strong>GND</strong> to Arduino GND</li>
-        <li><strong>RST</strong> to Arduino digital pin 9</li>
-        <li><strong>IRQ</strong> (optional) not connected</li>
-        <li><strong>MISO</strong> to Arduino digital pin 12</li>
-        <li><strong>MOSI</strong> to Arduino digital pin 11</li>
-        <li><strong>SCK</strong> to Arduino digital pin 13</li>
-        <li><strong>SS</strong> to Arduino digital pin 10</li>
-      </ul>
-    </section>
+    </div>
 
-    <section>
-      <h2>Using the RC522 with Arduino</h2>
-      <p>To interface the RC522 module with Arduino, you'll need to include the SPI library and a suitable RFID library, such as the MFRC522 library. Here's a basic example:</p>
-      
-      <pre>
-        <code>
-#include <SPI.h>
-#include <MFRC522.h>
+  </section>
+
+
+  <!-- =========================================================
+       RC522 OVERVIEW
+       ========================================================= -->
+
+  <section>
+
+    <h2>RC522 / MFRC522</h2>
+
+    <p>
+      The RC522 module is one of the most common low-cost RFID
+      reader boards used in Arduino and ESP32 projects.
+    </p>
+
+    <p>
+      Many boards sold as "RC522" modules are breakout boards built
+      around the <strong>NXP MFRC522</strong> reader IC.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>Frequency</h3>
+
+        <p>
+          13.56 MHz high-frequency contactless operation.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Host Interfaces</h3>
+
+        <p>
+          Common breakout implementations expose SPI. Some variants
+          also provide I2C or serial configuration options.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Typical Cards</h3>
+
+        <p>
+          Commonly used with compatible MIFARE and ISO/IEC 14443
+          contactless cards and tags.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Supply</h3>
+
+        <p>
+          The MFRC522 IC is a low-voltage device. Verify the actual
+          breakout board's power and logic requirements before wiring.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       RC522 PINOUT
+       ========================================================= -->
+
+  <section>
+
+    <h2>RC522 Module Pinout</h2>
+
+    <p>
+      The common eight-pin RC522 breakout exposes power, reset,
+      interrupt and SPI-related signals.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table class="pin-table">
+
+        <thead>
+
+          <tr>
+            <th>Pin</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Function</th>
+            <th>Typical Use</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>1</td>
+            <td>3.3V / VCC</td>
+            <td>Power</td>
+            <td>Module supply</td>
+            <td>Compatible 3.3V supply</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>RST</td>
+            <td>Digital</td>
+            <td>Reset control</td>
+            <td>MCU GPIO</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>GND</td>
+            <td>Power</td>
+            <td>Ground reference</td>
+            <td>MCU GND</td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td>IRQ</td>
+            <td>Digital</td>
+            <td>Interrupt output</td>
+            <td>Optional MCU interrupt GPIO</td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+            <td>MISO</td>
+            <td>SPI</td>
+            <td>Reader → MCU data</td>
+            <td>SPI MISO</td>
+          </tr>
+
+          <tr>
+            <td>6</td>
+            <td>MOSI</td>
+            <td>SPI</td>
+            <td>MCU → reader data</td>
+            <td>SPI MOSI</td>
+          </tr>
+
+          <tr>
+            <td>7</td>
+            <td>SCK</td>
+            <td>SPI</td>
+            <td>SPI clock</td>
+            <td>SPI SCK</td>
+          </tr>
+
+          <tr>
+            <td>8</td>
+            <td>SS / SDA</td>
+            <td>SPI / alternate</td>
+            <td>SPI chip select</td>
+            <td>MCU GPIO / SS</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       RC522 SIGNAL MAP
+       ========================================================= -->
+
+  <section>
+
+    <h2>RC522 Signal Map</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Signal</th>
+            <th>Direction</th>
+            <th>Required?</th>
+            <th>Purpose</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>VCC</td>
+            <td>Power</td>
+            <td>Yes</td>
+            <td>Module power</td>
+          </tr>
+
+          <tr>
+            <td>GND</td>
+            <td>Power</td>
+            <td>Yes</td>
+            <td>Common reference</td>
+          </tr>
+
+          <tr>
+            <td>SCK</td>
+            <td>MCU → reader</td>
+            <td>Yes for SPI</td>
+            <td>Clock</td>
+          </tr>
+
+          <tr>
+            <td>MOSI</td>
+            <td>MCU → reader</td>
+            <td>Yes for SPI</td>
+            <td>Command/data input</td>
+          </tr>
+
+          <tr>
+            <td>MISO</td>
+            <td>Reader → MCU</td>
+            <td>Yes for SPI</td>
+            <td>Response/data output</td>
+          </tr>
+
+          <tr>
+            <td>SS</td>
+            <td>MCU → reader</td>
+            <td>Yes for SPI</td>
+            <td>Chip selection</td>
+          </tr>
+
+          <tr>
+            <td>RST</td>
+            <td>MCU → reader</td>
+            <td>Usually</td>
+            <td>Hardware reset</td>
+          </tr>
+
+          <tr>
+            <td>IRQ</td>
+            <td>Reader → MCU</td>
+            <td>Optional</td>
+            <td>Interrupt/event notification</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ARDUINO NANO / UNO
+       ========================================================= -->
+
+  <section>
+
+    <h2>RC522 + Classic Arduino Nano / Uno</h2>
+
+    <p>
+      The classic ATmega328P Arduino Nano and Uno use the same
+      hardware SPI signals.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>RC522</th>
+            <th>Arduino Nano / Uno</th>
+            <th>ATmega328P Function</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>VCC</td>
+            <td>3.3V</td>
+            <td>Power</td>
+          </tr>
+
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+            <td>Ground</td>
+          </tr>
+
+          <tr>
+            <td>RST</td>
+            <td>D9</td>
+            <td>GPIO</td>
+          </tr>
+
+          <tr>
+            <td>IRQ</td>
+            <td>Not connected</td>
+            <td>Optional interrupt</td>
+          </tr>
+
+          <tr>
+            <td>MISO</td>
+            <td>D12</td>
+            <td>SPI MISO</td>
+          </tr>
+
+          <tr>
+            <td>MOSI</td>
+            <td>D11</td>
+            <td>SPI MOSI</td>
+          </tr>
+
+          <tr>
+            <td>SCK</td>
+            <td>D13</td>
+            <td>SPI SCK</td>
+          </tr>
+
+          <tr>
+            <td>SS / SDA</td>
+            <td>D10</td>
+            <td>SPI SS</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="warning-box">
+
+      <strong>Voltage warning:</strong>
+
+      The classic Arduino Nano/Uno uses 5V logic while the MFRC522
+      operates as a low-voltage device. Do not assume that the
+      breakout's SPI inputs are safely 5V tolerant. Verify the
+      breakout design or use suitable level shifting.
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ESP32
+       ========================================================= -->
+
+  <section>
+
+    <h2>RC522 + ESP32</h2>
+
+    <p>
+      The ESP32 is particularly convenient for the RC522 because its
+      GPIO and SPI peripherals are designed around 3.3V logic.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>RC522</th>
+            <th>Common ESP32 GPIO</th>
+            <th>Function</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>VCC</td>
+            <td>3.3V</td>
+            <td>Power</td>
+          </tr>
+
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+            <td>Ground</td>
+          </tr>
+
+          <tr>
+            <td>RST</td>
+            <td>GPIO27</td>
+            <td>Reset</td>
+          </tr>
+
+          <tr>
+            <td>IRQ</td>
+            <td>Optional GPIO</td>
+            <td>Interrupt</td>
+          </tr>
+
+          <tr>
+            <td>MISO</td>
+            <td>GPIO19</td>
+            <td>SPI MISO</td>
+          </tr>
+
+          <tr>
+            <td>MOSI</td>
+            <td>GPIO23</td>
+            <td>SPI MOSI</td>
+          </tr>
+
+          <tr>
+            <td>SCK</td>
+            <td>GPIO18</td>
+            <td>SPI clock</td>
+          </tr>
+
+          <tr>
+            <td>SS</td>
+            <td>GPIO5</td>
+            <td>Chip select</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="notice">
+
+      <strong>ESP32 note:</strong>
+
+      GPIO18/19/23/5 are common VSPI-related assignments on classic
+      ESP32 designs. The ESP32 peripheral matrix allows alternative
+      routing, so always verify the target board and firmware.
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       SPI BUS
+       ========================================================= -->
+
+  <section>
+
+    <h2>Understanding SPI</h2>
+
+    <p>
+      SPI allows multiple peripherals to share the clock and data
+      signals while each device receives its own chip-select line.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>SPI Signal</th>
+            <th>Direction</th>
+            <th>RC522 Role</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>SCK</td>
+            <td>MCU → peripherals</td>
+            <td>Clock</td>
+          </tr>
+
+          <tr>
+            <td>MOSI</td>
+            <td>MCU → peripherals</td>
+            <td>Commands/data</td>
+          </tr>
+
+          <tr>
+            <td>MISO</td>
+            <td>Peripherals → MCU</td>
+            <td>Responses/data</td>
+          </tr>
+
+          <tr>
+            <td>CS / SS</td>
+            <td>MCU → peripheral</td>
+            <td>Select RC522</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <p>
+      Multiple SPI devices can share SCK, MOSI and MISO when their
+      chip-select lines are managed correctly.
+    </p>
+
+  </section>
+
+
+  <!-- =========================================================
+       MULTIPLE RFID READERS
+       ========================================================= -->
+
+  <section>
+
+    <h2>Multiple RC522 Readers on One MCU</h2>
+
+    <p>
+      Multiple SPI readers can share the same SPI bus. Each reader
+      should normally have its own chip-select line.
+    </p>
+
+    <div class="interface-box">
+
+      <h3>Example Architecture</h3>
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Signal</th>
+            <th>Reader 1</th>
+            <th>Reader 2</th>
+            <th>Reader 3</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>SCK</td>
+            <td>Shared</td>
+            <td>Shared</td>
+            <td>Shared</td>
+          </tr>
+
+          <tr>
+            <td>MOSI</td>
+            <td>Shared</td>
+            <td>Shared</td>
+            <td>Shared</td>
+          </tr>
+
+          <tr>
+            <td>MISO</td>
+            <td>Shared</td>
+            <td>Shared</td>
+            <td>Shared</td>
+          </tr>
+
+          <tr>
+            <td>SS / CS</td>
+            <td>GPIO A</td>
+            <td>GPIO B</td>
+            <td>GPIO C</td>
+          </tr>
+
+          <tr>
+            <td>RST</td>
+            <td>GPIO A2</td>
+            <td>GPIO B2</td>
+            <td>GPIO C2</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="warning-box">
+
+      <strong>RF warning:</strong>
+
+      Multiple readers operating in close physical proximity can
+      interfere with each other at the RF level even when their
+      digital SPI connections are electrically correct.
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       PN532
+       ========================================================= -->
+
+  <section>
+
+    <h2>PN532 NFC Reader</h2>
+
+    <p>
+      PN532 modules are another major category of 13.56 MHz
+      contactless reader used in Arduino, ESP32 and embedded NFC
+      projects.
+    </p>
+
+    <p>
+      Unlike the simple RC522 breakout, PN532 modules are commonly
+      available with several host-interface options.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>SPI</h3>
+
+        <p>
+          Uses a clocked serial interface and chip-select control.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>I2C</h3>
+
+        <p>
+          Uses SDA and SCL and can simplify wiring when SPI pins
+          are already occupied.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>UART</h3>
+
+        <p>
+          Serial host communication is available on supported
+          PN532 configurations.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>NFC Features</h3>
+
+        <p>
+          PN532-based hardware is commonly selected when broader
+          NFC functionality is required.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       RC522 VS PN532
+       ========================================================= -->
+
+  <section>
+
+    <h2>RC522 vs PN532</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Feature</th>
+            <th>RC522 / MFRC522</th>
+            <th>PN532</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Frequency</td>
+            <td>13.56 MHz</td>
+            <td>13.56 MHz</td>
+          </tr>
+
+          <tr>
+            <td>Typical module cost</td>
+            <td>Low</td>
+            <td>Usually higher</td>
+          </tr>
+
+          <tr>
+            <td>SPI</td>
+            <td>Common</td>
+            <td>Supported</td>
+          </tr>
+
+          <tr>
+            <td>I2C</td>
+            <td>Depends on breakout/configuration</td>
+            <td>Common</td>
+          </tr>
+
+          <tr>
+            <td>UART</td>
+            <td>Not the normal RC522 breakout interface</td>
+            <td>Common on supported modules</td>
+          </tr>
+
+          <tr>
+            <td>NFC functionality</td>
+            <td>More limited</td>
+            <td>Broader NFC-oriented functionality</td>
+          </tr>
+
+          <tr>
+            <td>Basic RFID projects</td>
+            <td>Common choice</td>
+            <td>Suitable</td>
+          </tr>
+
+          <tr>
+            <td>Advanced NFC projects</td>
+            <td>Limited</td>
+            <td>More appropriate hardware class</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       PN532 GENERIC PINOUT
+       ========================================================= -->
+
+  <section>
+
+    <h2>PN532 Module Interface Pins</h2>
+
+    <p>
+      PN532 breakout boards vary considerably. The following table
+      describes common signal names rather than claiming that every
+      commercial board exposes every pin.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table class="pin-table">
+
+        <thead>
+
+          <tr>
+            <th>Signal</th>
+            <th>Function</th>
+            <th>Interface</th>
+            <th>Notes</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>VCC</td>
+            <td>Power</td>
+            <td>Power</td>
+            <td>Verify module-specific voltage</td>
+          </tr>
+
+          <tr>
+            <td>GND</td>
+            <td>Ground</td>
+            <td>Power</td>
+            <td>Common MCU reference</td>
+          </tr>
+
+          <tr>
+            <td>SDA</td>
+            <td>I2C data</td>
+            <td>I2C</td>
+            <td>Used when I2C mode is selected</td>
+          </tr>
+
+          <tr>
+            <td>SCL</td>
+            <td>I2C clock</td>
+            <td>I2C</td>
+            <td>Used when I2C mode is selected</td>
+          </tr>
+
+          <tr>
+            <td>SCK</td>
+            <td>SPI clock</td>
+            <td>SPI</td>
+            <td>Used on SPI configurations</td>
+          </tr>
+
+          <tr>
+            <td>MOSI</td>
+            <td>SPI input</td>
+            <td>SPI</td>
+            <td>MCU → PN532</td>
+          </tr>
+
+          <tr>
+            <td>MISO</td>
+            <td>SPI output</td>
+            <td>SPI</td>
+            <td>PN532 → MCU</td>
+          </tr>
+
+          <tr>
+            <td>SS / CS</td>
+            <td>Chip select</td>
+            <td>SPI</td>
+            <td>SPI device selection</td>
+          </tr>
+
+          <tr>
+            <td>IRQ</td>
+            <td>Interrupt</td>
+            <td>Digital</td>
+            <td>Available on supported configurations</td>
+          </tr>
+
+          <tr>
+            <td>RST</td>
+            <td>Reset</td>
+            <td>Digital</td>
+            <td>Board-dependent</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       TAGS / CARDS
+       ========================================================= -->
+
+  <section>
+
+    <h2>Cards, Tags &amp; Contactless Objects</h2>
+
+    <p>
+      Reader compatibility depends on the actual RF protocol and
+      tag technology. A tag being physically similar to another
+      card does not guarantee that every reader can communicate with it.
+    </p>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Category</th>
+            <th>Example</th>
+            <th>Important Consideration</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>HF RFID</td>
+            <td>13.56 MHz tags</td>
+            <td>Reader must support the relevant protocol</td>
+          </tr>
+
+          <tr>
+            <td>MIFARE</td>
+            <td>MIFARE-family cards</td>
+            <td>Different products have different capabilities</td>
+          </tr>
+
+          <tr>
+            <td>NFC tag</td>
+            <td>NDEF-compatible tag</td>
+            <td>Reader/controller must support the required NFC operation</td>
+          </tr>
+
+          <tr>
+            <td>UID</td>
+            <td>Card identifier</td>
+            <td>UID is not automatically equivalent to secure authentication</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="warning-box">
+
+      <strong>Security note:</strong>
+
+      Treating a card UID as a secret credential is generally not
+      sufficient for a security-sensitive system. Use the appropriate
+      cryptographic authentication mechanism for the card technology
+      and application.
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ARDUINO RC522 EXAMPLE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Arduino RC522 Example</h2>
+
+    <p>
+      A basic RC522 application can use the Arduino SPI library
+      together with an MFRC522-compatible library.
+    </p>
+
+<pre><code>#include &lt;SPI.h&gt;
+#include &lt;MFRC522.h&gt;
 
 #define SS_PIN 10
 #define RST_PIN 9
@@ -106,45 +1178,669 @@
 MFRC522 rfid(SS_PIN, RST_PIN);
 
 void setup() {
-  Serial.begin(9600);
+
+  Serial.begin(115200);
+
   SPI.begin();
+
   rfid.PCD_Init();
+
+  Serial.println("RFID reader ready");
 }
 
 void loop() {
-  if (rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial()) {
-    Serial.print("UID:");
-    for (byte i = 0; i < rfid.uid.size; i++) {
-      Serial.print(" 0x");
-      Serial.print(rfid.uid.uidByte[i], HEX);
-    }
-    Serial.println();
-    rfid.PICC_HaltA();
+
+  if (!rfid.PICC_IsNewCardPresent()) {
+    return;
   }
+
+  if (!rfid.PICC_ReadCardSerial()) {
+    return;
+  }
+
+  Serial.print("UID:");
+
+  for (byte i = 0; i &lt; rfid.uid.size; i++) {
+
+    Serial.print(" ");
+
+    if (rfid.uid.uidByte[i] &lt; 0x10) {
+      Serial.print("0");
+    }
+
+    Serial.print(
+      rfid.uid.uidByte[i],
+      HEX
+    );
+  }
+
+  Serial.println();
+
+  rfid.PICC_HaltA();
+
+  rfid.PCD_StopCrypto1();
+}</code></pre>
+
+  </section>
+
+
+  <!-- =========================================================
+       ESP32 EXAMPLE
+       ========================================================= -->
+
+  <section>
+
+    <h2>ESP32 RC522 Example</h2>
+
+    <p>
+      The ESP32 can use the same MFRC522 software model while
+      assigning the reader to the desired SPI GPIOs.
+    </p>
+
+<pre><code>#include &lt;SPI.h&gt;
+#include &lt;MFRC522.h&gt;
+
+#define SS_PIN   5
+#define RST_PIN 27
+
+#define SPI_SCK  18
+#define SPI_MISO 19
+#define SPI_MOSI 23
+
+MFRC522 rfid(SS_PIN, RST_PIN);
+
+void setup() {
+
+  Serial.begin(115200);
+
+  SPI.begin(
+    SPI_SCK,
+    SPI_MISO,
+    SPI_MOSI,
+    SS_PIN
+  );
+
+  rfid.PCD_Init();
+
+  Serial.println("ESP32 RFID reader ready");
 }
-        </code>
-      </pre>
-      
-      <p>Ensure you have the MFRC522 library installed in your Arduino IDE. You can download it from the Arduino Library Manager or GitHub repositories.</p>
-    </section>
 
-    <section>
-      <h2>Additional Notes</h2>
-      <ul>
-        <li>The RC522 module operates at 3.3V. Applying 5V may damage the module. However, the communication pins (MISO, MOSI, SCK, SS) are 5V tolerant, allowing direct connection to Arduino's 5V logic pins.</li>
-        <li>Always connect the ground (GND) of the Arduino and the RC522 module to establish a common reference point for the signals.</li>
-        <li>For more detailed tutorials and projects using the RC522 module with Arduino, refer to the following resources:</li>
-      </ul>
-      <ul>
-        <li><a href="https://peppe8o.com/rfid-with-arduino-uno-rc522-wiring-and-code/">RFID With Arduino Uno: RC522 Wiring and Code</a></li>
-        <li><a href="https://circuitdigest.com/microcontroller-projects/interfacing-rfid-reader-module-with-arduino">How to use RC522 RFID Reader With Arduino</a></li>
-        <li><a href="https://www.instructables.com/Interfacing-RFID-RC522-With-Arduino-MEGA-a-Simple-/">Interfacing RFID-RC522 With Arduino MEGA</a></li>
-      </ul>
-    </section>
-  </main>
+void loop() {
 
-  <footer>
-    <p>Information sourced from various technical manuals and datasheets.</p>
-  </footer>
+  if (!rfid.PICC_IsNewCardPresent()) {
+    return;
+  }
+
+  if (!rfid.PICC_ReadCardSerial()) {
+    return;
+  }
+
+  Serial.print("UID:");
+
+  for (byte i = 0; i &lt; rfid.uid.size; i++) {
+
+    Serial.print(" ");
+
+    if (rfid.uid.uidByte[i] &lt; 0x10) {
+      Serial.print("0");
+    }
+
+    Serial.print(
+      rfid.uid.uidByte[i],
+      HEX
+    );
+  }
+
+  Serial.println();
+
+  rfid.PICC_HaltA();
+  rfid.PCD_StopCrypto1();
+}</code></pre>
+
+  </section>
+
+
+  <!-- =========================================================
+       RFID SOFTWARE FLOW
+       ========================================================= -->
+
+  <section>
+
+    <h2>Typical RFID Software Flow</h2>
+
+    <div class="interface-box">
+
+      <ol>
+
+        <li>Initialize the SPI/I2C/UART host interface.</li>
+
+        <li>Initialize the RFID/NFC controller.</li>
+
+        <li>Check whether a card or tag is present.</li>
+
+        <li>Anti-collision and protocol handling occurs.</li>
+
+        <li>Read the required card/tag information.</li>
+
+        <li>Authenticate when the card technology requires it.</li>
+
+        <li>Process the application data.</li>
+
+        <li>Stop or terminate the current card session.</li>
+
+        <li>Return to the detection loop.</li>
+
+      </ol>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ANTENNA
+       ========================================================= -->
+
+  <section>
+
+    <h2>RF Antenna Considerations</h2>
+
+    <p>
+      The digital wiring between the reader and MCU is only one part
+      of an RFID system. The RF antenna and surrounding physical
+      environment strongly affect reader performance.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+        <h3>Antenna Geometry</h3>
+
+        <p>
+          The reader's antenna is designed for a particular RF
+          operating environment. Do not arbitrarily modify the
+          antenna circuit.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Metal</h3>
+
+        <p>
+          Nearby metal can significantly affect antenna behavior
+          and contactless communication.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Distance</h3>
+
+        <p>
+          Contactless systems are designed for relatively short
+          ranges. Actual range depends on the reader, tag, antenna,
+          orientation and environment.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Orientation</h3>
+
+        <p>
+          Reader and tag antenna orientation can affect coupling
+          and therefore communication reliability.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       COMMON FAILURES
+       ========================================================= -->
+
+  <section>
+
+    <h2>Common RFID Problems</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Problem</th>
+            <th>Possible Cause</th>
+            <th>Check</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Reader not detected</td>
+            <td>Power or SPI wiring problem</td>
+            <td>Check VCC, GND, SCK, MOSI, MISO and SS</td>
+          </tr>
+
+          <tr>
+            <td>Reader initializes but no tag</td>
+            <td>RF/tag compatibility or antenna issue</td>
+            <td>Verify supported tag type and orientation</td>
+          </tr>
+
+          <tr>
+            <td>Random SPI failures</td>
+            <td>Voltage, wiring, timing or signal integrity</td>
+            <td>Check logic levels and wiring length</td>
+          </tr>
+
+          <tr>
+            <td>Works on one board but not another</td>
+            <td>Different voltage or SPI pin assignments</td>
+            <td>Verify MCU-specific pin mapping</td>
+          </tr>
+
+          <tr>
+            <td>Card UID appears but data fails</td>
+            <td>Protocol or authentication issue</td>
+            <td>Verify card technology and access procedure</td>
+          </tr>
+
+          <tr>
+            <td>Short read distance</td>
+            <td>Antenna/environment limitations</td>
+            <td>Remove nearby metal and test orientation</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       POWER RULES
+       ========================================================= -->
+
+  <section>
+
+    <h2>Power &amp; Logic-Level Rules</h2>
+
+    <ul class="rules">
+
+      <li>
+        <strong>Identify the actual reader IC.</strong>
+        "RC522 module" describes a common breakout category, not
+        every possible board design.
+      </li>
+
+      <li>
+        <strong>Verify VCC.</strong>
+        The MFRC522 IC is a low-voltage device. Follow the
+        module/controller electrical specifications.
+      </li>
+
+      <li>
+        <strong>Do not assume 5V tolerance.</strong>
+        MCU GPIO voltage compatibility must be verified before
+        connecting a 5V Arduino directly to a 3.3V RFID controller.
+      </li>
+
+      <li>
+        <strong>Use a common ground.</strong>
+        The MCU and reader need a compatible signal reference.
+      </li>
+
+      <li>
+        <strong>Keep SPI wiring reasonable.</strong>
+        Long jumper wires can introduce signal-integrity problems.
+      </li>
+
+      <li>
+        <strong>Do not treat a UID as a secret.</strong>
+        Security-sensitive applications require appropriate
+        authentication and cryptographic design.
+      </li>
+
+      <li>
+        <strong>Verify tag compatibility.</strong>
+        Not every 13.56 MHz card uses the same protocol or feature set.
+      </li>
+
+      <li>
+        <strong>Protect the RF section.</strong>
+        Mechanical placement, metal, cables and enclosure materials
+        can affect antenna performance.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- =========================================================
+       READER COMPARISON
+       ========================================================= -->
+
+  <section>
+
+    <h2>RFID / NFC Reader Selection</h2>
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Requirement</th>
+            <th>Typical Hardware Class</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Basic low-cost 13.56 MHz card reader</td>
+            <td>RC522 / MFRC522</td>
+          </tr>
+
+          <tr>
+            <td>Arduino SPI RFID project</td>
+            <td>RC522</td>
+          </tr>
+
+          <tr>
+            <td>ESP32 RFID project</td>
+            <td>RC522 or PN532</td>
+          </tr>
+
+          <tr>
+            <td>NFC-focused project</td>
+            <td>PN532-class hardware</td>
+          </tr>
+
+          <tr>
+            <td>I2C-based NFC interface</td>
+            <td>PN532-class module with I2C support</td>
+          </tr>
+
+          <tr>
+            <td>SPI bus integration</td>
+            <td>RC522 / PN532 depending on requirements</td>
+          </tr>
+
+          <tr>
+            <td>Advanced secure contactless system</td>
+            <td>Purpose-built secure NFC/RFID hardware</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       FUTURE READER DATABASE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Reader Encyclopedia Roadmap</h2>
+
+    <p>
+      The RFID section can eventually become a complete reader
+      database rather than a single RC522 page.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>RC522 / MFRC522</h3>
+        <p>13.56 MHz RFID reader/writer reference.</p>
+      </div>
+
+      <div class="card">
+        <h3>PN532</h3>
+        <p>NFC controller and multi-interface reference.</p>
+      </div>
+
+      <div class="card">
+        <h3>PN5180</h3>
+        <p>Advanced 13.56 MHz contactless reader family.</p>
+      </div>
+
+      <div class="card">
+        <h3>ST25R</h3>
+        <p>STMicroelectronics NFC/HF RFID reader family.</p>
+      </div>
+
+      <div class="card">
+        <h3>RDM6300</h3>
+        <p>Low-frequency RFID reader module family.</p>
+      </div>
+
+      <div class="card">
+        <h3>UHF RFID</h3>
+        <p>
+          Separate reader category for longer-range UHF RFID systems.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       MACHINE READABLE FUTURE
+       ========================================================= -->
+
+  <section>
+
+    <h2>Future Machine-Readable Pin Database</h2>
+
+    <p>
+      Each reader should eventually have a structured hardware record
+      containing its electrical and interface characteristics.
+    </p>
+
+<pre><code>{
+  "reader": {
+    "name": "RC522",
+    "controller": "MFRC522",
+    "frequency": "13.56 MHz",
+
+    "interfaces": {
+      "spi": true,
+      "i2c": false,
+      "uart": false
+    },
+
+    "power": {
+      "logic_voltage": "3.3V",
+      "verify_breakout": true
+    },
+
+    "pins": {
+      "VCC": {
+        "type": "power"
+      },
+
+      "GND": {
+        "type": "power"
+      },
+
+      "RST": {
+        "type": "digital",
+        "direction": "input"
+      },
+
+      "IRQ": {
+        "type": "digital",
+        "direction": "output"
+      },
+
+      "MISO": {
+        "type": "spi",
+        "direction": "output"
+      },
+
+      "MOSI": {
+        "type": "spi",
+        "direction": "input"
+      },
+
+      "SCK": {
+        "type": "spi",
+        "direction": "input"
+      },
+
+      "SS": {
+        "type": "spi",
+        "direction": "input"
+      }
+    },
+
+    "rf": {
+      "frequency_hz": 13560000,
+      "antenna_required": true,
+      "near_field": true
+    }
+  }
+}</code></pre>
+
+  </section>
+
+
+  <!-- =========================================================
+       ENGINEERING CHECKLIST
+       ========================================================= -->
+
+  <section>
+
+    <h2>RFID Engineering Checklist</h2>
+
+    <ul class="rules">
+
+      <li>
+        Identify the reader IC and breakout board.
+      </li>
+
+      <li>
+        Identify the supported RF frequency and protocol.
+      </li>
+
+      <li>
+        Verify VCC and digital logic levels.
+      </li>
+
+      <li>
+        Identify the host interface: SPI, I2C or UART.
+      </li>
+
+      <li>
+        Map every signal to the selected MCU.
+      </li>
+
+      <li>
+        Verify that the MCU has the required SPI/I2C/UART resources.
+      </li>
+
+      <li>
+        Verify tag/card compatibility.
+      </li>
+
+      <li>
+        Test the reader away from large metal surfaces.
+      </li>
+
+      <li>
+        Test card orientation and distance.
+      </li>
+
+      <li>
+        Separate identification from authentication in security-sensitive
+        applications.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- =========================================================
+       CANONICAL SOURCES
+       ========================================================= -->
+
+  <section>
+
+    <h2>Canonical Reference Sources</h2>
+
+    <p>
+      For production hardware designs, use the actual controller
+      datasheet, breakout-board documentation and MCU documentation
+      as the electrical source of truth.
+    </p>
+
+    <ul>
+
+      <li>
+        NXP MFRC522 documentation
+      </li>
+
+      <li>
+        NXP PN532 documentation
+      </li>
+
+      <li>
+        Arduino SPI documentation
+      </li>
+
+      <li>
+        Espressif ESP32 technical documentation
+      </li>
+
+      <li>
+        Microchip ATmega328P documentation
+      </li>
+
+    </ul>
+
+  </section>
+
+
+</main>
+
+
+<footer>
+
+  <p>
+    ESP / Arduino Pin Encyclopedia —
+    RFID, NFC &amp; Contactless Reader Reference
+  </p>
+
+</footer>
+
 </body>
 </html>
